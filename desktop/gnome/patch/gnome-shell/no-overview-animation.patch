@@ -1,0 +1,20 @@
+---
+
+Get rid of overview animation on GNOME. Make desktop responsive even at high load.
+
+This patch is specified for GNOME 45.
+
+---
+diff --git a/js/ui/overview.js b/js/ui/overview.js
+
+--- a/js/ui/overview.js	2023-12-18 14:20:40.462584337 +0800
++++ b/js/ui/overview.js	2023-12-18 14:20:54.060142601 +0800
+@@ -11,7 +11,7 @@
+ 
+ // Time for initial animation going into Overview mode;
+ // this is defined here to make it available in imports.
+-export const ANIMATION_TIME = 250;
++export const ANIMATION_TIME = 0;
+ 
+ import * as DND from './dnd.js';
+ import * as LayoutManager from './layout.js';

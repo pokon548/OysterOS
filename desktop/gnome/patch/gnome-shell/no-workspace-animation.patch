@@ -1,0 +1,69 @@
+---
+
+Get rid of workspace animation on GNOME. Make desktop responsive even at high load.
+
+This patch is specified for GNOME 45.
+
+---
+diff --git a/js/ui/workspaceAnimation.js b/js/ui/workspaceAnimation.js
+
+--- a/js/ui/workspaceAnimation.js	2023-12-18 13:54:06.500498676 +0800
++++ b/js/ui/workspaceAnimation.js	2023-12-18 13:55:00.666975803 +0800
+@@ -386,56 +386,7 @@
+     }
+ 
+     animateSwitch(from, to, direction, onComplete) {
+-        this._swipeTracker.enabled = false;
+-
+-        let workspaceIndices = [];
+-
+-        switch (direction) {
+-        case Meta.MotionDirection.UP:
+-        case Meta.MotionDirection.LEFT:
+-        case Meta.MotionDirection.UP_LEFT:
+-        case Meta.MotionDirection.UP_RIGHT:
+-            workspaceIndices = [to, from];
+-            break;
+-
+-        case Meta.MotionDirection.DOWN:
+-        case Meta.MotionDirection.RIGHT:
+-        case Meta.MotionDirection.DOWN_LEFT:
+-        case Meta.MotionDirection.DOWN_RIGHT:
+-            workspaceIndices = [from, to];
+-            break;
+-        }
+-
+-        if (Clutter.get_default_text_direction() === Clutter.TextDirection.RTL &&
+-            direction !== Meta.MotionDirection.UP &&
+-            direction !== Meta.MotionDirection.DOWN)
+-            workspaceIndices.reverse();
+-
+-        this._prepareWorkspaceSwitch(workspaceIndices);
+-        this._switchData.inProgress = true;
+-
+-        const fromWs = global.workspace_manager.get_workspace_by_index(from);
+-        const toWs = global.workspace_manager.get_workspace_by_index(to);
+-
+-        for (const monitorGroup of this._switchData.monitors) {
+-            monitorGroup.progress = monitorGroup.getWorkspaceProgress(fromWs);
+-            const progress = monitorGroup.getWorkspaceProgress(toWs);
+-
+-            const params = {
+-                duration: WINDOW_ANIMATION_TIME,
+-                mode: Clutter.AnimationMode.EASE_OUT_CUBIC,
+-            };
+-
+-            if (monitorGroup.index === Main.layoutManager.primaryIndex) {
+-                params.onComplete = () => {
+-                    this._finishWorkspaceSwitch(this._switchData);
+-                    onComplete();
+-                    this._swipeTracker.enabled = true;
+-                };
+-            }
+-
+-            monitorGroup.ease_property('progress', progress, params);
+-        }
++	onComplete();
+     }
+ 
+     canHandleScrollEvent(event) {

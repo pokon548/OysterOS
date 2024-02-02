@@ -1,0 +1,21 @@
+pokon548-password: ENC[AES256_GCM,data:pN/LBn3g0jSL/RuL3o7xj+qB2OlhcfpIk+9fFt45B2GYahX9hjFwi2b6e30KCYRTpU7zQNfdIbi5QM64x9dF8tgDjc3fvLhqyw==,iv:d3GvUXhSC2Hixr6YNqyNDy2Is160kvQcSzt3xBF5mGc=,tag:kCpfCkXGgRscLLYDlxx/mw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1vcy4xzcz050ncalv78u94xphft9eq4cgx83pnxxqsks9w9tsd4wq7j46wc
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpaEJVTHlGRDI4OUM4VEl6
+            blRlN0JCelJ0M2xvUzlLTm9UdzlyWGNzRWlZCjJXTkMwTWg5MnptTlpwS0FHQWRv
+            SlZrS3AzdjhtcjIrRzdqQVRxSFZramsKLS0tIFlHRmVSMGlGRmR6M3hWTVNLZHpH
+            SlFXbWs5eG1BUGFTNjV6ejZYeVo2emMKENoRMHgtopWQONZ5qsHw2H/qVL5hbLaF
+            uKJ43qfc5t2uhUSYFEoiNl3ic/vaSeNrUu5YseE5AY6+WswhgKNpMQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-02-20T16:40:38Z"
+    mac: ENC[AES256_GCM,data:LSPh6YQkDkfG0BnZ5W+JlAddGL9tNk5V8LluvL1b/AxkuOI9/MvEHz7/jvMwORwB4+J+tmHQY2C56CMIl+nLmUtI46+XOv4DQKaLmLOOV8rXX0PZlD5mAUo9kaoS1soN0Kzp9TnqyEUAozDLItOny8hoHvzVz7GybdEtjqad570=,iv:HElNygXfBYzsabEywJN3U/vUdV0hkcU/a548wx4rRok=,tag:6oiV7tsY9Fiwdgd1a3PR6g==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.8.1

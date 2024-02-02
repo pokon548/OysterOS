@@ -1,0 +1,29 @@
+---
+
+Get rid of workspace animation on GNOME. Make desktop responsive even at high load.
+
+This patch is specified for GNOME 45.
+
+---
+diff --git a/js/ui/appDisplay.js b/js/ui/appDisplay.js
+
+--- a/js/ui/appDisplay.js	2023-12-18 14:52:53.929431615 +0800
++++ b/js/ui/appDisplay.js	2023-12-18 14:54:46.526108138 +0800
+@@ -34,7 +34,7 @@
+ const VIEWS_SWITCH_TIME = 400;
+ const VIEWS_SWITCH_ANIMATION_DELAY = 100;
+ 
+-const SCROLL_TIMEOUT_TIME = 150;
++const SCROLL_TIMEOUT_TIME = 0;
+ 
+ const APP_ICON_SCALE_IN_TIME = 500;
+ const APP_ICON_SCALE_IN_DELAY = 700;
+@@ -42,7 +42,7 @@
+ const APP_ICON_TITLE_EXPAND_TIME = 200;
+ const APP_ICON_TITLE_COLLAPSE_TIME = 100;
+ 
+-const FOLDER_DIALOG_ANIMATION_TIME = 200;
++const FOLDER_DIALOG_ANIMATION_TIME = 0;
+ 
+ const PAGE_PREVIEW_ANIMATION_TIME = 150;
+ const PAGE_INDICATOR_FADE_TIME = 200;
