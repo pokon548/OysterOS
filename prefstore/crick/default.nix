@@ -28,7 +28,7 @@ with lib;
     };
 
     system = {
-      impermanence.enable = true;
+      impermanence.enable = false;
       i18n = true;
       sudo.noPassword = true;
     };
