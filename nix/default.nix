@@ -7,6 +7,7 @@
   nixpkgs = {
     overlays = [
       inputs.nur.overlay
+      inputs.nix-vscode-extensions.overlays.default
 
       (lib.mkIf config.prefstore.desktop.gnome.enable (self: super: {
         gnome = super.gnome.overrideScope' (gself: gsuper: {
