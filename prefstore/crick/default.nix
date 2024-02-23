@@ -77,8 +77,9 @@ with lib;
 
           office = with pkgs; [
             libreoffice-fresh
+          ] ++ (with config.prefstore.desktop.application; [
             wpsoffice-cn
-          ];
+          ]);
 
           internet = with pkgs; [
             thunderbird
