@@ -2,7 +2,7 @@
 }: {
   virtualisation.vmVariant = {
     virtualisation = {
-      memorySize = 4096;
+      memorySize = 8192;
       cores = 4;
     };
   };

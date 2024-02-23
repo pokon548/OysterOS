@@ -17,8 +17,11 @@ with lib;
 
     '';
 
-    boot.systemd = {
-      enable = true;
+    boot = {
+      latestKernel = true;
+      systemd = {
+        enable = true;
+      };
     };
 
     desktop = {

@@ -24,6 +24,10 @@ in
       };
 
       boot = {
+        latestKernel = mkOption {
+          type = types.bool;
+          default = false;
+        };
         systemd = {
           enable = mkOption {
             type = types.bool;
