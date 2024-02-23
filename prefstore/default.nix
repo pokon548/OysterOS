@@ -147,6 +147,11 @@ in
           default = true;
         };
 
+        nixostest.enable = mkOption {
+          type = types.bool;
+          default = false;
+        };
+
         pokon548 = {
           enable = mkOption {
             type = types.bool;

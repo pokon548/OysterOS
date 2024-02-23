@@ -34,8 +34,9 @@ with lib;
     };
 
     user = {
+      nixostest.enable = true;
       pokon548 = {
-        enable = true;
+        enable = false;
         home.noReleaseCheck = true;
         application = {
           base = with pkgs; [
