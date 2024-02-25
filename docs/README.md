@@ -7,8 +7,8 @@ Fast, Safe and Stable. Based on [NixOS](https://nixos.org).
 ![state](https://img.shields.io/badge/works-on%20my%20machines-FEDFE1)
 
 ## Structure
-- Flat. Most configs are limited up to three nesting levels (only one in most cases). All lower configs are unified to `flake.nix`, which brings convinence for (personal) maintainance and clean structure.
-- Decentralized. Despite hardware info, all scene-related configs live in `prefstore`. Any other configs are independent from specific usage, so you may customize and reuse them easily.
+- Flat. Most configs are limited up to three nesting levels (only one in most cases). All low-level configs are automatically imported in `flake.nix`, which brings convinence in (personal) maintainance and clean structure.
+- Decentralized. Despite hardware info, all scene-related configs live in `prefstore`. Any other configs are independent from usage, so you may customize and reuse them easily.
 
 ## Design
 ### Security
