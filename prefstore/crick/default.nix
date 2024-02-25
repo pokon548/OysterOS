@@ -79,6 +79,7 @@ with lib;
             libreoffice-fresh
           ] ++ (with config.prefstore.desktop.application; [
             wpsoffice-cn
+            qq
           ]);
 
           internet = with pkgs; [

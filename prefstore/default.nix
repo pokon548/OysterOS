@@ -9,6 +9,9 @@ let
   mkNixPak = inputs.nixpak.lib.nixpak {
     inherit pkgs lib;
   };
+  nixpakModules = {
+    gui-base = inputs.nixpak-pkgs + "/pkgs/modules/gui-base.nix";
+  };
 in
 {
   options.prefstore =
@@ -55,9 +58,9 @@ in
                 {
                   src = ../desktop/application + ("/" + name);
                   inputs = {
-                    inherit pkgs mkNixPak;
+                    inherit lib config pkgs mkNixPak nixpakModules;
                   };
-                }).default.config.script;
+                }).default.config.env;
             });
           gnome = {
             enable = mkOption {
