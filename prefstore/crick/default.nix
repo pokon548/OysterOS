@@ -107,6 +107,7 @@ with lib;
           nur.repos.pokon548.chengla-electron
           obsidian
           goldendict-ng
+          zotero_7
         ];
 
         development = with pkgs; [
