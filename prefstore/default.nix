@@ -50,6 +50,11 @@ let
         };
       };
 
+      programs = mkOption {
+        type = types.attrsOf types.anything;
+        default = { };
+      };
+
       application = {
         base = mkOption {
           type = types.listOf (types.package);

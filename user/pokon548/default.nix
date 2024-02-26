@@ -49,6 +49,8 @@ in
           stateVersion = "23.11";
         };
 
+        programs = config.prefstore.home.${username}.programs;
+
         dconf.settings = config.prefstore.home.${username}.gnome.dconf;
       };
     };
