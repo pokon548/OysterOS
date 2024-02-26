@@ -2,13 +2,18 @@
 , pkgs
 , config
 , ...
-}: {
-  config = lib.mkIf config.prefstore.user.nixostest.enable
+}:
+let
+  username = "nixostest";
+  testedUsername = "pokon548";
+in
+{
+  config = lib.mkIf config.prefstore.user.${username}.enable
     {
-      users.users.nixostest = {
+      users.users.${username} = {
         shell = "${pkgs.fish}/bin/fish";
         isNormalUser = true;
-        initialPassword = "test";
+        initialPassword = "passw0rd!";
         extraGroups = [
           "wheel"
           "networkmanager"
@@ -23,13 +28,13 @@
 
       services.xserver.displayManager.autoLogin = {
         enable = true;
-        user = "nixostest";
+        user = "${username}";
       };
 
-      home-manager.users.nixostest = { lib, ... }: {
+      home-manager.users.${username} = { lib, ... }: {
         home = {
           packages = builtins.concatLists
-            (with config.prefstore.user.pokon548.application; [
+            (with config.prefstore.home.${testedUsername}.application; [
               base
               gnome-extra
               office
@@ -37,13 +42,13 @@
               knowledge
               development
               game
-            ]) ++ config.prefstore.user.pokon548.gnome.extension;
-          enableNixpkgsReleaseCheck = !config.prefstore.user.pokon548.home.noReleaseCheck;
+            ]) ++ config.prefstore.home.${testedUsername}.gnome.extension;
+          enableNixpkgsReleaseCheck = !config.prefstore.home.${testedUsername}.noReleaseCheck;
 
           stateVersion = "23.11";
         };
 
-        dconf.settings = config.prefstore.user.pokon548.gnome.dconf;
+        dconf.settings = config.prefstore.home.${testedUsername}.gnome.dconf;
       };
     };
 }

@@ -12,6 +12,98 @@ let
   nixpakModules = {
     gui-base = inputs.nixpak-pkgs + "/pkgs/modules/gui-base.nix";
   };
+  homeOpts = { name, config, ... }: {
+    options = {
+      name = mkOption {
+        type = types.passwdEntry types.str;
+        apply = x: assert (builtins.stringLength x < 32 || abort "Username '${x}' is longer than 31 characters which is not allowed!"); x;
+        description = lib.mdDoc ''
+          The name of the user account. If undefined, the name of the
+          attribute set will be used.
+        '';
+      };
+
+      noReleaseCheck = mkOption {
+        type = types.bool;
+        default = false;
+      };
+
+      persistence = {
+        enable = mkOption {
+          type = types.bool;
+          default = config.prefstore.system.impermanence.enable;
+        };
+
+        directories = mkOption {
+          type = types.listOf (types.any);
+          default = [ ];
+        };
+
+        files = mkOption {
+          type = types.listOf (types.any);
+          default = [ ];
+        };
+
+        allowOthers = mkOption {
+          type = types.bool;
+          default = false;
+        };
+      };
+
+      application = {
+        base = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
+        gnome-extra = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
+        office = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
+        internet = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
+        knowledge = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
+        development = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
+        game = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+      };
+
+      gnome = {
+        extension = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+        dconf = mkOption {
+          type = types.attrs;
+          default = { };
+        };
+      };
+    };
+
+    config = mkMerge
+      [{
+        name = mkDefault name;
+      }];
+  };
 in
 {
   options.prefstore =
@@ -148,6 +240,11 @@ in
           };
         };
 
+      home = mkOption {
+        default = { };
+        type = with types; attrsOf (submodule homeOpts);
+      };
+
       user = {
         root = mkOption {
           type = types.bool;
@@ -163,59 +260,6 @@ in
           enable = mkOption {
             type = types.bool;
             default = false;
-          };
-
-          home.noReleaseCheck = mkOption {
-            type = types.bool;
-            default = false;
-          };
-
-          application = {
-            base = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-
-            gnome-extra = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-
-            office = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-
-            internet = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-
-            knowledge = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-
-            development = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-
-            game = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-          };
-
-          gnome = {
-            extension = mkOption {
-              type = types.listOf (types.package);
-              default = [ ];
-            };
-            dconf = mkOption {
-              type = types.attrs;
-              default = { };
-            };
           };
         };
       };
