@@ -5,17 +5,39 @@
 , pkgs
 , ...
 }:
-
+let
+  commonExtensions = with pkgs.vscode-marketplace; [
+    vscodevim.vim
+    vscode-icons-team.vscode-icons
+    ms-ceintl.vscode-language-pack-zh-hans
+    github.vscode-pull-request-github
+    jnoortheen.nix-ide
+    arrterian.nix-env-selector
+    gruntfuggly.todo-tree
+    rust-lang.rust-analyzer
+  ];
+  shellScriptExtensions = with pkgs.vscode-marketplace; [
+    foxundermoon.shell-format
+  ];
+  frontendDevExtensions = with pkgs.vscode-marketplace; [
+    dbaeumer.vscode-eslint
+    esbenp.prettier-vscode
+    bradlc.vscode-tailwindcss
+    astro-build.astro-vscode
+    vunguyentuan.vscode-postcss
+    ms-playwright.playwright
+  ];
+in
 mkNixPak {
   config = { sloth, ... }: {
-    flatpak = {
-      appId = "com.vscodium.codium";
-    };
     bubblewrap = {
       bind.rw = [
         (sloth.mkdir (sloth.concat [ sloth.xdgConfigHome "/VSCodium" ]))
         (sloth.mkdir (sloth.concat [ sloth.xdgConfigHome "/.vscode-oss" ]))
         (sloth.mkdir (sloth.concat [ sloth.homeDir "/Programmings" ]))
+      ];
+      bind.ro = [
+        "/etc/fonts"
       ];
       network = true;
       sockets = {
@@ -41,9 +63,10 @@ mkNixPak {
 
     imports = [ nixpakModules.gui-base ];
     app = {
-      package = (pkgs.vscode-with-extensions.overrideAttrs (e: rec {
+      package = pkgs.vscode-with-extensions.override {
         vscode = pkgs.vscodium;
-      }));
+        vscodeExtensions = commonExtensions ++ shellScriptExtensions ++ frontendDevExtensions;
+      };
     };
   };
 }
