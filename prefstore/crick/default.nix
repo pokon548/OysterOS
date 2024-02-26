@@ -53,9 +53,7 @@ with lib;
         base = with pkgs; [
           vim
           sudo
-        ] ++ (with config.prefstore.desktop.application; [
-          busybox
-        ]);
+        ];
 
         gnome-extra = with pkgs; [
           amberol
@@ -85,10 +83,7 @@ with lib;
 
         office = with pkgs; [
           libreoffice-fresh
-        ] ++ (with config.prefstore.desktop.application; [
-          wpsoffice-cn
-          qq
-        ]);
+        ];
 
         internet = with pkgs; [
           thunderbird
@@ -99,7 +94,9 @@ with lib;
           element-desktop
           telegram-desktop
           freetube
-        ];
+        ] ++ (with config.prefstore.desktop.application; [
+          qq
+        ]);
 
         knowledge = with pkgs; [
           anki-bin
@@ -115,7 +112,9 @@ with lib;
           android-tools
           godot_4
           scrcpy
-        ];
+        ]  ++ (with config.prefstore.desktop.application; [
+          vscodium
+        ]);
 
         game = with pkgs; [
           (steam.override {
