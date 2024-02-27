@@ -51,7 +51,12 @@ let
       };
 
       programs = mkOption {
-        type = types.attrsOf types.anything;
+        type = types.attrs;
+        default = { };
+      };
+
+      file = mkOption {
+        type = types.attrs;
         default = { };
       };
 

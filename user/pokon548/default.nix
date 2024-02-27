@@ -44,13 +44,13 @@ in
               development
               game
             ]) ++ config.prefstore.home.${username}.gnome.extension;
+          file = config.prefstore.home.${username}.file;
           enableNixpkgsReleaseCheck = !config.prefstore.home.${username}.noReleaseCheck;
 
           stateVersion = "23.11";
         };
 
         programs = config.prefstore.home.${username}.programs;
-
         dconf.settings = config.prefstore.home.${username}.gnome.dconf;
       };
     };

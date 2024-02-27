@@ -49,6 +49,43 @@ with lib;
           "桌面"
         ];
       };
+      file = {
+        ".config/VSCodium/User/settings.json".text = builtins.toJSON {
+          "window.dialogStyle" = "custom";
+          "window.titleBarStyle" = "custom";
+          "workbench.iconTheme" = "vscode-icons";
+          "security.workspace.trust.enabled" = false;
+          "editor.fontFamily" = "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace";
+          "window.zoomLevel" = 0.5;
+          "todo-tree.general.tags" = [
+            "BUG"
+            "HACK"
+            "FIXME"
+            "TODO"
+            "XXX"
+          ];
+          "[typescriptreact]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[jsonc]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[json]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[html]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[javascript]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "[typescript]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          };
+          "window.commandCenter" = false;
+          "git.enableCommitSigning" = true;
+        };
+      };
       application = {
         base = with pkgs; [
           vim
@@ -112,7 +149,7 @@ with lib;
           android-tools
           godot_4
           scrcpy
-        ]  ++ (with config.prefstore.desktop.application; [
+        ] ++ (with config.prefstore.desktop.application; [
           vscodium
         ]);
 

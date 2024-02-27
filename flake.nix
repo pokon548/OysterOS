@@ -28,10 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpak-pkgs = {
-      url = "github:nixpak/pkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpak-pkgs.url = "github:nixpak/pkgs";
 
     impermanence.url = "github:nix-community/impermanence";
 
@@ -53,6 +50,7 @@
   outputs =
     { self
     , nixpkgs
+    , flake-utils
     , home-manager
     , ...
     } @ inputs:
