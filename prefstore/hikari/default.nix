@@ -7,11 +7,11 @@ with lib;
 {
   config.prefstore = {
     slogan = ''
-      The world is a cruel and irrational place.
-      
-      I wanted something to believe in. Something to hold fast to.
-      I want to extend a hand to the weak and cleave the wickedness from this world.
-      I wish to be that sword for the people.
+      I haven't, Ritsu. Ku was built on warfare, with little regard for the people under it. 
+      But I want to change that.
+      I want Ku to be a home to all, regardless of birth. 
+      A place where we look out for each other. 
+      In order to realize that, I would suffer any loss.
 
       Run 'nixos-helo' for the NixOS manual
 
