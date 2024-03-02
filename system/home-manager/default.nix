@@ -2,8 +2,9 @@
 , inputs
 , ...
 }: {
-  home-manager.sharedModules = [
-    inputs.sops-nix.homeManagerModules.sops
-    inputs.impermanence.nixosModules.home-manager.impermanence
+  home-manager.sharedModules = with inputs; [
+    nix-index-database.hmModules.nix-index
+    sops-nix.homeManagerModules.sops
+    impermanence.nixosModules.home-manager.impermanence
   ];
 }

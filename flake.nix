@@ -48,10 +48,15 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
-
-      # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs =
@@ -86,6 +91,7 @@
             home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
             lanzaboote.nixosModules.lanzaboote
+            nix-index-database.nixosModules.nix-index
             nixos-generators.nixosModules.all-formats
             disko.nixosModules.disko
             sops-nix.nixosModules.sops

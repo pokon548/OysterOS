@@ -5,9 +5,10 @@
 , ...
 }: {
   nixpkgs = {
-    overlays = [
-      inputs.nur.overlay
-      inputs.nix-vscode-extensions.overlays.default
+    overlays = with inputs; [
+      nur.overlay
+      nix-vscode-extensions.overlays.default
+      rust-overlay.overlays.default
     ];
     config = {
       allowUnfree = true;
