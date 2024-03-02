@@ -1,0 +1,9 @@
+{ config
+, ...}:
+{
+  home = {
+    directories = [
+      ".librewolf"
+    ];
+  };
+}
