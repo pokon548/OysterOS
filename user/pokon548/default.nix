@@ -6,14 +6,14 @@
 let
   username = "pokon548";
   packagesList = with config.prefstore.home.${username}.application; [
-      base
-      gnome-extra
-      office
-      internet
-      knowledge
-      development
-      game
-    ] ++ config.prefstore.home.${username}.gnome.extension;
+    base
+    gnome-extra
+    office
+    internet
+    knowledge
+    development
+    game
+  ] ++ config.prefstore.home.${username}.gnome.extension;
 in
 {
   config = lib.mkIf config.prefstore.user.${username}.enable
@@ -54,30 +54,35 @@ in
       };
 
       # NOTE: Not using home-manager module. It doesn't keep all files :(
+      # TODO: Make it as a general module
       environment.persistence."${config.prefstore.system.impermanence.location}".users.${username} = lib.mkIf config.prefstore.home.${username}.persistence.enable {
-        directories = config.prefstore.home.${username}.persistence.directories ++ lib.concatLists (lib.lists.remove null (lib.forEach (builtins.concatLists
-          packagesList) (x: 
-          if (lib.hasAttr "pname" x) then
-            if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
-            then
-              config.prefstore.appPersist.${x.pname}.home.directories
+        directories = config.prefstore.home.${username}.persistence.directories ++ lib.concatLists (lib.lists.remove null (lib.forEach
+          (builtins.concatLists
+            packagesList)
+          (x:
+            if (lib.hasAttr "pname" x) then
+              if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
+              then
+                config.prefstore.appPersist.${x.pname}.home.directories
+              else
+                lib.warn "${x.pname} does not have any impermanence rules! Data expected to be lost." null
             else
-              lib.warn "${x.pname} does not have any impermanence rules! Data expected to be lost." null
-          else
               lib.warn "${builtins.toString x} seems to be nixpaked app. This is currently not supported by impermanence." null
-        )));
+          )));
 
-        files = config.prefstore.home.${username}.persistence.files ++ lib.concatLists (lib.lists.remove null (lib.forEach (builtins.concatLists
-          packagesList) (x: 
-          if (lib.hasAttr "pname" x) then
-            if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
-            then
-              config.prefstore.appPersist.${x.pname}.home.files
+        files = config.prefstore.home.${username}.persistence.files ++ lib.concatLists (lib.lists.remove null (lib.forEach
+          (builtins.concatLists
+            packagesList)
+          (x:
+            if (lib.hasAttr "pname" x) then
+              if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
+              then
+                config.prefstore.appPersist.${x.pname}.home.files
+              else
+                null
             else
               null
-          else
-              null
-        )));
+          )));
       };
     };
 }
