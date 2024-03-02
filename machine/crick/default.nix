@@ -11,4 +11,11 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "23.11";
+
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 8192;
+      cores = 4;
+    };
+  };
 }
