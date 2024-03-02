@@ -228,6 +228,13 @@ in
             };
           };
 
+          virtualisation = {
+            virtualbox = mkOption {
+              type = types.bool;
+              default = false;
+            };
+          };
+
           impermanence = {
             enable = mkOption {
               type = types.bool;

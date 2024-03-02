@@ -32,6 +32,7 @@ with lib;
       i18n = true;
       sudo.noPassword = true;
       sysrq = true;
+      virtualisation.virtualbox = true;
     };
 
     home.pokon548 = {
