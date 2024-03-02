@@ -51,4 +51,6 @@
       ];
     };
   };
+
+  programs.command-not-found.enable = lib.mkForce false;
 }
