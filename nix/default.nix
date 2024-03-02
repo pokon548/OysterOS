@@ -49,11 +49,12 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      sandbox = false;
       trusted-users = [
         "pokon548"
       ];
       substituters = [
-        "https://mirror.ustc.edu.cn/nix-channels/store"
+        "https://mirrors.ustc.edu.cn/nix-channels/store"
         "https://nix-community.cachix.org"
         "https://microvm.cachix.org"
         "https://pokon548.cachix.org"
