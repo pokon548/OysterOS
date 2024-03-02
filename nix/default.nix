@@ -8,23 +8,6 @@
     overlays = [
       inputs.nur.overlay
       inputs.nix-vscode-extensions.overlays.default
-
-      (lib.mkIf config.prefstore.desktop.gnome.enable (self: super: {
-        gnome = super.gnome.overrideScope' (gself: gsuper: {
-          mutter = gsuper.mutter.overrideAttrs (old: {
-            patches = [ ../desktop/gnome/patch/mutter/mr1441.patch ../desktop/gnome/patch/mutter/mr3327.patch ];
-          });
-
-          gnome-shell = gsuper.gnome-shell.overrideAttrs (old: {
-            patches = old.patches ++ [
-              ../desktop/gnome/patch/gnome-shell/no-screenshot-flash.patch
-              ../desktop/gnome/patch/gnome-shell/no-workspace-animation.patch
-              ../desktop/gnome/patch/gnome-shell/no-overview-animation.patch
-              ../desktop/gnome/patch/gnome-shell/no-application-animation.patch
-            ];
-          });
-        });
-      }))
     ];
     config = {
       allowUnfree = true;

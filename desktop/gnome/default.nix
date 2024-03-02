@@ -13,6 +13,30 @@
         excludePackages = [ pkgs.xterm ];
       };
 
+      nixpkgs.overlays = [
+        (self: super: {
+          gnome = super.gnome.overrideScope' (gself: gsuper: {
+            mutter = gsuper.mutter.overrideAttrs (old: {
+              patches = [
+                ./patch/mutter/mr1441.patch
+                ./patch/mutter/mr3304.patch
+                ./patch/mutter/mr3327.patch
+                ./patch/mutter/mr3373.patch
+              ];
+            });
+
+            gnome-shell = gsuper.gnome-shell.overrideAttrs (old: {
+              patches = old.patches ++ [
+                ./patch/gnome-shell/no-screenshot-flash.patch
+                ./patch/gnome-shell/no-workspace-animation.patch
+                ./patch/gnome-shell/no-overview-animation.patch
+                ./patch/gnome-shell/no-application-animation.patch
+              ];
+            });
+          });
+        })
+      ];
+
       xdg.portal = {
         enable = true;
         xdgOpenUsePortal = true;
