@@ -3,5 +3,8 @@
 , ...
 }:
 {
-  networking.hostName = name;
+  networking = {
+    networkmanager.enable = true;
+    hostName = name;
+  };
 }
