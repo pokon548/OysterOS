@@ -12,6 +12,29 @@ let
   nixpakModules = {
     gui-base = inputs.nixpak-pkgs + "/pkgs/modules/gui-base.nix";
   };
+
+  appPersistOpts = { name, config, ... }: {
+    options = {
+      name = mkOption {
+        type = types.str;
+        description = lib.mdDoc ''
+          The name of the user account. If undefined, the name of the
+          attribute set will be used.
+        '';
+      };
+
+      directories = mkOption {
+        type = types.listOf (types.anything);
+        default = [ ];
+      };
+
+      files = mkOption {
+        type = types.listOf (types.anything);
+        default = [ ];
+      };
+    };
+  };
+
   homeOpts = { name, config, ... }: {
     options = {
       name = mkOption {
@@ -31,16 +54,16 @@ let
       persistence = {
         enable = mkOption {
           type = types.bool;
-          default = config.prefstore.system.impermanence.enable;
+          default = false;
         };
 
         directories = mkOption {
-          type = types.listOf (types.any);
+          type = types.listOf (types.anything);
           default = [ ];
         };
 
         files = mkOption {
-          type = types.listOf (types.any);
+          type = types.listOf (types.anything);
           default = [ ];
         };
 
@@ -133,6 +156,10 @@ in
           type = types.bool;
           default = false;
         };
+        secureboot = mkOption {
+          type = types.bool;
+          default = false;
+        };
         systemd = {
           enable = mkOption {
             type = types.bool;
@@ -204,7 +231,7 @@ in
 
             location = mkOption {
               type = types.str;
-              default = "/persistent";
+              default = "/persist";
             };
 
             hideMounts = mkOption {
@@ -215,7 +242,6 @@ in
             directories = mkOption {
               type = types.listOf (types.anything);
               default = [
-                "/var/log"
                 "/var/lib/bluetooth"
                 "/var/lib/nixos"
                 "/var/lib/systemd/coredump"
@@ -249,6 +275,28 @@ in
             };
           };
         };
+      
+      appPersist = genAttrs
+        (
+          lists.remove null (
+            forEach
+              (mapAttrsToList
+                (
+                  name: value: { name = name; type = value; }
+                )
+                (builtins.readDir ../desktop/application))
+              (x: if x.type == "directory" then toString x.name else null))
+        )
+        (name: mkOption {
+          type = with types; attrsOf (submodule appPersistOpts);
+          default = (inputs.haumea.lib.load
+            {
+              src = ../desktop/application + ("/" + name);
+              inputs = {
+                inherit lib config pkgs mkNixPak nixpakModules;
+                };
+            }).persist;
+        });
 
       home = mkOption {
         default = { };
