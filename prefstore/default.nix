@@ -216,6 +216,11 @@ in
             default = true;
           };
 
+          sysrq = mkOption {
+            type = types.bool;
+            default = false;
+          };
+
           network.port = {
             ssh = mkOption {
               type = types.int;
@@ -275,7 +280,7 @@ in
             };
           };
         };
-      
+
       appPersist = genAttrs
         (
           lists.remove null (
@@ -294,7 +299,7 @@ in
               src = ../desktop/application + ("/" + name);
               inputs = {
                 inherit lib config pkgs mkNixPak nixpakModules;
-                };
+              };
             }).persist;
         });
 
