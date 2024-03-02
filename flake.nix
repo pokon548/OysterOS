@@ -45,6 +45,13 @@
     };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -78,6 +85,7 @@
           ] ++ (with inputs; [
             home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
+            lanzaboote.nixosModules.lanzaboote
             nixos-generators.nixosModules.all-formats
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
