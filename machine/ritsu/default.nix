@@ -16,9 +16,19 @@
       mountPoint = "/nix/.ro-store";
     }];
 
+    crosvm.extraArgs = [
+      "--gpu=context-types=cross-domain"
+      "--wayland-sock $XDG_RUNTIME_DIR/wayland-0"
+    ];
+
     hypervisor = "crosvm";
     socket = "control.socket";
   };
+
+  environment.systemPackages = with pkgs; [
+    sommelier
+    firefox
+  ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "23.11";
