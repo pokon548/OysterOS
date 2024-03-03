@@ -20,7 +20,6 @@ with lib;
 
     boot = {
       latestKernel = true;
-      secureboot = true;
       systemd = {
         enable = true;
       };
@@ -28,8 +27,6 @@ with lib;
 
     desktop = {
       font = true;
-      im = true;
-      gnome.enable = true;
     };
 
     system = {
