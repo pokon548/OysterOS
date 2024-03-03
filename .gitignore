@@ -2,7 +2,7 @@
 **/*.qcow2
 **/*.raw
 **/*.img
-**/*.socket
+**/*.sock
 
 # Private configs
 /privatezone
