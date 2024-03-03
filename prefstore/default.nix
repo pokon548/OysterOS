@@ -321,6 +321,11 @@ in
           default = true;
         };
 
+        ritsu = mkOption {
+          type = types.bool;
+          default = false;
+        };
+
         nixostest.enable = mkOption {
           type = types.bool;
           default = false;

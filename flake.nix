@@ -93,7 +93,7 @@
             home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
             lanzaboote.nixosModules.lanzaboote
-            microvm.nixosModules.host
+            microvm.nixosModules.microvm
             nix-index-database.nixosModules.nix-index
             nixos-generators.nixosModules.all-formats
             disko.nixosModules.disko

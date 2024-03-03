@@ -1,6 +1,8 @@
 **/result
 **/*.qcow2
 **/*.raw
+**/*.img
+**/*.socket
 
 # Private configs
 /privatezone

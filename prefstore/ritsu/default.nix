@@ -33,47 +33,22 @@ with lib;
     };
 
     system = {
-      impermanence.enable = true;
       i18n = true;
       sudo.noPassword = true;
     };
 
-    home.pokon548 = {
+    home.ritsu = {
       noReleaseCheck = true;
-      persistence = {
-        enable = true;
-        directories = [
-          "公共"
-          "视频"
-          "图片"
-          "文档"
-          "下载"
-          "音乐"
-          "桌面"
-        ];
-        files = [
-          ".config/monitors.xml"
-        ];
-      };
       application = {
         base = with pkgs; [
           vim
           sudo
         ];
-
-        internet = with pkgs; [
-          librewolf
-          ungoogled-chromium
-        ] ++ (with config.prefstore.desktop.application; [
-          qq
-        ]);
       };
     };
 
     user = {
-      pokon548 = {
-        enable = true;
-      };
+      ritsu = true;
     };
   };
 }
