@@ -221,10 +221,16 @@ in
             default = false;
           };
 
-          network.port = {
-            ssh = mkOption {
-              type = types.int;
-              default = 64548;
+          network = {
+            useNetworkManager = mkOption {
+              type = types.bool;
+              default = true;
+            };
+            port = {
+              ssh = mkOption {
+                type = types.int;
+                default = 64548;
+              };
             };
           };
 

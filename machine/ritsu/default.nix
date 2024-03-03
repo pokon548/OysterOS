@@ -5,9 +5,9 @@
   # NOTE: This is a special machine used for crosvm isolation. DO NOT use it on real machine.
   microvm = {
     volumes = [{
-      mountPoint = "/var";
-      image = "var.img";
-      size = 256;
+      image = "root-overlay.img";
+      mountPoint = "/";
+      size = 8192;
     }];
 
     interfaces = [
@@ -20,11 +20,13 @@
 
     mem = 8192;
 
-    shares = [{
+    shares = [
+      {
       tag = "ro-store";
       source = "/nix/store";
       mountPoint = "/nix/.ro-store";
-    }];
+    }
+    ];
 
     graphics.enable = true;
 
@@ -34,8 +36,8 @@
 
   environment.systemPackages = with pkgs; [
     xdg-utils
-    sommelier
-    firefox
+    wget
+    librewolf
   ];
 
   environment.sessionVariables = {
@@ -60,13 +62,6 @@
     wantedBy = [ "default.target" ];
   };
 
-  # Workaround: Should disable networkmanager if networkd is enabled
-  # TODO: Better network rules on the host. Currently needed to be manually set: https://crosvm.dev/book/devices/net.html
-  networking = {
-    networkmanager.enable = lib.mkForce false;
-    useNetworkd = true;
-  };
-
   systemd.network = {
     enable = true;
     networks."20-lan" = {
@@ -74,7 +69,7 @@
       networkConfig = {
         Address = [ "192.168.10.2/24" ];
         Gateway = "192.168.10.1";
-        DNS = [ "1.1.1.1" ];
+        DNS = [ "223.5.5.5" ];
         DHCP = "no";
       };
     };

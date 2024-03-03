@@ -18,6 +18,8 @@
         pkiBundle = "/persist/etc/secureboot";
       };
 
-      # 
+      boot.kernel.sysctl = {
+        kernel.kexec_load_disabled = 1;
+      };
     };
 }

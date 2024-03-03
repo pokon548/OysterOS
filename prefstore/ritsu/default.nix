@@ -27,9 +27,11 @@ with lib;
 
     desktop = {
       font = true;
+      im = true;
     };
 
     system = {
+      network.useNetworkManager = false;
       i18n = true;
       sudo.noPassword = true;
     };
