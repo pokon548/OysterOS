@@ -8,10 +8,12 @@
   config = lib.mkIf config.prefstore.user.ritsu
     {
       users.users.ritsu = {
-        password = "";
+        initialPassword = "passw0rd!";
         isNormalUser = true;
-        shell = "${pkgs.bash}/bin/bash";
-        extraGroups = [ "networkmanager" ];
+        shell = "${pkgs.fish}/bin/fish";
+        extraGroups = [ "networkmanager" "wheel" ];
       };
+
+      services.getty.autologinUser = "ritsu";
     };
 }

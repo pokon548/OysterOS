@@ -1,7 +1,5 @@
-{ self
-, lib
-, config
-, inputs
+{ lib
+, pkgs
 , ...
 }: {
   # NOTE: This is a special machine used for crosvm isolation. DO NOT use it on real machine.
