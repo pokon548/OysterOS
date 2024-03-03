@@ -7,6 +7,7 @@
   nixpkgs = {
     overlays = with inputs; [
       nur.overlay
+      microvm.overlay
       nix-vscode-extensions.overlays.default
       rust-overlay.overlays.default
     ];

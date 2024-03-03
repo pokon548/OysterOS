@@ -2,7 +2,11 @@
 , config
 , inputs
 , ...
-}: {
+}:
+let
+  noExecutionFlags = [ "nodev" "nosuid" "noexec" ];
+in
+{
   imports = with inputs.nixos-hardware.nixosModules;
     [
       common-pc-ssd
@@ -40,7 +44,7 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "dmask=077" "fmask=177" ];
+              mountOptions = [ "dmask=077" "fmask=177" ] ++ noExecutionFlags;
             };
           };
           crypt-root = {
@@ -62,11 +66,11 @@
                   {
                     "@persist" = {
                       mountpoint = "/persist";
-                      inherit mountOptions;
+                      inherit (mountOptions ++ noExecutionFlags);
                     };
                     "@var-log" = {
                       mountpoint = "/var/log";
-                      inherit mountOptions;
+                      inherit (mountOptions ++ noExecutionFlags);
                     };
                     "@nix" = {
                       mountpoint = "/nix";

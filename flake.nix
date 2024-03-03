@@ -57,6 +57,8 @@
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    microvm.url = "github:astro/microvm.nix";
   };
 
   outputs =
@@ -91,6 +93,7 @@
             home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
             lanzaboote.nixosModules.lanzaboote
+            microvm.nixosModules.host
             nix-index-database.nixosModules.nix-index
             nixos-generators.nixosModules.all-formats
             disko.nixosModules.disko
