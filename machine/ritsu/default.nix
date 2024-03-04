@@ -18,14 +18,15 @@
       }
     ];
 
+    cpu = 4;
     mem = 8192;
 
     shares = [
       {
-      tag = "ro-store";
-      source = "/nix/store";
-      mountPoint = "/nix/.ro-store";
-    }
+        tag = "ro-store";
+        source = "/nix/store";
+        mountPoint = "/nix/.ro-store";
+      }
     ];
 
     graphics.enable = true;
