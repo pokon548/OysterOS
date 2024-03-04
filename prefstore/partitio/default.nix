@@ -114,7 +114,6 @@ with lib;
           enableFishIntegration = true;
         };
       };
-
       file = {
         ".config/VSCodium/User/settings.json".text = builtins.toJSON {
           "window.dialogStyle" = "custom";
