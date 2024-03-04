@@ -14,7 +14,7 @@ let
     jnoortheen.nix-ide
     arrterian.nix-env-selector
     gruntfuggly.todo-tree
-    #rust-lang.rust-analyzer
+    rust-lang.rust-analyzer
   ];
   shellScriptExtensions = with pkgs.vscode-marketplace; [
     foxundermoon.shell-format
@@ -24,7 +24,7 @@ let
     esbenp.prettier-vscode
     bradlc.vscode-tailwindcss
     astro-build.astro-vscode
-    #vunguyentuan.vscode-postcss
+    vunguyentuan.vscode-postcss
     ms-playwright.playwright
   ];
 in

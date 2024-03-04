@@ -103,7 +103,7 @@ with lib;
                 owner = "joseluisq";
                 repo = "gitnow";
                 rev = "aba9145cd352598b01aa2a41844c55df92bc6b3b";
-                hash = "sha256-y2Mv7ArVNziGx2lTMCZv//U1wbi4vky4Ni95Qt1YRWY=";
+                hash = "sha256-eImCiEhhbXOkwQqRgpqw481i0Wg4c5nADQlG/O+OH0E=";
               };
             }
           ];
