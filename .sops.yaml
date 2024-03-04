@@ -6,4 +6,12 @@ creation_rules:
     key_groups:
       - age:
           - *pokon548
+  - path_regex: trustzone/hikari/default.yaml$
+    key_groups:
+      - age:
+          - *pokon548
+  - path_regex: trustzone/partitio/default.yaml$
+    key_groups:
+      - age:
+          - *pokon548
   
