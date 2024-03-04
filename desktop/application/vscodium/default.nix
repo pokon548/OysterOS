@@ -24,7 +24,7 @@ let
     esbenp.prettier-vscode
     bradlc.vscode-tailwindcss
     astro-build.astro-vscode
-    vunguyentuan.vscode-postcss
+    #vunguyentuan.vscode-postcss
     ms-playwright.playwright
   ];
 in
