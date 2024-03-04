@@ -7,7 +7,7 @@ let
   noExecutionFlags = [ "nodev" "nosuid" "noexec" ];
 in
 {
-  imports = with inputs.nixos-hardware.nixosModules;
+  imports = with inputs.hardware.nixosModules;
     [
       common-pc-ssd
       common-cpu-intel
