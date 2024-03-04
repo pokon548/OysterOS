@@ -5,15 +5,18 @@
 }:
 let
   username = "pokon548";
-  packagesList = with config.prefstore.home.${username}.application; [
-    base
-    gnome-extra
-    office
-    internet
-    knowledge
-    development
-    game
-  ] ++ config.prefstore.home.${username}.gnome.extension;
+  packagesList = lib.concatLists [
+    (lib.concatLists (with config.prefstore.home.${username}.application; [
+      base
+      gnome-extra
+      office
+      internet
+      knowledge
+      development
+      game
+    ]))
+    config.prefstore.home.${username}.gnome.extension
+  ];
 in
 {
   config = lib.mkIf config.prefstore.user.${username}.enable
@@ -43,7 +46,7 @@ in
 
       home-manager.users.${username} = { lib, ... }: {
         home = {
-          packages = lib.concatLists packagesList;
+          packages = packagesList;
           file = config.prefstore.home.${username}.file;
           enableNixpkgsReleaseCheck = !config.prefstore.home.${username}.noReleaseCheck;
           stateVersion = "23.11";
@@ -57,8 +60,7 @@ in
       # TODO: Make it as a general module
       environment.persistence."${config.prefstore.system.impermanence.location}".users.${username} = lib.mkIf config.prefstore.home.${username}.persistence.enable {
         directories = config.prefstore.home.${username}.persistence.directories ++ lib.concatLists (lib.lists.remove null (lib.forEach
-          (builtins.concatLists
-            packagesList)
+          packagesList
           (x:
             if (lib.hasAttr "pname" x) then
               if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
@@ -71,8 +73,7 @@ in
           )));
 
         files = config.prefstore.home.${username}.persistence.files ++ lib.concatLists (lib.lists.remove null (lib.forEach
-          (builtins.concatLists
-            packagesList)
+          packagesList
           (x:
             if (lib.hasAttr "pname" x) then
               if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)

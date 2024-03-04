@@ -6,15 +6,18 @@
 let
   username = "nixostest";
   testedUsername = "pokon548";
-  packagesList = with config.prefstore.home.${username}.application; [
-    base
-    gnome-extra
-    office
-    internet
-    knowledge
-    development
-    game
-  ] ++ config.prefstore.home.${username}.gnome.extension;
+  packagesList = lib.concatLists [
+    (lib.concatLists (with config.prefstore.home.${username}.application; [
+      base
+      gnome-extra
+      office
+      internet
+      knowledge
+      development
+      game
+    ]))
+    config.prefstore.home.${username}.gnome.extension
+  ];
 in
 {
   config = lib.mkIf config.prefstore.user.${username}.enable
@@ -64,8 +67,7 @@ in
 
       environment.persistence."${config.prefstore.system.impermanence.location}".users.${testedUsername} = lib.mkIf config.prefstore.home.${testedUsername}.persistence.enable {
         directories = config.prefstore.home.${username}.persistence.directories ++ lib.concatLists (lib.lists.remove null (lib.forEach
-          (builtins.concatLists
-            packagesList)
+          packagesList
           (x:
             if (lib.hasAttr "pname" x) then
               if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
@@ -78,8 +80,7 @@ in
           )));
 
         files = config.prefstore.home.${username}.persistence.files ++ lib.concatLists (lib.lists.remove null (lib.forEach
-          (builtins.concatLists
-            packagesList)
+          packagesList
           (x:
             if (lib.hasAttr "pname" x) then
               if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
