@@ -32,7 +32,8 @@
 ## 如何复用本仓库配置
 想要利用本仓库搭建属于你的 NixOS 配置？没问题，请随意 fork，仅需注意以下内容：
 - 本项目按 MIT 协议授权；
-- 你需要修改 sops-nix 相关（否则无法构建通过――你并不能解密我的秘密！）。
+- 你需要修改 sops-nix 相关（否则无法构建通过――你并不能解密我的秘密！）；
+- `MiniOyster` 是我用来过 CI 构建并预留引入私有配置的空 input。你也许想要在这里引入自己的配置，参考 [MiniOyster](https://github.com/pokon548/MiniOyster) 以获得更多细节。
 
 ## 致谢（& 配置参考）
 - [NixOS](https://nixos.org)；

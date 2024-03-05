@@ -31,8 +31,9 @@ Fast, Safe and Stable. Based on [NixOS](https://nixos.org).
 
 ## Reuse this repo
 Wanna reuse this repo to buid your NixOS? Great! Just fork it with few notice required below:
-- This repo is licensed with MIT license
-- sops-nix is identical for me. You must modify it (Otherwise you will not pass the build. You cannot decrypt my secrets anyway)
+- This repo is licensed under MIT license
+- sops-nix is not world readable. You must modify it (Otherwise you will not pass the build. You cannot decrypt my secrets anyway)
+- `MiniOyster` is a stub input for me passing CI builds and including private configs. You may wanna change it to your own input. See [MiniOyster](https://github.com/pokon548/MiniOyster) for details.
 
 ## Credit (& Reference)
 - [NixOS](https://nixos.org)
