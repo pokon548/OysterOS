@@ -40,11 +40,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1709632354,
-        "narHash": "sha256-jxRHwqrtNze51WKFKvxlQ8Inf62UNRl5cFqEQ2V96vE=",
+        "lastModified": 1709647390,
+        "narHash": "sha256-JIZ9ZQckX1lfpqBbtA6QGPE0KBneAA6Dp6z7vZl/8lA=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "0d11aa8d6431326e10b8656420f91085c3bd0b12",
+        "rev": "cf185d687f382ef11427bcf41fff8e3aef83d294",
         "type": "github"
       },
       "original": {
@@ -479,6 +479,22 @@
         "type": "github"
       }
     },
+    "minioyster": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709650773,
+        "narHash": "sha256-aMf1wB+R4PDyPeYuJmy5NpgAxy26wmqoUkcNUiMwkS0=",
+        "owner": "pokon548",
+        "repo": "MiniOyster",
+        "rev": "5669841ea366164085291a045db824ac1f48dfea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pokon548",
+        "repo": "MiniOyster",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -747,11 +763,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1709643287,
-        "narHash": "sha256-QiB2S3ujzBiu9WfNY4h3MqNfQEbmyyd8Z2HBKIj5VaI=",
+        "lastModified": 1709649736,
+        "narHash": "sha256-HRrzvBWIRQlSN4joPI+rroqtEPWEcZK/ETY4cAkDwOs=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "31f53499a212b6cd07cad5fc4f6e26f6f12ee1b9",
+        "rev": "c715d34e7040f934a2edfa7024a1f04e86536b9e",
         "type": "github"
       },
       "original": {
@@ -791,21 +807,6 @@
         "type": "github"
       }
     },
-    "privatezone": {
-      "flake": false,
-      "locked": {
-        "dirtyRev": "b0b465d72a9d5cb86f9a550559246f9e454169a7-dirty",
-        "dirtyShortRev": "b0b465d-dirty",
-        "lastModified": 1709643290,
-        "narHash": "sha256-P9rmG4KwcUBOQ+PUz8ugE+EK24Ee1wV0+KRU1+IEzFU=",
-        "type": "git",
-        "url": "file:./privatezone"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:./privatezone"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -816,6 +817,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "microvm": "microvm",
+        "minioyster": "minioyster",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-generators": "nixos-generators",
@@ -823,7 +825,6 @@
         "nixpak-pkgs": "nixpak-pkgs",
         "nixpkgs": "nixpkgs_4",
         "nur": "nur",
-        "privatezone": "privatezone",
         "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix"
       }

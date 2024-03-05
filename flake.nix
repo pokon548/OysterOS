@@ -60,8 +60,8 @@
 
     microvm.url = "github:astro/microvm.nix";
 
-    privatezone = {
-      url = "git+file:./privatezone";
+    minioyster = {
+      url = "github:pokon548/MiniOyster";
       flake = false;
     };
   };
@@ -92,7 +92,7 @@
             # Machine Configuration
             (./. + ("/machine/" + name))
 
-            (inputs.privatezone + "/default.nix")
+            (inputs.minioyster + "/default.nix")
 
             # trustzone
             ./trustzone
