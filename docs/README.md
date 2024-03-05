@@ -30,7 +30,7 @@ Fast, Safe and Stable. Based on [NixOS](https://nixos.org).
 - Editor: vim (Daily driver), helix (Successor of vim. Still learning)
 
 ## Reuse this repo
-Wanna reuse this repo to buid your NixOS? Great! Just fork it with few notice required below:
+Wanna reuse this repo to buid your NixOS? Great! Before hacking with this repo, here is some hints help you get started quickly:
 - This repo is licensed under MIT license
 - sops-nix is not world readable. You must modify it (Otherwise you will not pass the build. You cannot decrypt my secrets anyway)
 - `MiniOyster` is a stub input for me passing CI builds and including private configs. You may wanna change it to your own input. See [MiniOyster](https://github.com/pokon548/MiniOyster) for details.
