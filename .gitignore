@@ -4,6 +4,3 @@
 **/*.img
 **/*.sock
 **/*.socket
-
-# Private configs
-/privatezone

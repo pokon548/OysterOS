@@ -59,6 +59,11 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     microvm.url = "github:astro/microvm.nix";
+
+    privatezone = {
+      url = "git+file:./privatezone";
+      flake = false;
+    };
   };
 
   outputs =
@@ -86,6 +91,8 @@
 
             # Machine Configuration
             (./. + ("/machine/" + name))
+
+            (inputs.privatezone + "/default.nix")
 
             # trustzone
             ./trustzone
