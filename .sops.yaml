@@ -2,16 +2,6 @@ keys:
   - &pokon548 age1vcy4xzcz050ncalv78u94xphft9eq4cgx83pnxxqsks9w9tsd4wq7j46wc
 
 creation_rules:
-  - path_regex: trustzone/common/default.yaml$
-    key_groups:
-      - age:
-          - *pokon548
-
-  - path_regex: trustzone/common/dingy.bin$
-    key_groups:
-      - age:
-          - *pokon548
-
   - path_regex: trustzone/crick/default.yaml$
     key_groups:
       - age:
