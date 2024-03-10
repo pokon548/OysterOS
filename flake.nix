@@ -60,16 +60,12 @@
 
     microvm.url = "github:astro/microvm.nix";
 
-    minioyster = {
-      url = "github:pokon548/MiniOyster";
-      flake = false;
-    };
+    minioyster.url = "github:pokon548/MiniOyster";
   };
 
   outputs =
     { self
     , nixpkgs
-    , flake-utils
     , home-manager
     , ...
     } @ inputs:
@@ -92,8 +88,6 @@
             # Machine Configuration
             (./. + ("/machine/" + name))
 
-            (inputs.minioyster + "/default.nix")
-
             # trustzone
             ./trustzone
           ] ++ (with inputs; [
@@ -106,6 +100,9 @@
             disko.nixosModules.disko
             sops-nix.nixosModules.sops
             nur.nixosModules.nur
+
+            minioyster.nixosModules.minioyster
+            minioyster.nixosModules."prefstore-${name}"
           ]) ++ builtins.concatLists
             (nixpkgs.lib.forEach
               [
