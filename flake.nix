@@ -56,6 +56,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     microvm.url = "github:astro/microvm.nix";
@@ -63,60 +68,58 @@
     minioyster.url = "github:pokon548/MiniOyster";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-    in
-    {
-      nixosConfigurations = nixpkgs.lib.attrsets.genAttrs
-        (nixpkgs.lib.mapAttrsToList (name: value: name) (builtins.readDir ./prefstore))
-        (name: nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs name; };
-          modules = [
-            # Nix
-            ./nix
+  outputs = { self, ... } @ inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      flake.nixosConfigurations =
+        let
+          inherit (inputs.nixpkgs) lib;
+        in
+        lib.attrsets.genAttrs
+          (lib.mapAttrsToList (name: value: name) (builtins.readDir ./prefstore))
+          (name: lib.nixosSystem {
+            specialArgs = { inherit inputs name; };
+            modules = [
+              # Nix
+              ./nix
 
-            # Preference Store
-            ./prefstore
-            (./. + ("/prefstore/" + name))
+              # Preference Store
+              ./prefstore
+              (./. + ("/prefstore/" + name))
 
-            # Machine Configuration
-            (./. + ("/machine/" + name))
+              # Machine Configuration
+              (./. + ("/machine/" + name))
 
-            # trustzone
-            ./trustzone
-          ] ++ (with inputs; [
-            home-manager.nixosModules.home-manager
-            impermanence.nixosModules.impermanence
-            lanzaboote.nixosModules.lanzaboote
-            (if name == "ritsu" then microvm.nixosModules.microvm else { })
-            nix-index-database.nixosModules.nix-index
-            nixos-generators.nixosModules.all-formats
-            disko.nixosModules.disko
-            sops-nix.nixosModules.sops
-            nur.nixosModules.nur
+              # trustzone
+              ./trustzone
+            ] ++ (with inputs; [
+              home-manager.nixosModules.home-manager
+              impermanence.nixosModules.impermanence
+              lanzaboote.nixosModules.lanzaboote
+              (if name == "ritsu" then microvm.nixosModules.microvm else { })
+              nix-index-database.nixosModules.nix-index
+              nixos-generators.nixosModules.all-formats
+              disko.nixosModules.disko
+              sops-nix.nixosModules.sops
+              nur.nixosModules.nur
 
-            minioyster.nixosModules.minioyster
-            minioyster.nixosModules."prefstore-${name}"
-          ]) ++ builtins.concatLists
-            (nixpkgs.lib.forEach
-              [
-                "boot"
-                "desktop"
-                "service"
-                "system"
-                "user"
-              ]
-              (x:
-                (nixpkgs.lib.mapAttrsToList
-                  (name: value: ./. + ("/" + toString x + "/" + name))
-                  (builtins.readDir (./. + ("/" + toString x))))
-              ));
-        });
+              minioyster.nixosModules.minioyster
+              minioyster.nixosModules."prefstore-${name}"
+            ]) ++ builtins.concatLists
+              (lib.forEach
+                [
+                  "boot"
+                  "desktop"
+                  "service"
+                  "system"
+                  "user"
+                ]
+                (x:
+                  (lib.mapAttrsToList
+                    (name: value: ./. + ("/" + toString x + "/" + name))
+                    (builtins.readDir (./. + ("/" + toString x))))
+                ));
+          });
+
+      systems = [ "x86_64-linux" ];
     };
 }
