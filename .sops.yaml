@@ -1,5 +1,6 @@
 keys:
   - &pokon548 age1vcy4xzcz050ncalv78u94xphft9eq4cgx83pnxxqsks9w9tsd4wq7j46wc
+  - &hikari age1xu9zg0538p2p7qmaawcfhgkhg242myy2xgvz60qsmrzwz8pdmgcssmvs25
 
 creation_rules:
   - path_regex: trustzone/crick/default.yaml$
@@ -10,6 +11,7 @@ creation_rules:
     key_groups:
       - age:
           - *pokon548
+          - *hikari
   - path_regex: trustzone/partitio/default.yaml$
     key_groups:
       - age:
