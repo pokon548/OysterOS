@@ -65,11 +65,19 @@
 
     microvm.url = "github:astro/microvm.nix";
 
+    devshell.url = "github:numtide/devshell";
+
     minioyster.url = "github:pokon548/MiniOyster";
   };
 
   outputs = { self, ... } @ inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = with inputs; [
+        devshell.flakeModule
+      ];
+
+      perSystem = { config, pkgs, ... }: { };
+
       flake.nixosConfigurations =
         let
           inherit (inputs.nixpkgs) lib;
