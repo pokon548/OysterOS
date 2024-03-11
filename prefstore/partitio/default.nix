@@ -155,6 +155,7 @@ with lib;
         base = with pkgs; [
           vim
           sudo
+          git
         ];
 
         gnome-extra = with pkgs; [
@@ -221,6 +222,8 @@ with lib;
           android-tools
           godot_4
           scrcpy
+
+          nixpkgs-fmt
         ] ++ (with config.prefstore.desktop.application; [
           vscodium
         ]);
