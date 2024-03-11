@@ -1,6 +1,6 @@
 keys:
   - &pokon548 age1vcy4xzcz050ncalv78u94xphft9eq4cgx83pnxxqsks9w9tsd4wq7j46wc
-  - &hikari age1xu9zg0538p2p7qmaawcfhgkhg242myy2xgvz60qsmrzwz8pdmgcssmvs25
+  - &hikari age14rfexce7p5ac2acwq5favj4c5ddna5m26jpmc0tas0nn348n0a5qazyn9x
 
 creation_rules:
   - path_regex: trustzone/crick/default.yaml$
