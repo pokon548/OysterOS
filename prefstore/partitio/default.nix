@@ -185,6 +185,7 @@ with lib;
 
         office = with pkgs; [
           libreoffice-fresh
+          wpsoffice-cn
         ];
 
         security = with pkgs; [
