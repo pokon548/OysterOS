@@ -11,6 +11,7 @@ let
       gnome-extra
       office
       internet
+      security
       knowledge
       development
       game

@@ -187,6 +187,11 @@ with lib;
           libreoffice-fresh
         ];
 
+        security = with pkgs; [
+          bitwarden-desktop
+          keepassxc
+        ];
+
         internet = with pkgs; [
           thunderbird
           transmission_4-gtk

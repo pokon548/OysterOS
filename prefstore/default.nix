@@ -104,6 +104,11 @@ let
           default = [ ];
         };
 
+        security = mkOption {
+          type = types.listOf (types.package);
+          default = [ ];
+        };
+
         knowledge = mkOption {
           type = types.listOf (types.package);
           default = [ ];
