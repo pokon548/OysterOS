@@ -190,6 +190,7 @@ with lib;
         internet = with pkgs; [
           thunderbird
           transmission_4-gtk
+          todoist-electron
           librewolf
           ungoogled-chromium
           localsend

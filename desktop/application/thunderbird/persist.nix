@@ -1,0 +1,10 @@
+{ config
+, ...
+}:
+{
+  home = {
+    directories = [
+      ".thunderbird"
+    ];
+  };
+}
