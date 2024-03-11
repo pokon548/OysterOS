@@ -94,7 +94,7 @@
             home-manager.nixosModules.home-manager
             impermanence.nixosModules.impermanence
             lanzaboote.nixosModules.lanzaboote
-            microvm.nixosModules.microvm
+            (if name == "ritsu" then microvm.nixosModules.microvm else { })
             nix-index-database.nixosModules.nix-index
             nixos-generators.nixosModules.all-formats
             disko.nixosModules.disko
