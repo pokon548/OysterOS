@@ -74,9 +74,16 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = with inputs; [
         devshell.flakeModule
+
+        ./devshell
       ];
 
-      perSystem = { config, pkgs, ... }: { };
+      perSystem = { config, inputs', self', lib, system, ... }: {
+        # make pkgs available to all `perSystem` functions
+        _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+
+        formatter = config.treefmt.build.wrapper;
+      };
 
       flake.nixosConfigurations =
         let
