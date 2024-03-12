@@ -5,6 +5,7 @@
 
 ![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)
 ![state](https://img.shields.io/badge/works-on%20my%20machines-FEDFE1)
+[![built with garnix](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Fpokon548%2FOysterOS%3Fbranch%3Dmain)](https://garnix.io)
 
 ## 组织结构
 - 扁平化。配置嵌套层级不过三（多数情况下仅为一），下层配置直接由顶层 flake.nix 统一动态引入，方便（个人）维护，结构清晰；

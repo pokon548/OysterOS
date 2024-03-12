@@ -1,0 +1,5 @@
+builds:
+  exclude: 
+    - 'devShells.x86_64-linux.electron'
+    - 'devShells.x86_64-linux.openwrt'
+    - 'devShells.x86_64-linux.postmarket'

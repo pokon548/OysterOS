@@ -5,6 +5,7 @@ Fast, Safe and Stable. Based on [NixOS](https://nixos.org).
 
 ![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)
 ![state](https://img.shields.io/badge/works-on%20my%20machines-FEDFE1)
+[![built with garnix](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2Fpokon548%2FOysterOS%3Fbranch%3Dmain)](https://garnix.io)
 
 ## Structure
 - Flat. Most configs are limited up to three nesting levels (only one in most cases). All low-level configs are automatically imported in `flake.nix`, which brings convinence in (personal) maintainance and clean structure.
