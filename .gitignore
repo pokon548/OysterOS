@@ -4,3 +4,5 @@
 **/*.img
 **/*.sock
 **/*.socket
+
+**/config.tf.json

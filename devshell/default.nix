@@ -33,6 +33,16 @@
             );
           }).env;
 
+        terraform =
+          let
+            opentofu = pkgs.writers.writeBashBin "opentofu" ''
+              ${pkgs.opentofu}/bin/tofu "$@"
+            '';
+          in
+          pkgs.mkShell {
+            buildInputs = [ pkgs.terranix opentofu ];
+          };
+
         # For developing electron apps
         # Wine is included only for cross-compiling Windows binary. Feel free to remove them if you don't need :)
         electron = (pkgsInsecure.buildFHSUserEnv
