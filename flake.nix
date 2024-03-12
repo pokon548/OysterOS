@@ -67,6 +67,8 @@
 
     devshell.url = "github:numtide/devshell";
 
+    nix-environments.url = "github:nix-community/nix-environments";
+
     terranix.url = "github:terranix/terranix";
 
     minioyster.url = "github:pokon548/MiniOyster";
