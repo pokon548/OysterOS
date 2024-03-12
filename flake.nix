@@ -67,6 +67,8 @@
 
     devshell.url = "github:numtide/devshell";
 
+    terranix.url = "github:terranix/terranix";
+
     minioyster.url = "github:pokon548/MiniOyster";
   };
 
@@ -83,6 +85,11 @@
         _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
 
         formatter = config.treefmt.build.wrapper;
+
+        packages.terraform = inputs.terranix.lib.terranixConfiguration {
+          inherit system;
+          modules = [ ./terraform/config.nix ];
+        };
       };
 
       flake.nixosConfigurations =
