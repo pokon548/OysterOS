@@ -16,4 +16,12 @@ creation_rules:
     key_groups:
       - age:
           - *pokon548
-  
+  - path_regex: trustzone/terraform/default.yaml$
+    key_groups:
+      - age:
+          - *pokon548
+    - path_regex: trustzone/terraform/default.yaml$
+    key_groups:
+      - age:
+          - *pokon548
+

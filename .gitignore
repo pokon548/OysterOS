@@ -6,3 +6,5 @@
 **/*.socket
 
 **/config.tf.json
+.terraform.lock.hcl
+.terraform

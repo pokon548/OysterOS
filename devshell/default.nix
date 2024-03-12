@@ -140,6 +140,19 @@
           LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib64:$LD_LIBRARY_PATH";
         };
 
+        terraform =
+          let
+            hcloud_api_token = "`${pkgs.sops}/bin/sops -d --extract '[\"hello\"]' trustzone/terraform/default.yaml`";
+
+            tofu = pkgs.writers.writeBashBin "terraform" ''
+              export TF_VAR_hcloud_api_token=${hcloud_api_token}
+              ${pkgs.opentofu}/bin/tofu "$@"
+            '';
+          in
+          pkgs.mkShell {
+            buildInputs = [ pkgs.terranix pkgs.sops tofu ];
+          };
+
         gtk4-rust = pkgs.mkShell {
           buildInputs = with pkgs; [
             gtk4

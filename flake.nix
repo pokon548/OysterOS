@@ -76,9 +76,7 @@
 
   outputs = { self, ... } @ inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = with inputs; if
-        (inputs.nixpkgs.lib.lists.elemAt minioyster.nixosModules.skipCIBuilds.imports 0) then [
-      ] else [
+      imports = with inputs; [
         devshell.flakeModule
 
         ./devshell
