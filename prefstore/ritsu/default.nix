@@ -1,6 +1,7 @@
 { pkgs
 , config
 , lib
+, application
 , ...
 }:
 with lib;
@@ -39,7 +40,7 @@ with lib;
     home.ritsu = {
       noReleaseCheck = true;
       application = {
-        base = with pkgs; [
+        internet = with application; [
           vim
           sudo
         ];

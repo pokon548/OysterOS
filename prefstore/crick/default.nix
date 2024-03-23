@@ -1,6 +1,7 @@
 { pkgs
 , config
 , lib
+, application
 , ...
 }:
 with lib;
@@ -49,181 +50,15 @@ with lib;
           "桌面"
         ];
       };
-      programs = {
-        fish = {
-          enable = true;
-          shellAbbrs = {
-            ll = "ls -l";
-            gg = "vlc -I dummy \"/home/$(whoami)/音乐/[230301]OCTOPATH TRAVELER II Original Soundtrack[320K]/45.勝利のファンファーレ.mp3\" --run-time=17 vlc://quit 2> /dev/null &";
-            mz = "vlc -I dummy \"/home/$(whoami)/音乐/[230301]OCTOPATH TRAVELER II Original Soundtrack[320K]/46.敗北のレクイエム.mp3\" vlc://quit 2> /dev/null &";
-            up = "cd /etc/nixos && nix flake update && sudo nixos-rebuild switch";
-          };
-          functions = {
-            fish_greeting = "";
-            ma = ''
-              set IP 192.168.1.147 192.168.1.143
-              for i in $IP
-                adb connect $i:$(nmap $i -p 37000-44000 | awk "/\/tcp/" | cut -d/ -f1)
-              end
-              for i in $(adb devices | awk '{print $1}' | grep 192)
-                scrcpy -s $i -w -S &
-              end
-            '';
-          };
-          plugins = [
-            {
-              name = "sponge";
-              src = pkgs.fetchFromGitHub {
-                owner = "meaningful-ooo";
-                repo = "sponge";
-                rev = "384299545104d5256648cee9d8b117aaa9a6d7be";
-                hash = "sha256-MdcZUDRtNJdiyo2l9o5ma7nAX84xEJbGFhAVhK+Zm1w=";
-              };
-            }
-            {
-              name = "tide";
-              src = pkgs.fetchFromGitHub {
-                owner = "IlanCosman";
-                repo = "tide";
-                rev = "1af8bf782cfea6c9da85716bd45c24adb3499556";
-                hash = "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=";
-              };
-            }
-            {
-              name = "virtualfish";
-              src = pkgs.fetchFromGitHub {
-                owner = "justinmayer";
-                repo = "virtualfish";
-                rev = "3f0de6e9a41d795237beaaa04789c529787906d3";
-                hash = "sha256-M4IzmQHELh7A9ZcnNCXSuMk0x71wxeTR35bpDVZDqiw=";
-              };
-            }
-            {
-              name = "gitnow";
-              src = pkgs.fetchFromGitHub {
-                owner = "joseluisq";
-                repo = "gitnow";
-                rev = "aba9145cd352598b01aa2a41844c55df92bc6b3b";
-                hash = "sha256-eImCiEhhbXOkwQqRgpqw481i0Wg4c5nADQlG/O+OH0E=";
-              };
-            }
-          ];
-        };
-
-        nix-index = {
-          enable = true;
-          enableFishIntegration = true;
-        };
-      };
-      file = {
-        ".config/VSCodium/User/settings.json".text = builtins.toJSON {
-          "window.dialogStyle" = "custom";
-          "window.titleBarStyle" = "custom";
-          "workbench.iconTheme" = "vscode-icons";
-          "security.workspace.trust.enabled" = false;
-          "editor.fontFamily" = "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace";
-          "window.zoomLevel" = 0.5;
-          "todo-tree.general.tags" = [
-            "BUG"
-            "HACK"
-            "FIXME"
-            "TODO"
-            "XXX"
-          ];
-          "[typescriptreact]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[jsonc]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[json]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[html]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[javascript]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[typescript]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "window.commandCenter" = false;
-          "git.enableCommitSigning" = true;
-        };
-      };
       application = {
-        base = with pkgs; [
+        /*base = with pkgs; [
           vim
           sudo
-        ];
+        ];*/
 
-        gnome-extra = with pkgs; [
-          amberol
-          abiword
-          authenticator
-          bottles
-          blanket
-          celluloid
-          eyedropper
-          gnome.gnome-tweaks
-          mission-center
-          drawing
-          metadata-cleaner
-          gnome-solanum
-          gnome-frog
-          newsflash
-          tela-circle-icon-theme
-          easyeffects
-          remmina
-          kooha
-          gocryptfs
-          nur.repos.pokon548.vaults
-          nur.repos.pokon548.flowtime
-          nur.repos.pokon548.sticky
-          rnote
-        ];
-
-        office = with pkgs; [
-          libreoffice-fresh
-        ];
-
-        internet = with pkgs; [
-          thunderbird
-          transmission_4-gtk
-          librewolf
+        internet = with application; [
           ungoogled-chromium
-          localsend
-          element-desktop
-          telegram-desktop
-          freetube
-        ] ++ (with config.prefstore.desktop.application; [
           qq
-        ]);
-
-        knowledge = with pkgs; [
-          anki-bin
-          koreader
-          nur.repos.pokon548.chengla-electron
-          obsidian
-          goldendict-ng
-          zotero_7
-        ];
-
-        development = with pkgs; [
-          androidStudioPackages.canary
-          android-tools
-          godot_4
-          scrcpy
-        ] ++ (with config.prefstore.desktop.application; [
-          vscodium
-        ]);
-
-        game = with pkgs; [
-          (steam.override {
-            extraPkgs = pkgs: [ openssl_1_1 ];
-          })
-          prismlauncher
         ];
       };
       gnome = {
