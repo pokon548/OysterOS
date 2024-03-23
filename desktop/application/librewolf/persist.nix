@@ -1,9 +1,0 @@
-{ config
-, ...}:
-{
-  home = {
-    directories = [
-      ".librewolf"
-    ];
-  };
-}

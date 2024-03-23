@@ -6,35 +6,6 @@
 }:
 with lib;
 let
-  mkNixPak = inputs.nixpak.lib.nixpak {
-    inherit pkgs lib;
-  };
-  nixpakModules = {
-    gui-base = inputs.nixpak-pkgs + "/pkgs/modules/gui-base.nix";
-  };
-
-  appPersistOpts = { name, config, ... }: {
-    options = {
-      name = mkOption {
-        type = types.str;
-        description = lib.mdDoc ''
-          The name of the user account. If undefined, the name of the
-          attribute set will be used.
-        '';
-      };
-
-      directories = mkOption {
-        type = types.listOf (types.anything);
-        default = [ ];
-      };
-
-      files = mkOption {
-        type = types.listOf (types.anything);
-        default = [ ];
-      };
-    };
-  };
-
   homeOpts = { name, config, ... }: {
     options = {
       name = mkOption {
@@ -73,54 +44,44 @@ let
         };
       };
 
-      programs = mkOption {
-        type = types.attrs;
-        default = { };
-      };
-
-      file = mkOption {
-        type = types.attrs;
-        default = { };
-      };
-
       application = {
         base = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         gnome-extra = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         office = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         internet = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         security = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         knowledge = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         development = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
 
         game = mkOption {
-          type = types.listOf (types.package);
+          type = with types; listOf (attrsOf anything);
           default = [ ];
         };
       };
@@ -175,27 +136,6 @@ in
 
       desktop =
         {
-          application = genAttrs
-            (
-              lists.remove null (
-                forEach
-                  (mapAttrsToList
-                    (
-                      name: value: { name = name; type = value; }
-                    )
-                    (builtins.readDir ../desktop/application))
-                  (x: if x.type == "directory" then toString x.name else null))
-            )
-            (name: mkOption {
-              type = types.package;
-              default = (inputs.haumea.lib.load
-                {
-                  src = ../desktop/application + ("/" + name);
-                  inputs = {
-                    inherit lib config pkgs mkNixPak nixpakModules;
-                  };
-                }).default.config.env;
-            });
           gnome = {
             enable = mkOption {
               type = types.bool;
@@ -257,28 +197,20 @@ in
               default = "/persist";
             };
 
-            hideMounts = mkOption {
-              type = types.bool;
-              default = true;
-            };
-
             directories = mkOption {
-              type = types.listOf (types.anything);
+              type = types.listOf (types.str);
               default = [
                 "/var/lib/bluetooth"
                 "/var/lib/nixos"
                 "/var/lib/systemd/coredump"
                 "/etc/NetworkManager/system-connections"
-
-                { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
               ];
             };
 
             files = mkOption {
-              type = types.listOf (types.anything);
+              type = types.listOf (types.str);
               default = [
                 "/etc/machine-id"
-                { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
               ];
             };
           };
@@ -298,28 +230,6 @@ in
             };
           };
         };
-
-      appPersist = genAttrs
-        (
-          lists.remove null (
-            forEach
-              (mapAttrsToList
-                (
-                  name: value: { name = name; type = value; }
-                )
-                (builtins.readDir ../desktop/application))
-              (x: if x.type == "directory" then toString x.name else null))
-        )
-        (name: mkOption {
-          type = with types; attrsOf (submodule appPersistOpts);
-          default = (inputs.haumea.lib.load
-            {
-              src = ../desktop/application + ("/" + name);
-              inputs = {
-                inherit lib config pkgs mkNixPak nixpakModules;
-              };
-            }).persist;
-        });
 
       home = mkOption {
         default = { };

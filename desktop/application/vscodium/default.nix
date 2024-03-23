@@ -1,7 +1,5 @@
 { lib
 , config
-, mkNixPak
-, nixpakModules
 , pkgs
 , ...
 }:
@@ -28,45 +26,59 @@ let
     ms-playwright.playwright
   ];
 in
-mkNixPak {
-  config = { sloth, ... }: {
-    bubblewrap = {
-      bind.rw = [
-        (sloth.mkdir (sloth.concat [ sloth.xdgConfigHome "/VSCodium" ]))
-        (sloth.mkdir (sloth.concat [ sloth.xdgConfigHome "/.vscode-oss" ]))
-        (sloth.mkdir (sloth.concat [ sloth.homeDir "/Programmings" ]))
-      ];
-      bind.ro = [
-        "/etc/fonts"
-      ];
-      network = true;
-      sockets = {
-        x11 = true;
-        wayland = true;
-        pulse = true;
-      };
-      env = {
-        IBUS_USE_PORTAL = "1";
-        XDG_DATA_DIRS = lib.mkForce (lib.makeSearchPath "share" (with pkgs; [
-          adw-gtk3
-          tela-icon-theme
-          shared-mime-info
-        ]));
-        XCURSOR_PATH = lib.mkForce (lib.concatStringsSep ":" (with pkgs; [
-          "${tela-icon-theme}/share/icons"
-          "${tela-icon-theme}/share/pixmaps"
-          "${simp1e-cursors}/share/icons"
-          "${simp1e-cursors}/share/pixmaps"
-        ]));
-      };
-    };
+{
+  programs.vscode = {
+    enable = true;
+    enableExtensionUpdateCheck = false;
+    enableUpdateCheck = false;
+    mutableExtensionsDir = false;
+    package = vscodium;
 
-    imports = [ nixpakModules.gui-base ];
-    app = {
-      package = pkgs.vscode-with-extensions.override {
-        vscode = pkgs.vscodium;
-        vscodeExtensions = commonExtensions ++ shellScriptExtensions ++ frontendDevExtensions;
+    extensions = commonExtensions ++ shellScriptExtensions ++ frontendDevExtensions;
+    userSettings = {
+      "window.dialogStyle" = "custom";
+      "window.titleBarStyle" = "custom";
+      "workbench.iconTheme" = "vscode-icons";
+      "security.workspace.trust.enabled" = false;
+      "editor.fontFamily" = "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace";
+      "window.zoomLevel" = 0.5;
+      "todo-tree.general.tags" = [
+        "BUG"
+        "HACK"
+        "FIXME"
+        "TODO"
+        "XXX"
+      ];
+      "[typescriptreact]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
       };
+      "[jsonc]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[json]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[html]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[javascript]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[typescript]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "window.commandCenter" = false;
+      "git.enableCommitSigning" = true;
     };
+  };
+
+  home = {
+    packages = with pkgs; [
+      nixpkgs-fmt
+
+      jetbrains-mono
+    ];
+
+    global-persistence.directories = [ ".config/VSCodium" ];
   };
 }

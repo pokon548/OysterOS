@@ -5,8 +5,25 @@
 }:
 let
   username = "pokon548";
-  packagesList = lib.concatLists [
-    (lib.concatLists (with config.prefstore.home.${username}.application; [
+
+  # TODO: recursiveMerge should be moved to individual helper
+  recursiveMerge = attrList:
+    let
+      f = attrPath:
+        lib.zipAttrsWith (n: values:
+          if lib.tail values == [ ]
+          then lib.head values
+          else if lib.all lib.isList values
+          then lib.unique (lib.concatLists values)
+          else if lib.all lib.isAttrs values
+          then f (lib.attrPath ++ [ n ]) values
+          else lib.last values
+        );
+    in
+    f [ ] attrList;
+
+  programsList = (recursiveMerge (
+    lib.concatLists (with config.prefstore.home.${username}.application; [
       base
       gnome-extra
       office
@@ -15,9 +32,7 @@ let
       knowledge
       development
       game
-    ]))
-    config.prefstore.home.${username}.gnome.extension
-  ];
+    ]))).default;
 in
 {
   config = lib.mkIf config.prefstore.user.${username}.enable
@@ -45,46 +60,18 @@ in
         user = "${username}";
       };
 
-      home-manager.users.${username} = { lib, ... }: {
-        home = {
-          packages = packagesList;
-          file = config.prefstore.home.${username}.file;
-          enableNixpkgsReleaseCheck = !config.prefstore.home.${username}.noReleaseCheck;
-          stateVersion = "23.11";
-        };
+      home-manager.users.${username} = { lib, ... }: recursiveMerge [
+        {
+          home = {
+            enableNixpkgsReleaseCheck = !config.prefstore.home.${username}.noReleaseCheck;
+            packages = config.prefstore.home.${username}.gnome.extension;
+            global-persistence.enable = config.prefstore.home.${username}.persistence.enable;
+            stateVersion = "23.11";
+          };
 
-        programs = config.prefstore.home.${username}.programs;
-        dconf.settings = config.prefstore.home.${username}.gnome.dconf;
-      };
-
-      # NOTE: Not using home-manager module. It doesn't keep all files :(
-      # TODO: Make it as a general module
-      environment.persistence."${config.prefstore.system.impermanence.location}".users.${username} = lib.mkIf config.prefstore.home.${username}.persistence.enable {
-        directories = config.prefstore.home.${username}.persistence.directories ++ lib.concatLists (lib.lists.remove null (lib.forEach
-          packagesList
-          (x:
-            if (lib.hasAttr "pname" x) then
-              if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
-              then
-                config.prefstore.appPersist.${x.pname}.home.directories
-              else
-                lib.warn "${x.pname} does not have any impermanence rules! Data expected to be lost." null
-            else
-              lib.warn "${builtins.toString x} seems to be nixpaked app. This is currently not supported by impermanence." null
-          )));
-
-        files = config.prefstore.home.${username}.persistence.files ++ lib.concatLists (lib.lists.remove null (lib.forEach
-          packagesList
-          (x:
-            if (lib.hasAttr "pname" x) then
-              if (lib.hasAttr "${x.pname}" config.prefstore.appPersist)
-              then
-                config.prefstore.appPersist.${x.pname}.home.files
-              else
-                null
-            else
-              null
-          )));
-      };
+          dconf.settings = config.prefstore.home.${username}.gnome.dconf;
+        }
+        programsList
+      ];
     };
 }

@@ -5,8 +5,9 @@
 {
   config = lib.mkIf config.prefstore.system.impermanence.enable
     {
-      environment.persistence."${config.prefstore.system.impermanence.location}" = {
-        hideMounts = config.prefstore.system.impermanence.hideMounts;
+      environment.global-persistence = {
+        enable = true;
+        root = "${config.prefstore.system.impermanence.location}";
         directories = config.prefstore.system.impermanence.directories;
         files = config.prefstore.system.impermanence.files;
       };

@@ -6,6 +6,7 @@
 with lib;
 {
   config.prefstore = {
+    # TODO: partitio prefstore is currently broken. Needed to be fixed soon ™
     slogan = ''
       I'll be back once I eliminate that devil called poverty from the world!
 

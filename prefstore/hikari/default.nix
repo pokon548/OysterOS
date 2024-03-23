@@ -1,6 +1,7 @@
 { pkgs
 , config
 , lib
+, application
 , ...
 }:
 with lib;
@@ -55,17 +56,15 @@ with lib;
         ];
       };
       application = {
-        base = with pkgs; [
+        /*base = with pkgs; [
           vim
           sudo
-        ];
+        ];*/
 
-        internet = with pkgs; [
-          librewolf
+        internet = with application; [
           ungoogled-chromium
-        ] ++ (with config.prefstore.desktop.application; [
           qq
-        ]);
+        ];
       };
     };
 
