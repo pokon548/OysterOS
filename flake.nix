@@ -68,6 +68,8 @@
 
     microvm.url = "github:astro/microvm.nix";
 
+    nil.url = "github:oxalica/nil";
+
     devshell.url = "github:numtide/devshell";
 
     nix-environments.url = "github:nix-community/nix-environments";
