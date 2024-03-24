@@ -5,6 +5,7 @@
 }:
 let
   username = "pokon548";
+  homeDirectory = "/home/${username}";
 
   # TODO: recursiveMerge should be moved to individual helper
   recursiveMerge = attrList:
@@ -55,6 +56,8 @@ in
         ];
       };
 
+      environment.global-persistence.user.users = [ username ];
+
       services.xserver.displayManager.autoLogin = {
         enable = true;
         user = "${username}";
@@ -65,7 +68,12 @@ in
           home = {
             enableNixpkgsReleaseCheck = !config.prefstore.home.${username}.noReleaseCheck;
             packages = config.prefstore.home.${username}.gnome.extension;
-            global-persistence.enable = config.prefstore.home.${username}.persistence.enable;
+            global-persistence = {
+              enable = config.prefstore.home.${username}.persistence.enable;
+              directories = config.prefstore.home.${username}.persistence.directories;
+              files = config.prefstore.home.${username}.persistence.files;
+              home = homeDirectory;
+            };
             stateVersion = "23.11";
           };
 
