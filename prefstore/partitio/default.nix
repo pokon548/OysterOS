@@ -1,6 +1,7 @@
 { pkgs
 , config
 , lib
+, application
 , ...
 }:
 with lib;
@@ -50,51 +51,16 @@ with lib;
           "桌面"
         ];
       };
-      file = {
-        ".config/VSCodium/User/settings.json".text = builtins.toJSON {
-          "window.dialogStyle" = "custom";
-          "window.titleBarStyle" = "custom";
-          "workbench.iconTheme" = "vscode-icons";
-          "security.workspace.trust.enabled" = false;
-          "editor.fontFamily" = "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace";
-          "window.zoomLevel" = 0.5;
-          "todo-tree.general.tags" = [
-            "BUG"
-            "HACK"
-            "FIXME"
-            "TODO"
-            "XXX"
-          ];
-          "[typescriptreact]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[jsonc]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[json]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[html]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[javascript]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "[typescript]" = {
-            "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          };
-          "window.commandCenter" = false;
-          "git.enableCommitSigning" = true;
-        };
-      };
       application = {
-        base = with pkgs; [
+        base = with application; [
           vim
           sudo
           git
+
+          fish
         ];
 
-        gnome-extra = with pkgs; [
+        gnome-extra = with application; [
           amberol
           abiword
           authenticator
@@ -102,7 +68,7 @@ with lib;
           blanket
           celluloid
           eyedropper
-          gnome.gnome-tweaks
+          gnome-tweaks
           mission-center
           drawing
           metadata-cleaner
@@ -114,60 +80,49 @@ with lib;
           remmina
           kooha
           gocryptfs
-          nur.repos.pokon548.vaults
-          nur.repos.pokon548.flowtime
-          nur.repos.pokon548.sticky
+          vaults
+          flowtime
+          sticky
           rnote
         ];
 
-        office = with pkgs; [
+        office = with application; [
           libreoffice-fresh
-          wpsoffice-cn
+          wpsoffice
         ];
 
-        security = with pkgs; [
+        security = with application; [
           bitwarden-desktop
           keepassxc
         ];
 
-        internet = with pkgs; [
+        internet = with application; [
           thunderbird
-          transmission_4-gtk
           todoist-electron
           librewolf
           ungoogled-chromium
           localsend
           element-desktop
-          telegram-desktop
-          freetube
-        ] ++ (with config.prefstore.desktop.application; [
           qq
-        ]);
-
-        knowledge = with pkgs; [
-          anki-bin
-          koreader
-          nur.repos.pokon548.chengla-electron
-          obsidian
-          goldendict-ng
-          zotero_7
         ];
 
-        development = with pkgs; [
-          androidStudioPackages.canary
+        knowledge = with application; [
+          anki-bin
+          koreader
+          chengla-electron
+          obsidian
+          goldendict-ng
+          zotero
+        ];
+
+        development = with application; [
+          android-studio-canary
           android-tools
-          godot_4
-          scrcpy
-
-          nixpkgs-fmt
-        ] ++ (with config.prefstore.desktop.application; [
           vscodium
-        ]);
+        ];
 
-        game = with pkgs; [
-          (steam.override {
-            extraPkgs = pkgs: [ openssl_1_1 ];
-          })
+        game = with application; [
+          steam
           prismlauncher
         ];
       };
