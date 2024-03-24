@@ -166,6 +166,11 @@ in
             default = false;
           };
 
+          tpm = mkOption {
+            type = types.bool;
+            default = false;
+          };
+
           network = {
             useNetworkManager = mkOption {
               type = types.bool;
