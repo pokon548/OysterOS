@@ -32,7 +32,7 @@ in
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
     mutableExtensionsDir = false;
-    package = vscodium;
+    package = pkgs.vscodium;
 
     extensions = commonExtensions ++ shellScriptExtensions ++ frontendDevExtensions;
     userSettings = {
