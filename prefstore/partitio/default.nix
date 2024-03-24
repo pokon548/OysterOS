@@ -76,11 +76,9 @@ with lib;
           gnome-solanum
           gnome-frog
           newsflash
-          tela-circle-icon-theme
           easyeffects
           remmina
           kooha
-          gocryptfs
           vaults
           flowtime
           sticky
@@ -241,6 +239,7 @@ with lib;
           };
 
           "org/gnome/desktop/wm/preferences" = {
+            button-layout = "appmenu:minimize,maximize,close";
             num-workspaces = 10;
           };
 
