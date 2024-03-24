@@ -30,7 +30,7 @@ with lib;
     };
 
     system = {
-      impermanence.enable = false;
+      impermanence.enable = true;
       i18n = true;
       sudo.noPassword = true;
       sysrq = true;

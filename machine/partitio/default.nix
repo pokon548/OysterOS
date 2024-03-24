@@ -3,9 +3,6 @@
 , inputs
 , ...
 }:
-let
-  noExecutionFlags = [ "nodev" "nosuid" "noexec" ];
-in
 {
   imports = with inputs.hardware.nixosModules;
     [
@@ -44,7 +41,7 @@ in
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "dmask=077" "fmask=177" ] ++ noExecutionFlags;
+              mountOptions = [ "dmask=077" "fmask=177" ];
             };
           };
           crypt-root = {
@@ -66,11 +63,11 @@ in
                   {
                     "@persist" = {
                       mountpoint = "/persist";
-                      inherit (mountOptions ++ noExecutionFlags);
+                      inherit mountOptions;
                     };
                     "@var-log" = {
                       mountpoint = "/var/log";
-                      inherit (mountOptions ++ noExecutionFlags);
+                      inherit mountOptions;
                     };
                     "@nix" = {
                       mountpoint = "/nix";
