@@ -9,7 +9,7 @@
       nur.overlay
       microvm.overlay
       nix-vscode-extensions.overlays.default
-      rust-overlay.overlays.default
+      fenix.overlays.default
     ];
     config = {
       allowUnfree = true;

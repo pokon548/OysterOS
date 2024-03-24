@@ -61,7 +61,10 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     microvm.url = "github:astro/microvm.nix";
 
