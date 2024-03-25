@@ -48,6 +48,12 @@
         style = "adwaita";
       };
 
+      # GSConnect
+      networking.firewall = {
+        allowedTCPPortRanges = config.prefstore.system.network.port.kde-connect;
+        allowedUDPPortRanges = config.prefstore.system.network.port.kde-connect;
+      };
+
       # TODO: Workaround for gdm crash issue, see https://github.com/NixOS/nixpkgs/issues/103746
       systemd.services = {
         "getty@tty1".enable = false;

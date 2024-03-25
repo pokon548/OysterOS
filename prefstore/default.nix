@@ -200,6 +200,14 @@ in
                 type = types.int;
                 default = 64548;
               };
+
+              kde-connect = mkOption
+                {
+                  type = types.listOf (types.attrsOf types.port);
+                  default = [
+                    { from = 1714; to = 1764; }
+                  ];
+                };
             };
           };
 

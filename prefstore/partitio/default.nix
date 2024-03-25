@@ -379,7 +379,15 @@ with lib;
           };
 
           "org/gnome/shell/weather" = {
-            automatic-location = false;
+            automatic-location = true;
+          };
+
+          "org/gnome/shell/extensions/gsconnect/device/dac5f8a6d2077c46" = {
+            paired = true;
+          };
+
+          "org/gnome/settings-daemon/plugins/color" = {
+            night-light-enabled = true;
           };
 
           "com/raggesilver/BlackBox" = {
