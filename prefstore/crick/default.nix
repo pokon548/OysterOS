@@ -185,6 +185,7 @@ with lib;
           "org/gnome/shell/extensions/dash-to-dock" = {
             show-mounts = false;
             show-trash = false;
+            running-indicator-style = "DOTS";
             show-show-apps-button = true;
           };
 
