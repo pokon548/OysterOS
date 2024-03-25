@@ -1,6 +1,7 @@
 keys:
   - &pokon548 age1vcy4xzcz050ncalv78u94xphft9eq4cgx83pnxxqsks9w9tsd4wq7j46wc
   - &hikari age14rfexce7p5ac2acwq5favj4c5ddna5m26jpmc0tas0nn348n0a5qazyn9x
+  - &partitio age1ddpm50l0nzfnd3wuvd0efm9h4nqvrskrdmjqqfsyhjn05erakuhq8ku76m
 
 creation_rules:
   - path_regex: trustzone/crick/default.yaml$
@@ -16,11 +17,12 @@ creation_rules:
     key_groups:
       - age:
           - *pokon548
+          - *partitio
   - path_regex: trustzone/terraform/default.yaml$
     key_groups:
       - age:
           - *pokon548
-    - path_regex: trustzone/terraform/default.yaml$
+  - path_regex: trustzone/terraform/default.yaml$
     key_groups:
       - age:
           - *pokon548

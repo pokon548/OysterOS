@@ -1,10 +1,19 @@
 { lib
 , name
+, config
 , ...
 }:
 {
   sops = {
-    age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" "/etc/ssh/ssh_host_ed25519_key" ];
+    age = {
+      sshKeyPaths = [ ];
+      keyFile = lib.mkDefault (
+        if config.environment.global-persistence.enable then
+          "/persist/var/lib/sops-nix/key"
+        else
+          "/var/lib/sops-nix/key"
+      );
+    };
     defaultSopsFile = ./. + "/${name}/default.yaml";
   };
 }
