@@ -15,6 +15,8 @@ with lib;
 
     '';
 
+    timeZone = "Asia/Shanghai";
+
     boot = {
       latestKernel = true;
       secureboot = true;
@@ -27,6 +29,49 @@ with lib;
       font = true;
       im = true;
       gnome.enable = true;
+      xdg = {
+        enable = true;
+        defaultApplications = {
+          # Image
+          "image/jpeg" = "org.gnome.Loupe.desktop";
+          "image/png" = "org.gnome.Loupe.desktop";
+          "image/gif" = "org.gnome.Loupe.desktop";
+          "image/webp" = "org.gnome.Loupe.desktop";
+          "image/tiff" = "org.gnome.Loupe.desktop";
+          "image/x-tga" = "org.gnome.Loupe.desktop";
+          "image/vnd-ms.dds" = "org.gnome.Loupe.desktop";
+          "image/x-dds" = "org.gnome.Loupe.desktop";
+          "image/bmp" = "org.gnome.Loupe.desktop";
+          "image/vnd.microsoft.icon" = "org.gnome.Loupe.desktop";
+          "image/vnd.radiance" = "org.gnome.Loupe.desktop";
+          "image/x-exr" = "org.gnome.Loupe.desktop";
+          "image/x-portable-bitmap" = "org.gnome.Loupe.desktop";
+          "image/x-portable-graymap" = "org.gnome.Loupe.desktop";
+          "image/x-portable-pixmap" = "org.gnome.Loupe.desktop";
+          "image/x-portable-anymap" = "org.gnome.Loupe.desktop";
+          "image/x-qoi" = "org.gnome.Loupe.desktop";
+          "image/svg+xml" = "org.gnome.Loupe.desktop";
+          "image/svg+xml-compressed" = "org.gnome.Loupe.desktop";
+          "image/avif" = "org.gnome.Loupe.desktop";
+          "image/heic" = "org.gnome.Loupe.desktop";
+          "image/jxl" = "org.gnome.Loupe.desktop";
+
+          # Browser
+          "x-scheme-handler/http" = "librewolf.desktop";
+          "text/html" = "librewolf.desktop";
+          "application/xhtml+xml" = "librewolf.desktop";
+          "x-scheme-handler/https" = "librewolf.desktop";
+
+          # Email
+          "x-scheme-handler/mailto" = "thunderbird.desktop";
+
+          # Text
+          "text/plain" = "org.gnome.TextEditor.desktop";
+
+          # PDF
+          "application/pdf" = "org.gnome.Evince.desktop";
+        };
+      };
     };
 
     system = {
@@ -41,6 +86,7 @@ with lib;
     home.pokon548 = {
       noReleaseCheck = true;
       persistence = {
+        enable = true;
         directories = [
           "公共"
           "视频"
@@ -49,6 +95,10 @@ with lib;
           "下载"
           "音乐"
           "桌面"
+          "Programmings"
+        ];
+        files = [
+          ".config/monitors.xml"
         ];
       };
       application = {
@@ -93,6 +143,7 @@ with lib;
         security = with application; [
           bitwarden-desktop
           keepassxc
+          seahorse
         ];
 
         internet = with application; [
@@ -177,6 +228,12 @@ with lib;
             default-zoom-level = "small";
           };
 
+          "org/gnome/desktop/interface" = {
+            clock-show-weekday = true;
+            clock-format = "12h";
+            text-scaling-factor = 1.1200000000000001;
+          };
+
           "org/gnome/nautilus/preferences" = {
             click-policy = "single";
           };
@@ -215,6 +272,10 @@ with lib;
             };
           };
 
+          "org/gnome/desktop/datetime" = {
+            automatic-timezone = true;
+          };
+
           "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
             enabled = true;
             day = "adw-gtk3";
@@ -248,13 +309,25 @@ with lib;
           };
 
           "org/gnome/shell/extensions/dash-to-dock" = {
+            multi-monitor = true;
+            click-action = "focus-minimize-or-previews";
+            isolate-monitors = true;
+            running-indicator-style = "DOTS";
             show-mounts = false;
             show-trash = false;
             show-show-apps-button = true;
           };
 
+          "org/gnome/system/location" = {
+            enabled = true;
+          };
+
           "org/gnome/shell/extensions/just-perfection" = {
             app-menu = false;
+            accessibility-menu = false;
+            calendar = false;
+            events-button = false;
+            theme = true;
           };
 
           "org/gnome/desktop/wm/keybindings" = {

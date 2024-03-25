@@ -117,6 +117,11 @@ in
         '';
       };
 
+      timeZone = mkOption {
+        type = types.str;
+        default = "Etc/UTC";
+      };
+
       boot = {
         latestKernel = mkOption {
           type = types.bool;
@@ -151,6 +156,20 @@ in
           font = mkOption {
             type = types.bool;
             default = false;
+          };
+
+          xdg = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+
+            defaultApplications = mkOption {
+              type = with types; attrsOf (
+                coercedTo (either (listOf str) str) (x: concatStringsSep ";" (toList x)) str
+              );
+              default = { };
+            };
           };
         };
 
