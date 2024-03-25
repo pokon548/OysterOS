@@ -93,6 +93,13 @@ in
       jetbrains-mono
     ];
 
-    global-persistence.directories = [ ".config/VSCodium" ];
+    global-persistence = {
+      directories = [ 
+        ".config/VSCodium"
+      ];
+      files = [
+        ".vscode-oss/argv.json"
+      ];
+    };
   };
 }

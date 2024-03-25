@@ -172,12 +172,6 @@ let
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/undoclosetabbutton/latest.xpi";
       };
-      "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = {
-        default_area = "navbar";
-        installation_mode = "force_installed";
-        install_url =
-          "https://addons.mozilla.org/firefox/downloads/latest/old-reddit-redirect/latest.xpi";
-      };
       "addon@darkreader.org" = {
         installation_mode = "force_installed";
         install_url =
