@@ -104,7 +104,9 @@ with lib;
       application = {
         base = with application; [
           vim
+          helix
           sudo
+          bat
           git
           gtk
 
