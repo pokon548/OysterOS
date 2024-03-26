@@ -155,6 +155,7 @@ with lib;
           ungoogled-chromium
           localsend
           element-desktop
+          rustdesk
           qq
         ];
 
@@ -162,6 +163,7 @@ with lib;
           anki-bin
           koreader
           chengla-electron
+          geogebra
           obsidian
           goldendict-ng
           zotero
@@ -171,6 +173,7 @@ with lib;
           android-studio-canary
           android-tools
           vscodium
+          virtualbox
         ];
 
         game = with application; [
