@@ -80,7 +80,10 @@ with lib;
       sudo.noPassword = true;
       sysrq = true;
       tpm = true;
-      virtualisation.virtualbox = true;
+      virtualisation = {
+        virtualbox = true;
+        libvirtd = true;
+      };
     };
 
     home.pokon548 = {
@@ -174,6 +177,7 @@ with lib;
           android-tools
           vscodium
           virtualbox
+          virt-manager
         ];
 
         game = with application; [

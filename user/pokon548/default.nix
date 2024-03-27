@@ -49,7 +49,7 @@ in
           "networkmanager"
           "kvm"
           "qemu"
-          "libvirt"
+          "libvirtd"
           "vboxusers"
           "tss"
           "pipewire"

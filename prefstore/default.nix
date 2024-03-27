@@ -216,6 +216,11 @@ in
               type = types.bool;
               default = false;
             };
+
+            libvirtd = mkOption {
+              type = types.bool;
+              default = false;
+            };
           };
 
           impermanence = {
