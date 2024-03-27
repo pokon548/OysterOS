@@ -87,6 +87,7 @@ in
           };
         };
       };
+      "rust-analyzer.server.path" = "${pkgs.rust-analyzer-nightly}/bin/rust-analyzer";
     };
   };
 

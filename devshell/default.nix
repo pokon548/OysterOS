@@ -11,6 +11,10 @@
         inherit system;
         config.permittedInsecurePackages = [ "openssl-1.1.1w" ]; # electron-builder still depend on this :(
       };
+
+      pkgsRust = import inputs.fenix {
+        inherit system;
+      };
     in
     {
       devShells = {
@@ -135,6 +139,20 @@
           nativeBuildInputs = with pkgs; [
             clang
             stdenv.cc.cc.lib
+          ];
+
+          LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib64:$LD_LIBRARY_PATH";
+        };
+
+        rust = pkgs.mkShell {
+          nativeBuildInputs = with pkgsRust; [
+            (pkgsRust.complete.withComponents [
+              "cargo"
+              "clippy"
+              "rust-src"
+              "rustc"
+              "rustfmt"
+            ])
           ];
 
           LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib64:$LD_LIBRARY_PATH";
