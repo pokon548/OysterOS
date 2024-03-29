@@ -145,7 +145,7 @@
         };
 
         rust = pkgs.mkShell {
-          nativeBuildInputs = with pkgsRust; [
+          nativeBuildInputs = (with pkgsRust; [
             (pkgsRust.complete.withComponents [
               "cargo"
               "clippy"
@@ -153,9 +153,17 @@
               "rustc"
               "rustfmt"
             ])
-          ];
+          ]) ++ (with pkgs; [
+            pkg-config
+            openssl
+            sqlite
+          ]);
 
-          LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib64:$LD_LIBRARY_PATH";
+          LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath (with pkgs; [
+            pkg-config
+            openssl
+            sqlite
+          ])}:$LD_LIBRARY_PATH";
         };
 
         terraform =
