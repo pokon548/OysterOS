@@ -195,10 +195,21 @@ in
               type = types.bool;
               default = true;
             };
+            domain = {
+              vaultwarden = mkOption {
+                type = types.str;
+                default = "bitwarden.pokon548.ink";
+              };
+            };
             port = {
               ssh = mkOption {
                 type = types.int;
                 default = 64548;
+              };
+
+              vaultwarden = mkOption {
+                type = types.int;
+                default = 27313;
               };
 
               kde-connect = mkOption
@@ -264,6 +275,25 @@ in
             enable = mkOption {
               type = types.bool;
               default = true;
+            };
+          };
+
+          postgresql = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+          };
+
+          vaultwarden = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+
+            environmentFile = mkOption {
+              type = with types; nullOr path;
+              default = null;
             };
           };
         };

@@ -6,49 +6,73 @@
 }:
 with lib;
 {
-  config.prefstore = {
-    slogan = ''
-      你就不能把话说得更明白些吗？
+  config = {
+    sops.secrets = {
+      "vaultwarden/admin-token" = { };
+      "vaultwarden/push-installation-id" = { };
+      "vaultwarden/push-installation-key" = { };
+    };
 
-      Run 'nixos-helo' for the NixOS manual
-
+    sops.templates."vaultwarden-env".content = ''
+      ADMIN_TOKEN=${config.sops.placeholder."vaultwarden/admin-token"}
+      PUSH_INSTALLATION_ID=${config.sops.placeholder."vaultwarden/push-installation-id"}
+      PUSH_INSTALLATION_KEY=${config.sops.placeholder."vaultwarden/push-installation-key"}
     '';
 
-    system = {
-      i18n = true;
-      sudo.noPassword = true;
-      sysrq = true;
-    };
+    prefstore = {
+      slogan = ''
+        你就不能把话说得更明白些吗？
 
-    home.pokon548 = {
-      noReleaseCheck = true;
-      persistence = {
-        enable = true;
-        directories = [
-          "公共"
-          "视频"
-          "图片"
-          "文档"
-          "下载"
-          "音乐"
-          "桌面"
-        ];
+        Run 'nixos-helo' for the NixOS manual
+
+      '';
+
+      system = {
+        i18n = true;
+        sudo.noPassword = true;
+        sysrq = true;
       };
-      application = {
-        base = with application; [
-          vim
-          sudo
-          git
-          gtk
 
-          fish
-        ];
+      home.pokon548 = {
+        noReleaseCheck = true;
+        persistence = {
+          enable = true;
+          directories = [
+            "公共"
+            "视频"
+            "图片"
+            "文档"
+            "下载"
+            "音乐"
+            "桌面"
+          ];
+        };
+        application = {
+          base = with application; [
+            vim
+            sudo
+            git
+            gtk
+
+            fish
+          ];
+        };
       };
-    };
 
-    user = {
-      pokon548 = {
-        enable = true;
+      service = {
+        openssh.enable = true;
+        postgresql.enable = true;
+        vaultwarden = {
+          enable = true;
+          environmentFile = config.sops.templates."vaultwarden-env".path;
+        };
+      };
+
+      user = {
+        nixostest.enable = true;
+        pokon548 = {
+          enable = false;
+        };
       };
     };
   };

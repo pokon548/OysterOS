@@ -32,6 +32,7 @@
       ".config/gh" # github-cli
 
       ".ssh/signing"
+      ".ssh/encrypt"
     ];
   };
 }
