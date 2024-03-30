@@ -26,7 +26,7 @@
         # PUSH_INSTALLATION_ID
         # PUSH_INSTALLATION_KEY
         config = {
-          domain = "https://" + config.prefstore.system.network.domain.vaultwarden;
+          domain = "https://${config.prefstore.system.network.domain.vaultwarden}";
           databaseUrl = "postgresql:///vaultwarden";
           signupsAllowed = false;
 

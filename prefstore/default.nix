@@ -207,6 +207,11 @@ in
                 default = 64548;
               };
 
+              headscale = mkOption {
+                type = types.int;
+                default = 58251;
+              };
+
               vaultwarden = mkOption {
                 type = types.int;
                 default = 27313;
@@ -275,6 +280,20 @@ in
             enable = mkOption {
               type = types.bool;
               default = true;
+            };
+          };
+
+          headscale = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+          };
+
+          rustdesk-server = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
             };
           };
 
