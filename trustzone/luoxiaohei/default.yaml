@@ -3,6 +3,9 @@ vaultwarden:
     admin-token: ENC[AES256_GCM,data:HTQK6z+5z+EgvXrEZlaGC2YoCtV6EHVkbdHmxLA9ZX6pFwmj86OO1DMgWizFN6NeaKrHHrj3Uf13oVRcItkfmPL+1lrSJn2PMCQFVq/0KigDzTkwrAJVaVgn1hFWUAPbC8qFAbfwBp9j+T7rVPnbIEoVuMT6+23ud57yEGiQo1fIn0Qwaf4=,iv:vr9owvfL4o48vSbZHOGOHRBLXS6PyMdIKLXIhHuHUGU=,tag:Vj+sGbx7ZwkoKbWJlL0K3A==,type:str]
     push-installation-id: ENC[AES256_GCM,data:3UPx12DFRNP8IIyOkFmM2jXYjbOIKW+2ci72Ah+R+QGOtlxW,iv:k2kPGEufE/FthfBjaThR+kbA7CVcW/KW+iwWQ7Gccz0=,tag:tw5gmAlwialZ91rBOie2eA==,type:str]
     push-installation-key: ENC[AES256_GCM,data:JnVi00YGcXHBar/h8epX8sPAiNc=,iv:fgGmyOclWD7+qAlQDOqTDXPEW1sV2GQcCA26LieYYYs=,tag:54ROpYWVgD9C0kT33m+Euw==,type:str]
+headscale:
+    private-key-encrypt: ENC[AES256_GCM,data:Nn7DtI2ov0JTwVSA3EQJapqynJgypsTAhkjNw8W6wLFW6NYLQL6khC6cN1QTSEaZIxigshbJbqg8ZCOC1egK+pawcQDnKE4f,iv:Tk4P4o0ab89NvCxmrmTP2PnY/V0WQEXL8ioZlGC8sNo=,tag:DzMbtOtzpUAf3z4JYIKFbg==,type:str]
+    private-key-noise: ENC[AES256_GCM,data:UHKjBTBZmNWqLlmoG5YXK+gkAsNseznQl9NrC2vQchimNgdI5o6unZi2OXIK1ALNekck/Hxilrq60z4sHnp4AqCifXJ5QU8p,iv:J1Ez+1URJsx/7xD+tsa7YKwORX2SZSfjX5xrZDEAf+M=,tag:9LCRKIdzy9Mii2pAI2AeNg==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -27,8 +30,8 @@ sops:
             djJCYmppWHl4RzkwZm85cWJQMjJyK3MKUYCRFQPSE0iaey0yQNrxs5D/sYcN/3pk
             0Td6q0JRUp8HW5NBhpW85dSBh1sDW8cJRUo5BP/fDv+G9YVXY3F4oQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-03-29T12:38:58Z"
-    mac: ENC[AES256_GCM,data:iuJJJdcItRe0AGqN5J2mQwJFaBYlO5+1NgrjBaQ+DK+czt6AwxxWxPBhZpRYTzN6HgegN5Ec8TWGby+5lnss4XobnLeIQJYDk+xpDTu0IPeAlU+jCOs5Sg0XkQBYEp58xwlsIg7P0zjbJMg8r2F+LWsgjQhr8I0MUcQn0RP56lg=,iv:zg5SjvYwRvZC7u/HRjlY9DyLFONiwZ1sVF6zUs05cn8=,tag:b+yptt+Qfi73bwrHsbzOSw==,type:str]
+    lastmodified: "2024-03-29T14:11:53Z"
+    mac: ENC[AES256_GCM,data:NVAWDjqrkL6aKk5EgbH6toqdw7MdhBOsZ4nztBJg476MQtV0BFI75aVkCqJD2SfD8BReAlPnJ/J6QuZ1HUriCYlIiHYWguBJMTmFkd6+6QYcHLxEaPbwQ6jsDg8+pIi2kv8DdAM44RNePJTLdX+nNpBe9vfXOZPg/6B2JzodXMs=,iv:angmycvfS7Ci2OS7x7qES5qTGP0LdxwNxqvjBvP2MZ4=,tag:W8FPyedl5RhTPQHP4oc5+A==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1

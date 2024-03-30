@@ -99,6 +99,8 @@ with lib;
           "音乐"
           "桌面"
           "Programmings"
+
+          ".config/gsconnect"
         ];
         files = [
           ".config/monitors.xml"
@@ -163,7 +165,7 @@ with lib;
         ];
 
         knowledge = with application; [
-          anki-bin
+          anki
           koreader
           chengla-electron
           geogebra

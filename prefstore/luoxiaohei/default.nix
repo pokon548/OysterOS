@@ -27,8 +27,14 @@ with lib;
 
       '';
 
+      boot = {
+        latestKernel = true;
+        systemd = {
+          enable = true;
+        };
+      };
+
       system = {
-        i18n = true;
         sudo.noPassword = true;
         sysrq = true;
       };
@@ -62,6 +68,7 @@ with lib;
       service = {
         openssh.enable = true;
         postgresql.enable = true;
+        rustdesk-server.enable = true;
         vaultwarden = {
           enable = true;
           environmentFile = config.sops.templates."vaultwarden-env".path;
