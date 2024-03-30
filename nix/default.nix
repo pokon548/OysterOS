@@ -25,6 +25,18 @@
             sha256 = "sha256-kThRsnTo4dMXgeyUnxwj6NvPDs9uc6JDbcIXad0+b0k=";
           };
         });
+
+        # TODO: Obsidian 1.5.8+ breaks IM inputs. See https://forum-zh.obsidian.md/t/topic/31360/8
+        #
+        # For useability issue, this package is rollbacked to 1.5.8.
+        obsidian = prev.obsidian.overrideAttrs (_: rec {
+          version = "1.5.8";
+
+          src = final.fetchurl {
+            url = "https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz";
+            hash = "sha256-oc2iA2E3ac/uUNv6unzfac5meHqQzmzDVl/M9jNpS/M=";
+          };
+        });
       })
     ];
     config = {
