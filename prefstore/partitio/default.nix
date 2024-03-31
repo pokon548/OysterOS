@@ -162,6 +162,7 @@ with lib;
           element-desktop
           rustdesk
           zhixi
+          transmission
           qq
           wechat
         ];
