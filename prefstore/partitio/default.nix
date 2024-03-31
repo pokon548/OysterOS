@@ -161,6 +161,7 @@ with lib;
           localsend
           element-desktop
           rustdesk
+          zhixi
           qq
         ];
 
