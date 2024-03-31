@@ -5,9 +5,23 @@
 , pkgs
 , ...
 }:
+let
+  desktopItem = pkgs.makeDesktopItem
+    {
+      name = "微信";
+      desktopName = "微信";
+      exec = "wechat-uos %U";
+      terminal = false;
+      icon = "wechat";
+      type = "Application";
+      categories = [ "Utility" ];
+      comment = "微信桌面（沙盒）版";
+    };
+in
 {
   home = {
     packages = [
+      desktopItem
       (mkNixPak
         {
           config = { sloth, ... }: {
@@ -83,10 +97,10 @@
             imports = [ gui-base ];
             app = {
               package = pkgs.wechat-uos;
-              binPath = "/bin/wechat-uos";
+              binPath = "bin/wechat-uos";
             };
           };
-        }).config.env
+        }).config.script
     ];
     global-persistence.directories = [ "Documents/WeChat_Data" ];
   };

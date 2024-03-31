@@ -5,9 +5,23 @@
 , pkgs
 , ...
 }:
+let
+  desktopItem = pkgs.makeDesktopItem
+    {
+      name = "qq";
+      desktopName = "QQ";
+      exec = "qq %U";
+      terminal = false;
+      icon = "qq";
+      type = "Application";
+      categories = [ "Utility" ];
+      comment = "QQ 沙盒版";
+    };
+in
 {
   home = {
     packages = [
+      desktopItem
       (mkNixPak
         {
           config = { sloth, ... }: {
@@ -65,14 +79,11 @@
 
             imports = [ gui-base ];
             app = {
-              package = (pkgs.qq.overrideAttrs (e: rec {
-                # Update the install script to use the new .desktop entry
-                installPhase = builtins.replaceStrings [ ''"$out/bin/qq"'' ] [ "qq" ] e.installPhase;
-              }));
+              package = pkgs.qq;
               binPath = "bin/qq";
             };
           };
-        }).config.env
+        }).config.script
     ];
     global-persistence.directories = [ ".config/QQ" ];
   };
