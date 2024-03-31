@@ -18,6 +18,10 @@
               "org.gnome.Shell.Screencast" = "talk";
               "org.freedesktop.Notifications" = "talk";
               "org.kde.StatusNotifierWatcher" = "talk";
+
+              "org.freedesktop.portal.Documents" = "talk";
+              "org.freedesktop.portal.Flatpak" = "talk";
+              "org.freedesktop.portal.FileChooser" = "talk";
             };
             bubblewrap = {
               bind.rw = [
@@ -27,13 +31,7 @@
               bind.ro = [
                 "/etc/fonts"
                 "/etc/machine-id"
-                "/sys"
-                "/etc/passwd"
-                "/etc/nsswitch.conf"
-                "/run/systemd/userdb"
-                "/etc/resolv.conf"
                 "/etc/localtime"
-                "/run/systemd/userdb/"
               ];
               network = true;
               sockets = {
