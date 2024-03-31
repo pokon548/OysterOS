@@ -242,6 +242,7 @@ with lib;
           "org/gnome/desktop/interface" = {
             clock-show-weekday = true;
             clock-format = "12h";
+            show-battery-percentage = true;
             text-scaling-factor = 1.1200000000000001;
           };
 
