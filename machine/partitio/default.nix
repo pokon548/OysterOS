@@ -76,7 +76,7 @@
                     "@swap" = {
                       mountpoint = "/swap";
                       inherit mountOptions;
-                      swap.swapfile.size = "16G";
+                      swap.swapfile.size = "24G";
                     };
                   };
               };
@@ -89,7 +89,7 @@
 
   # NOTE: https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
   boot.resumeDevice = "/dev/disk/by-uuid/c3a162bc-60ed-474e-b0ba-7456eba0483d";
-  boot.kernelParams = [ "resume_offset=533760" ];
+  boot.kernelParams = [ "resume_offset=52591513" ];
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
