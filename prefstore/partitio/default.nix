@@ -163,6 +163,7 @@ with lib;
           rustdesk
           zhixi
           qq
+          wechat
         ];
 
         knowledge = with application; [

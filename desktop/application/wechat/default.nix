@@ -6,7 +6,6 @@
 , ...
 }:
 {
-  # TODO: Fix wechat-uos in future
   home = {
     packages = [
       (mkNixPak
@@ -17,13 +16,38 @@
             };
             bubblewrap = {
               bind.rw = [
-                (sloth.mkdir (sloth.concat [ sloth.xdgDocumentDir "/WeChat_Data" ]))
+                [
+                  (sloth.mkdir (sloth.concat [ sloth.xdgDocumentsDir "/WeChat_Data" ]))
+                  (sloth.concat' sloth.homeDir "/xwechat_files")
+                ]
               ];
               bind.ro = [
-                "/etc"
-                "/sys/dev/char"
-                "/sys/devices"
-                [ "${coreutils}/bin/true" "/usr/bin/lsblk" ]
+                # Absolutely required. Missing any of them will cause you not able to launch wechat
+                "/etc/fonts"
+                "/etc/machine-id"
+                "/etc/localtime"
+                "/etc/passwd"
+
+                # Certificates. Required for SSL connections. Kind of optional
+                "/etc/ssl/certs/ca-bundle.crt"
+                "/etc/ssl/certs/ca-certificates.crt"
+                "/etc/pki/tls/certs/ca-bundle.crt"
+
+                # Will read, but optional
+                #"/etc/hosts"
+                #"/etc/host.conf"
+                #"/etc/resolv.conf"
+                #"/etc/nsswitch.conf"
+                #"/etc/group"
+                #"/etc/shadow"
+                #"/etc/profiles"
+                #"/etc/sudoers.d"
+                #"/etc/sudoers"
+                #"/etc/zoneinfo"
+                #"/etc/asound.conf"
+
+                #"/sys/dev/char"
+                #"/sys/devices"
               ];
               network = true;
               sockets = {
@@ -36,6 +60,9 @@
                 "/dev/shm"
                 "/dev/video0"
                 "/dev/video1"
+              ];
+              tmpfs = [
+                "/tmp"
               ];
               env = {
                 IBUS_USE_PORTAL = "1";
@@ -55,15 +82,12 @@
 
             imports = [ gui-base ];
             app = {
-              package = (pkgs.qq.overrideAttrs (e: rec {
-                # Update the install script to use the new .desktop entry
-                installPhase = builtins.replaceStrings [ ''"$out/bin/qq"'' ] [ "qq" ] e.installPhase;
-              }));
-              binPath = "bin/qq";
+              package = pkgs.wechat-uos;
+              binPath = "/bin/wechat-uos";
             };
           };
         }).config.env
     ];
-    global-persistence.directories = [ ".config/QQ" ];
+    global-persistence.directories = [ "Documents/WeChat_Data" ];
   };
 }
