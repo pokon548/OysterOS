@@ -13,19 +13,6 @@
       fenix.overlays.default
 
       (final: prev: {
-        # Security: xz-5.6.x is trojaned. See https://github.com/NixOS/nixpkgs/issues/300055
-        #
-        # For security reason, this package is rollbacked to 5.4.6, where the source code stays intact from
-        # the malicious code committer. :(
-        xz = prev.xz.overrideAttrs (_: rec {
-          version = "5.4.6";
-
-          src = final.fetchurl {
-            url = "mirror://sourceforge/lzmautils/xz-${version}.tar.bz2";
-            sha256 = "sha256-kThRsnTo4dMXgeyUnxwj6NvPDs9uc6JDbcIXad0+b0k=";
-          };
-        });
-
         # TODO: Obsidian 1.5.8+ breaks IM inputs. See https://forum-zh.obsidian.md/t/topic/31360/8
         #
         # For useability issue, this package is rollbacked to 1.5.8.
