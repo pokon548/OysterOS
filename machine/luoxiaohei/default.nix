@@ -27,7 +27,21 @@
             content = {
               type = "filesystem";
               format = "btrfs";
+
+              subvolumes = {
+                "/swap" = {
+                  mountpoint = "/.swapvol";
+                  swap = {
+                    swapfile.size = "3G";
+                  };
+                };
+              };
               mountpoint = "/";
+              swap = {
+                swapfile = {
+                  size = "3G";
+                };
+              };
               mountOptions = [ "compress-force=zstd" "nosuid" "nodev" ];
             };
           };
