@@ -12,7 +12,7 @@ with lib;
       "vaultwarden/push-installation-id" = { };
       "vaultwarden/push-installation-key" = { };
 
-      "heasscale/private-key-encrypt" = { };
+      "headscale/private-key-encrypt" = { };
       "headscale/private-key-noise" = { };
     };
 
@@ -69,10 +69,11 @@ with lib;
       };
 
       service = {
+        caddy.enable = true;
         headscale = {
           enable = true;
-          private_key_path = config.sops.secrets."heasscale/private-key-encrypt".path;
-          noise.private_key_path = config.sops.secrets."heasscale/private-key-noise".path;
+          private_key_path = config.sops.secrets."headscale/private-key-encrypt".path;
+          noise.private_key_path = config.sops.secrets."headscale/private-key-noise".path;
         };
         openssh.enable = true;
         postgresql.enable = true;

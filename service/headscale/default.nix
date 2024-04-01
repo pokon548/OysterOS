@@ -19,8 +19,8 @@
       services.headscale = {
         enable = true;
         settings = {
-          server_url = "https://derper-private.pokon548.ink";
-          listen_addr = "127.0.0.1:${config.prefstore.system.network.port.headscale}";
+          server_url = "https://${config.prefstore.system.network.domain.headscale}";
+          listen_addr = "127.0.0.1:${builtins.toString config.prefstore.system.network.port.headscale}";
           metrics_listen_addr = "127.0.0.1:9090";
 
           grpc_listen_addr = "127.0.0.1:50443";
@@ -67,6 +67,17 @@
       systemd.services.headscale = {
         requires = [ "postgresql.service" ];
         after = [ "postgresql.service" ];
+      };
+
+      services.caddy.virtualHosts."${config.prefstore.system.network.domain.headscale}" = {
+        extraConfig = ''
+          tls me@${config.prefstore.system.network.domain.headscale}
+          header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
+          encode zstd gzip
+          handle {
+            reverse_proxy localhost:${builtins.toString config.prefstore.system.network.port.headscale}
+          }
+        '';
       };
     };
 }

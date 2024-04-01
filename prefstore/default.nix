@@ -196,12 +196,21 @@ in
               default = true;
             };
             domain = {
+              headscale = mkOption {
+                type = types.str;
+                default = "derper-private.pokon548.ink";
+              };
               vaultwarden = mkOption {
                 type = types.str;
                 default = "bitwarden.pokon548.ink";
               };
             };
             port = {
+              https = mkOption {
+                type = types.int;
+                default = 443;
+              };
+
               ssh = mkOption {
                 type = types.int;
                 default = 64548;
@@ -283,6 +292,13 @@ in
 
       service =
         {
+          caddy = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+          };
+
           openssh = {
             enable = mkOption {
               type = types.bool;

@@ -43,5 +43,16 @@
         requires = [ "postgresql.service" ];
         after = [ "postgresql.service" ];
       };
+
+      services.caddy.virtualHosts."${config.prefstore.system.network.domain.vaultwarden}" = {
+        extraConfig = ''
+          tls me@${config.prefstore.system.network.domain.vaultwarden}
+          header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"
+          encode zstd gzip
+          handle {
+            reverse_proxy localhost:${builtins.toString config.prefstore.system.network.port.vaultwarden}
+          }
+        '';
+      };
     };
 }
