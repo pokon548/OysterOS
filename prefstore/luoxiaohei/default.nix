@@ -61,7 +61,6 @@ with lib;
             vim
             sudo
             git
-            gtk
 
             fish
           ];
