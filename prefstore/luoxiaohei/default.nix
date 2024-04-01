@@ -85,9 +85,8 @@ with lib;
       };
 
       user = {
-        nixostest.enable = true;
         pokon548 = {
-          enable = false;
+          enable = true;
         };
       };
     };
