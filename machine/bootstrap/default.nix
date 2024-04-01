@@ -1,10 +1,16 @@
 { lib
 , config
+, modulesPath
 , ...
 }: {
+
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
+
   disko.devices = {
     disk.main = {
-      imageSize = "4G";
+      imageSize = "2G";
       device = "/dev/vda";
       type = "disk";
       content = {
@@ -33,15 +39,36 @@
             size = "100%";
             content = {
               type = "filesystem";
-              format = "btrfs";
+              format = "ext4";
               mountpoint = "/";
-              mountOptions = [ "compress-force=zstd" "nosuid" "nodev" ];
+              mountOptions = [ "nosuid" "nodev" ];
             };
           };
         };
       };
     };
   };
+
+  boot.initrd.availableKernelModules = [
+    "ata_piix"
+    "uhci_hcd"
+    "xen_blkfront"
+    "vmw_pvscsi"
+
+    "virtio_net"
+    "virtio_pci"
+    "virtio_mmio"
+    "virtio_blk"
+    "virtio_scsi"
+  ];
+
+  boot.initrd.kernelModules = [
+    "nvme"
+
+    "virtio_balloon"
+    "virtio_console"
+    "virtio_rng"
+  ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "24.05";

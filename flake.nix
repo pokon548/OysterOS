@@ -93,9 +93,13 @@
 
         formatter = config.treefmt.build.wrapper;
 
-        packages.terraform = inputs.terranix.lib.terranixConfiguration {
-          inherit system;
-          modules = [ ./terraform/config.nix ];
+        packages = {
+          terraform = inputs.terranix.lib.terranixConfiguration {
+            inherit system;
+            modules = [ ./terraform/config.nix ];
+          };
+
+          bootstrap-image = self.nixosConfigurations.bootstrap.config.system.build.diskoImages;
         };
       };
 
@@ -172,7 +176,7 @@
                 nur.nixosModules.nur
 
                 minioyster.nixosModules.minioyster
-                minioyster.nixosModules."prefstore-${name}"
+                #minioyster.nixosModules."prefstore-${name}"
               ]) ++ builtins.concatLists
                 (lib.forEach
                   [

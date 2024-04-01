@@ -31,10 +31,11 @@ with lib;
       '';
 
       boot = {
-        latestKernel = true;
-        systemd = {
+        grub = {
           enable = true;
+          device = "/dev/vda";
         };
+        latestKernel = true;
       };
 
       system = {
