@@ -26,8 +26,8 @@
           grpc_listen_addr = "127.0.0.1:50443";
           grpc_allow_insecure = false;
 
-          private_key_path = ""; # TODO: Fill out path
-          noise.private_key_path = ""; #TODO: Fill out this path
+          private_key_path = config.prefstore.service.headscale.private_key_path;
+          noise.private_key_path = config.prefstore.service.headscale.noise.private_key_path;
 
           ip_prefixes = [
             "100.64.0.0/10"

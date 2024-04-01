@@ -11,6 +11,9 @@ with lib;
       "vaultwarden/admin-token" = { };
       "vaultwarden/push-installation-id" = { };
       "vaultwarden/push-installation-key" = { };
+
+      "heasscale/private-key-encrypt" = { };
+      "headscale/private-key-noise" = { };
     };
 
     sops.templates."vaultwarden-env".content = ''
@@ -66,6 +69,11 @@ with lib;
       };
 
       service = {
+        headscale = {
+          enable = true;
+          private_key_path = config.sops.secrets."heasscale/private-key-encrypt".path;
+          noise.private_key_path = config.sops.secrets."heasscale/private-key-noise".path;
+        };
         openssh.enable = true;
         postgresql.enable = true;
         rustdesk-server.enable = true;

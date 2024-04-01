@@ -212,6 +212,13 @@ in
                 default = 58251;
               };
 
+              transmission = mkOption {
+                type = types.listOf (types.attrsOf types.port);
+                default = [
+                  { from = 51413; to = 51413; }
+                ];
+              };
+
               vaultwarden = mkOption {
                 type = types.int;
                 default = 27313;
@@ -287,6 +294,14 @@ in
             enable = mkOption {
               type = types.bool;
               default = false;
+            };
+
+            private_key_path = mkOption {
+              type = types.path;
+            };
+
+            noise.private_key_path = mkOption {
+              type = types.path;
             };
           };
 

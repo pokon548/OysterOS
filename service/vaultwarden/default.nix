@@ -35,7 +35,7 @@
           rocketLog = "critical";
 
           iconService = "bitwarden";
-          #PUSH_ENABLED = true;
+          PUSH_ENABLED = true;
         };
       };
 
