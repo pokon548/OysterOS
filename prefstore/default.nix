@@ -374,6 +374,11 @@ in
           default = false;
         };
 
+        bootstrapper = mkOption {
+          type = types.bool;
+          default = false;
+        };
+
         nixostest.enable = mkOption {
           type = types.bool;
           default = false;

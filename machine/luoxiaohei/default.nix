@@ -1,10 +1,16 @@
 { lib
 , config
+, modulesPath
 , ...
 }: {
+
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
+
   disko.devices = {
     disk.main = {
-      imageSize = "4G";
+      imageSize = "2G";
       device = "/dev/vda";
       type = "disk";
       content = {
@@ -14,19 +20,6 @@
             size = "1M";
             type = "EF02";
             priority = 0;
-          };
-
-          ESP = {
-            name = "ESP";
-            size = "512M";
-            type = "EF00";
-            priority = 1;
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
-              mountOptions = [ "fmask=0077" "dmask=0077" ];
-            };
           };
 
           root = {
@@ -42,6 +35,22 @@
       };
     };
   };
+
+  boot.initrd.availableKernelModules = [
+    "ata_piix"
+    "sr_mod"
+    "uhci_hcd"
+    "virtio_pci"
+    "virtio_blk"
+  ];
+
+  boot.initrd.kernelModules = [
+    "nvme"
+
+    "virtio_balloon"
+    "virtio_console"
+    "virtio_rng"
+  ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "24.05";

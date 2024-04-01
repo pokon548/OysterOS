@@ -22,26 +22,13 @@
             priority = 0;
           };
 
-          ESP = {
-            name = "ESP";
-            size = "512M";
-            type = "EF00";
-            priority = 1;
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
-              mountOptions = [ "fmask=0077" "dmask=0077" ];
-            };
-          };
-
           root = {
             size = "100%";
             content = {
               type = "filesystem";
-              format = "ext4";
+              format = "btrfs";
               mountpoint = "/";
-              mountOptions = [ "nosuid" "nodev" ];
+              mountOptions = [ "compress-force=zstd" "nosuid" "nodev" ];
             };
           };
         };
@@ -51,15 +38,10 @@
 
   boot.initrd.availableKernelModules = [
     "ata_piix"
+    "sr_mod"
     "uhci_hcd"
-    "xen_blkfront"
-    "vmw_pvscsi"
-
-    "virtio_net"
     "virtio_pci"
-    "virtio_mmio"
     "virtio_blk"
-    "virtio_scsi"
   ];
 
   boot.initrd.kernelModules = [
