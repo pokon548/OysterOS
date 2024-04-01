@@ -6,7 +6,6 @@
     {
       boot.loader.grub = {
         enable = true;
-        device = config.prefstore.boot.grub.device;
       };
     };
 }

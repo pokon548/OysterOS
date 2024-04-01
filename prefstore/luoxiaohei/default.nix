@@ -33,7 +33,6 @@ with lib;
       boot = {
         grub = {
           enable = true;
-          device = "/dev/vda";
         };
         latestKernel = true;
       };

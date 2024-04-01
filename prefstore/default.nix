@@ -136,10 +136,6 @@ in
             type = types.bool;
             default = false;
           };
-
-          device = mkOption {
-            type = types.path;
-          };
         };
         systemd = {
           enable = mkOption {
