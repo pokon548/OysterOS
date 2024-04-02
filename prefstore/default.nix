@@ -312,6 +312,18 @@ in
             };
           };
 
+          tailscale = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+
+            authKeyFile = mkOption {
+              type = types.nullOr types.path;
+              default = null;
+            };
+          };
+
           headscale = {
             enable = mkOption {
               type = types.bool;

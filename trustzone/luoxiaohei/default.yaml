@@ -6,6 +6,8 @@ vaultwarden:
 headscale:
     private-key-encrypt: ENC[AES256_GCM,data:Nn7DtI2ov0JTwVSA3EQJapqynJgypsTAhkjNw8W6wLFW6NYLQL6khC6cN1QTSEaZIxigshbJbqg8ZCOC1egK+pawcQDnKE4f,iv:Tk4P4o0ab89NvCxmrmTP2PnY/V0WQEXL8ioZlGC8sNo=,tag:DzMbtOtzpUAf3z4JYIKFbg==,type:str]
     private-key-noise: ENC[AES256_GCM,data:UHKjBTBZmNWqLlmoG5YXK+gkAsNseznQl9NrC2vQchimNgdI5o6unZi2OXIK1ALNekck/Hxilrq60z4sHnp4AqCifXJ5QU8p,iv:J1Ez+1URJsx/7xD+tsa7YKwORX2SZSfjX5xrZDEAf+M=,tag:9LCRKIdzy9Mii2pAI2AeNg==,type:str]
+tailscale:
+    auth-key: ENC[AES256_GCM,data:wok5PVGV9kvkAbTR77Uwcv7iGFEAyFg5EkDGZk7oaad/D+/gcSqFan12yTZFxMrk,iv:pD916j9fnOzGWDqAszX4ipNcClvyQVrXXJxsoipsFFc=,tag:RpQyxm4/0gn/ztOp3Wa3/w==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -30,8 +32,8 @@ sops:
             djJCYmppWHl4RzkwZm85cWJQMjJyK3MKUYCRFQPSE0iaey0yQNrxs5D/sYcN/3pk
             0Td6q0JRUp8HW5NBhpW85dSBh1sDW8cJRUo5BP/fDv+G9YVXY3F4oQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-03-29T14:11:53Z"
-    mac: ENC[AES256_GCM,data:NVAWDjqrkL6aKk5EgbH6toqdw7MdhBOsZ4nztBJg476MQtV0BFI75aVkCqJD2SfD8BReAlPnJ/J6QuZ1HUriCYlIiHYWguBJMTmFkd6+6QYcHLxEaPbwQ6jsDg8+pIi2kv8DdAM44RNePJTLdX+nNpBe9vfXOZPg/6B2JzodXMs=,iv:angmycvfS7Ci2OS7x7qES5qTGP0LdxwNxqvjBvP2MZ4=,tag:W8FPyedl5RhTPQHP4oc5+A==,type:str]
+    lastmodified: "2024-04-02T09:39:10Z"
+    mac: ENC[AES256_GCM,data:+vj3erAkmyei0g071WyyGo97NPUuEMXf9ujob3CNgyv/BpoPRJGJH3RNpQ8h+JammWqGwOHnGpxxGiNw6JeTGz9xfMf0uXfXMbii7UkCqyxbnOaBcpqerFAFfU+e0L4B5hTr+PExxj8yHLcJCWdeJU667zF9mnq/ywPJRwFCaG4=,iv:k0f221X6AivD1RSPcPWmCSzKkGXwI/gIJk18wS2D9gY=,tag:KIX3e22tupkQcOTBrF1Mrw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1
