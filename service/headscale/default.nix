@@ -18,9 +18,9 @@
 
       services.headscale = {
         enable = true;
+        port = config.prefstore.system.network.port.headscale;
         settings = {
           server_url = "https://${config.prefstore.system.network.domain.headscale}";
-          listen_addr = "127.0.0.1:${builtins.toString config.prefstore.system.network.port.headscale}";
           metrics_listen_addr = "127.0.0.1:9090";
 
           grpc_listen_addr = "127.0.0.1:50443";
