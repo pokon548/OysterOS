@@ -176,7 +176,7 @@
                 nur.nixosModules.nur
 
                 minioyster.nixosModules.minioyster
-                #minioyster.nixosModules."prefstore-${name}"
+                minioyster.nixosModules."prefstore-${name}"
               ]) ++ builtins.concatLists
                 (lib.forEach
                   [

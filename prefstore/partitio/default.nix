@@ -200,6 +200,7 @@ with lib;
           game = with application; [
             steam
             prismlauncher
+            minigames
           ];
         };
         gnome = {
@@ -359,6 +360,11 @@ with lib;
 
               "org/gnome/system/location" = {
                 enabled = true;
+              };
+
+              "org/gnome/shell/extensions/world-clock" = {
+                button-position = "LR";
+                button-position2 = "LR";
               };
 
               "org/gnome/clocks" = {

@@ -9,7 +9,9 @@
         enable = true;
         openFirewall = true;
         authKeyFile = config.prefstore.service.tailscale.authKeyFile;
-        extraUpFlags = "--login-server https://${config.prefstore.system.network.domain.headscale}";
+        extraUpFlags = [
+          "--login-server https://${config.prefstore.system.network.domain.headscale}"
+        ];
       };
     };
 }
