@@ -6,16 +6,6 @@
   config = lib.mkIf config.prefstore.service.headscale.enable
     # TODO: Not finished yet
     {
-      services.postgresql = {
-        ensureDatabases = [ "headscale" ];
-        ensureUsers = [
-          {
-            name = "headscale";
-            ensureDBOwnership = true;
-          }
-        ];
-      };
-
       services.headscale = {
         enable = true;
         port = config.prefstore.system.network.port.headscale;
@@ -49,11 +39,6 @@
           disable_check_updates = true;
           ephemeral_node_inactivity_timeout = "30m";
           node_update_check_interval = "10s";
-
-          db_type = "postgres";
-          db_host = "localhost";
-          db_name = "headscale";
-          db_user = "headscale";
 
           dns_config = {
             override_local_dns = false;
