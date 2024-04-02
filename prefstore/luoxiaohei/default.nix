@@ -12,8 +12,14 @@ with lib;
       "vaultwarden/push-installation-id" = { };
       "vaultwarden/push-installation-key" = { };
 
-      "headscale/private-key-encrypt" = { };
-      "headscale/private-key-noise" = { };
+      "headscale/private-key-encrypt" = {
+        owner = "headscale";
+        group = "headscale";
+      };
+      "headscale/private-key-noise" = {
+        owner = "headscale";
+        group = "headscale";
+      };
     };
 
     sops.templates."vaultwarden-env".content = ''
