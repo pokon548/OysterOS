@@ -64,5 +64,7 @@
           };
         };
       };
+
+      environment.systemPackages = [ pkgs.nur.repos.pokon548.fcitx5-pinyin-custompinyindict ];
     };
 }
