@@ -67,6 +67,11 @@ let
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/leechblock-ng/latest.xpi";
       };
+      "languagetool-webextension@languagetool.org" = {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
+      };
       "simple-tab-groups@drive4ik" = {
         default_area = "navbar";
         installation_mode = "force_installed";
