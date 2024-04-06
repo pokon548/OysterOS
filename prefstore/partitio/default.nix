@@ -93,7 +93,7 @@ with lib;
 
       service = {
         tailscale = {
-          enable = false;
+          enable = true;
           authKeyFile = config.sops.secrets."tailscale/auth-key".path;
         };
       };
