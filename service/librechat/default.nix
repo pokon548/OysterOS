@@ -14,7 +14,7 @@
           "/run/agenix/librechat-env-file"
         ];
         ports = [
-          "${toString cfg.port}:3080"
+          "3000:3080"
         ];
       };
     };

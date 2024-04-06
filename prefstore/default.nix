@@ -305,6 +305,13 @@ in
             };
           };
 
+          librechat = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+          };
+
           openssh = {
             enable = mkOption {
               type = types.bool;
