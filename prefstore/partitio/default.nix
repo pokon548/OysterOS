@@ -75,6 +75,9 @@ with lib;
 
             # PDF
             "application/pdf" = "org.gnome.Evince.desktop";
+
+            # Compression
+            "application/zip" = "org.gnome.FileRoller.desktop";
           };
         };
       };
@@ -125,6 +128,7 @@ with lib;
             bat
             git
             gtk
+            p7zip
 
             fish
           ];
