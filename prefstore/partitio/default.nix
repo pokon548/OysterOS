@@ -86,7 +86,6 @@ with lib;
         sysrq = true;
         tpm = true;
         virtualisation = {
-          virtualbox = true;
           libvirtd = true;
         };
       };
@@ -220,6 +219,8 @@ with lib;
             native-window-placement
             weather-oclock
             night-theme-switcher
+
+            cronomix
 
             #net-speed-simplified
             #tophat
