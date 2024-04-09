@@ -227,6 +227,11 @@ in
                 default = 58251;
               };
 
+              headscale-stun = mkOption {
+                type = types.int;
+                default = 23089;
+              };
+
               transmission = mkOption {
                 type = types.listOf (types.attrsOf types.port);
                 default = [

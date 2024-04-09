@@ -29,7 +29,7 @@
               region_id = 999;
               region_code = "headscale";
               region_name = "Headscale Embedded DERP";
-              stun_listen_addr = "0.0.0.0:23089";
+              stun_listen_addr = "0.0.0.0:${builtins.toString config.prefstore.system.network.port.headscale-stun}";
             };
             path = [ ];
             auto_update_enabled = true;
@@ -48,6 +48,10 @@
           };
         };
       };
+
+      networking.firewall.allowedUDPPorts = [
+        config.prefstore.system.network.port.headscale-stun
+      ];
 
       systemd.services.headscale = {
         requires = [ "postgresql.service" ];
