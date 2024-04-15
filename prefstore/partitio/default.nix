@@ -23,11 +23,11 @@ with lib;
       timeZone = "Asia/Shanghai";
 
       boot = {
-        latestKernel = true;
         secureboot = true;
         systemd = {
           enable = true;
         };
+        latestKernel = true;
       };
 
       desktop = {
