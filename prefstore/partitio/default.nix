@@ -376,6 +376,11 @@ with lib;
                 world-clocks = rawGvariant
                   "[{'location': <(uint32 2, <('New York', 'KNYC', true, [(0.71180344078725644, -1.2909618758762367)], [(0.71059804659265924, -1.2916478949920254)])>)>}, {'location': <(uint32 2, <('Coordinated Universal Time (UTC)', '@UTC', false, @a(dd) [], @a(dd) [])>)>}, {'location': <(uint32 2, <('Tokyo', 'RJTI', true, [(0.62191898430954862, 2.4408429589140699)], [(0.62282074357417661, 2.4391218722853854)])>)>}]";
               };
+
+              "org/gnome/desktop/input-sources" = {
+                xkb-options = [ "terminate:ctrl_alt_bksp" ];
+              };
+
               "org/gnome/shell/extensions/just-perfection" = {
                 app-menu = false;
                 accessibility-menu = false;
