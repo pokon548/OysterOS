@@ -113,6 +113,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
+  hardware.opengl.driSupport32Bit = true;
+
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/var/log".neededForBoot = true;
 
