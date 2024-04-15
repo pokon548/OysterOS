@@ -207,22 +207,23 @@ with lib;
           ];
         };
         gnome = {
-          extension = with pkgs.gnomeExtensions; [
+          # TODO: Remove workaround after https://github.com/NixOS/nixpkgs/pull/304245 merged into unstable
+          extension = with pkgs; with pkgs.gnomeExtensions; [
             gsconnect
             appindicator
             dash-to-dock
             kimpanel
 
-            clipboard-history
-            emoji-copy
+            gnome45Extensions."clipboard-history@alexsaveau.dev"
+            gnome45Extensions."emoji-copy@felipeftn"
             just-perfection
             pip-on-top
             unmess
             always-indicator
-            do-not-disturb-while-screen-sharing-or-recording
-            native-window-placement
-            weather-oclock
-            night-theme-switcher
+            gnome45Extensions."do-not-disturb-while-screen-sharing-or-recording@marcinjahn.com"
+            gnome45Extensions."native-window-placement@gnome-shell-extensions.gcampax.github.com"
+            gnome45Extensions."weatheroclock@CleoMenezesJr.github.io"
+            gnome45Extensions."nightthemeswitcher@romainvigier.fr"
 
             cronomix
 
@@ -231,7 +232,7 @@ with lib;
 
             upower-battery
 
-            blur-my-shell
+            gnome45Extensions."blur-my-shell@aunetx"
             caffeine
             bing-wallpaper-changer
             hibernate-status-button
