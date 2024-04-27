@@ -1,6 +1,7 @@
 { lib
 , config
 , inputs
+, pkgs
 , ...
 }:
 {
@@ -90,12 +91,15 @@
   # NOTE: https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
   boot.resumeDevice = "/dev/disk/by-uuid/c3a162bc-60ed-474e-b0ba-7456eba0483d";
   boot.kernelParams = [ "resume_offset=52591513" ];
+  boot.kernelModules = [ "i915.force_probe=7d55" ];
+
+  services.hardware.bolt.enable = true;
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
+  /*services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
     open = false;
@@ -111,9 +115,18 @@
     };
 
     package = config.boot.kernelPackages.nvidiaPackages.production;
-  };
+  };*/
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      libva
+      intel-ocl
+      intel-vaapi-driver
+    ];
+  };
 
   fileSystems."/persist".neededForBoot = true;
   fileSystems."/var/log".neededForBoot = true;
