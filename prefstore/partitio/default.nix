@@ -33,7 +33,10 @@ with lib;
       desktop = {
         font = true;
         im = true;
-        gnome.enable = true;
+        ozone = false;
+        gnome = {
+          enable = true;
+        };
         xdg = {
           enable = true;
           defaultApplications = {
@@ -216,28 +219,28 @@ with lib;
             kimpanel
 
             gnome45Extensions."clipboard-history@alexsaveau.dev"
-            gnome45Extensions."emoji-copy@felipeftn"
+            #gnome45Extensions."emoji-copy@felipeftn"
             just-perfection
             pip-on-top
             unmess
             always-indicator
-            gnome45Extensions."do-not-disturb-while-screen-sharing-or-recording@marcinjahn.com"
-            gnome45Extensions."native-window-placement@gnome-shell-extensions.gcampax.github.com"
-            gnome45Extensions."weatheroclock@CleoMenezesJr.github.io"
+            #gnome45Extensions."do-not-disturb-while-screen-sharing-or-recording@marcinjahn.com"
+            #gnome45Extensions."native-window-placement@gnome-shell-extensions.gcampax.github.com"
+            #gnome45Extensions."weatheroclock@CleoMenezesJr.github.io"
             gnome45Extensions."nightthemeswitcher@romainvigier.fr"
 
-            cronomix
+            #cronomix
 
             #net-speed-simplified
             #tophat
 
-            upower-battery
+            #upower-battery
 
             gnome45Extensions."blur-my-shell@aunetx"
             caffeine
             bing-wallpaper-changer
             hibernate-status-button
-            user-avatar-in-quick-settings
+            #user-avatar-in-quick-settings
 
             panel-world-clock-lite
           ];
@@ -322,6 +325,10 @@ with lib;
                 automatic-timezone = true;
               };
 
+              "org/gnome/mutter" = {
+                experimental-features = [ "scale-monitor-framebuffer" ];
+              };
+
               "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
                 enabled = true;
                 day = "adw-gtk3";
@@ -358,6 +365,8 @@ with lib;
                 multi-monitor = true;
                 click-action = "focus-minimize-or-previews";
                 isolate-monitors = true;
+                custom-theme-shrink = true;
+                transparency-mode = "DYNAMIC";
                 running-indicator-style = "DOTS";
                 show-mounts = false;
                 show-trash = false;
@@ -437,6 +446,12 @@ with lib;
 
               "org/gnome/shell/extensions/kimpanel" = {
                 vertical = true;
+              };
+
+              "org/gnome/desktop/remote-desktop/rdp" = {
+                enable = true;
+                view-only = true;
+                screen-share-mode = "extend";
               };
 
               "org/gnome/shell/weather" = {

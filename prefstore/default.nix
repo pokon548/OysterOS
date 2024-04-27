@@ -152,9 +152,26 @@ in
               type = types.bool;
               default = false;
             };
+
+            fakeScreen = {
+              enable = mkOption {
+                type = types.bool;
+                default = false;
+              };
+
+              resolution = mkOption {
+                type = types.str;
+                default = "1920x1080";
+              };
+            };
           };
 
           im = mkOption {
+            type = types.bool;
+            default = false;
+          };
+
+          ozone = mkOption {
             type = types.bool;
             default = false;
           };

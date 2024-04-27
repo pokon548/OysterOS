@@ -6,13 +6,17 @@
 {
   config = lib.mkIf config.prefstore.desktop.gnome.fakeScreen.enable
     {
-      xdg = {
-        enable = true;
-        configFile."systemd/user/org.gnome.Shell@wayland.service.d/override.conf".text = ''
-          [Service]
-          ExecStart=
-          ExecStart=${pkgs.gnome.gnome-shell}/bin/gnome-shell --virtual-monitor ${config.prefstore.desktop.gnome.fakeScreen.resolution}
-        '';
+      # Not gonna consider X11 users because this is only supported on Wayland :)
+      systemd.user.services."org.gnome.Shell@wayland" = {
+        serviceConfig = {
+          Environment = [
+            ""
+          ];
+          ExecStart = [
+            ""
+            "${pkgs.gnome.gnome-shell}/bin/gnome-shell --virtual-monitor ${config.prefstore.desktop.gnome.fakeScreen.resolution}"
+          ];
+        };
       };
     };
 }
