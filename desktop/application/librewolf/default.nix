@@ -62,21 +62,10 @@ let
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/offline-qr-code-generator/latest.xpi";
       };
-      "leechblockng@proginosko.com" = {
-        installation_mode = "force_installed";
-        install_url =
-          "https://addons.mozilla.org/firefox/downloads/latest/leechblock-ng/latest.xpi";
-      };
       "languagetool-webextension@languagetool.org" = {
         installation_mode = "force_installed";
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
-      };
-      "simple-tab-groups@drive4ik" = {
-        default_area = "navbar";
-        installation_mode = "force_installed";
-        install_url =
-          "https://addons.mozilla.org/firefox/downloads/latest/simple-tab-groups/latest.xpi";
       };
       "addon@fastforward.team" = {
         installation_mode = "force_installed";
@@ -110,20 +99,20 @@ let
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/scroll-to-top/latest.xpi";
       };
-      "jid1-xUfzOsOFlzSOXg@jetpack" = {
-        installation_mode = "force_installed";
-        install_url =
-          "https://addons.mozilla.org/firefox/downloads/file/4092764/reddit_enhancement_suite-latest.xpi";
-      };
       "{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}" = {
         installation_mode = "force_installed";
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/search-by-image/latest.xpi";
       };
-      "{e58d3966-3d76-4cd9-8552-1582fbc800c1}" = {
+      "{3c078156-979c-498b-8990-85f7987dd929}" = {
         installation_mode = "force_installed";
         install_url =
-          "https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi";
+          "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
+      };
+      "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}" = {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/auto-tab-discard/latest.xpi";
       };
       "jid0-3GUEt1r69sQNSrca5p8kx9Ezc3U@jetpack" = {
         installation_mode = "force_installed";
