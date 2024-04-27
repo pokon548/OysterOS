@@ -180,6 +180,7 @@ with lib;
             transmission
             qq
             wechat
+            samba
           ];
 
           knowledge = with application; [
