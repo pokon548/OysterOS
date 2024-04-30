@@ -77,7 +77,7 @@
                     "@swap" = {
                       mountpoint = "/swap";
                       inherit mountOptions;
-                      swap.swapfile.size = "24G";
+                      swap.swapfile.size = "48G";
                     };
                   };
               };
@@ -90,13 +90,19 @@
 
   # NOTE: https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
   boot.resumeDevice = "/dev/disk/by-uuid/c3a162bc-60ed-474e-b0ba-7456eba0483d";
-  boot.kernelParams = [ "resume_offset=52591513" ];
-  boot.kernelModules = [ "i915.force_probe=7d55" ];
+  boot.kernelParams = [ "resume_offset=83404032" ];
+  #boot.kernelModules = [ "i915.force_probe=7d55" ];
 
   services.hardware.bolt.enable = true;
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # Workaround: Lenovo seems f**ked up acpi power management. Without this config,
+  #             suspend (to ram / disk) will simply reboot instead of power off. :(
+  systemd.sleep.extraConfig = ''
+    HibernateMode=shutdown
+  '';
 
   /*services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
