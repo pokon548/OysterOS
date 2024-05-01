@@ -25,7 +25,7 @@
           RemainAfterExit = true;
         };
         path = [ config.services.tailscale.package ];
-        after = [ "tailscaled.service" ];
+        after = [ "tailscaled.service" "post-resume.service" ];
         requiredBy = [ "tailscaled.service" ];
       };
     };
