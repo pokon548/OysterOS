@@ -11,22 +11,17 @@
       };
       systemd.services.tailscale-setup = {
         script = ''
-          sleep 10
-
-          if tailscale status; then
-            echo "tailscale already up, skip"
-          else
-            echo "tailscale down, login using auth key"
+          status=$(${config.systemd.package}/bin/systemctl show -P StatusText tailscaled.service)
+          if [[ $status != Connected* ]]; then
             tailscale up --login-server https://${config.prefstore.system.network.domain.headscale} --auth-key "file:${config.prefstore.service.tailscale.authKeyFile}"
           fi
         '';
         serviceConfig = {
           Type = "oneshot";
-          RemainAfterExit = true;
         };
         path = [ config.services.tailscale.package ];
         after = [ "tailscaled.service" "post-resume.service" ];
-        requiredBy = [ "tailscaled.service" ];
+        requiredBy = [ "tailscaled.service" "post-resume.service" ];
       };
     };
 }
