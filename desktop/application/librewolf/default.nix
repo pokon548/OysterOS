@@ -104,6 +104,11 @@ let
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/search-by-image/latest.xpi";
       };
+      "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/old-reddit-redirect/latest.xpi";
+      };
       "{3c078156-979c-498b-8990-85f7987dd929}" = {
         installation_mode = "force_installed";
         install_url =
