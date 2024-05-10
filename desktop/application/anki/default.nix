@@ -5,7 +5,7 @@
 {
   home = {
     packages = with pkgs; [
-      anki
+      anki-bin
     ];
 
     global-persistence.directories = [
