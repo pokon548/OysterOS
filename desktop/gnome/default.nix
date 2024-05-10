@@ -19,9 +19,8 @@
             mutter = gsuper.mutter.overrideAttrs (old: {
               patches = [
                 ./patch/mutter/mr1441.patch
-                ./patch/mutter/mr3304.patch
-                ./patch/mutter/mr3327.patch
                 ./patch/mutter/mr3373.patch
+                ./patch/mutter/mr3729.patch
               ];
             });
 
