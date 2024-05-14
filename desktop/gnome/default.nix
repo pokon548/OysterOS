@@ -63,6 +63,9 @@
         systemPackages = with pkgs; [
           adw-gtk3
           simp1e-cursors
+
+          papers
+          gnome-menus
         ];
         # Fix qt program not showing tray under gnome. See https://github.com/NixOS/nixpkgs/issues/255736
         extraInit = ''
@@ -75,6 +78,7 @@
             gnome-tour
             tracker-miners
             tracker
+            evince
           ])
           ++ (with pkgs.gnome; [
             cheese
