@@ -19,8 +19,15 @@
       package = pkgs.tela-circle-icon-theme;
     };
     theme = {
-      name = "Adw-gtk3";
+      name = "adw-gtk3";
       package = pkgs.adw-gtk3;
     };
   };
+
+  xdg.configFile = {
+    "gtk-3.0/settings.ini".force = true;
+    "gtk-4.0/settings.ini".force = true;
+  };
+
+  home.sessionVariables.GTK_THEME = "adw-gtk3";
 }
