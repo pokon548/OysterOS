@@ -94,6 +94,8 @@
   #boot.kernelModules = [ "i915.force_probe=7d55" ];
 
   services.hardware.bolt.enable = true;
+  services.thermald.enable = true;
+  services.fwupd.enable = true;
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -111,25 +113,6 @@
     HibernateMode=shutdown
   '';
 
-  /*services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    open = false;
-    nvidiaSettings = true;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-  };*/
-
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
@@ -145,6 +128,5 @@
   fileSystems."/var/log".neededForBoot = true;
 
   nixpkgs.hostPlatform = "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   system.stateVersion = "23.11";
 }
