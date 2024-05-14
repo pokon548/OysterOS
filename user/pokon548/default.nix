@@ -77,9 +77,12 @@ in
             stateVersion = "23.11";
           };
 
-          xdg.mimeApps = {
-            enable = config.prefstore.desktop.xdg.enable;
-            defaultApplications = config.prefstore.desktop.xdg.defaultApplications;
+          xdg = {
+            mimeApps = {
+              enable = config.prefstore.desktop.xdg.enable;
+              defaultApplications = config.prefstore.desktop.xdg.defaultApplications;
+            };
+            configFile."mimeapps.list".force = true;
           };
           dconf.settings = config.prefstore.home.${username}.gnome.dconf;
         }
