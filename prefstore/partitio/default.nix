@@ -77,7 +77,7 @@ with lib;
             "text/plain" = "org.gnome.TextEditor.desktop";
 
             # PDF
-            "application/pdf" = "org.gnome.Evince.desktop";
+            "application/pdf" = "org.gnome.Papers.desktop";
 
             # Compression
             "application/zip" = "org.gnome.FileRoller.desktop";
@@ -132,6 +132,7 @@ with lib;
             git
             gtk
             p7zip
+            jq
 
             fish
           ];
@@ -214,34 +215,38 @@ with lib;
           # TODO: Remove workaround after https://github.com/NixOS/nixpkgs/pull/304245 merged into unstable
           extension = with pkgs; with pkgs.gnomeExtensions; [
             gsconnect
-            appindicator
+            gnome46Extensions."appindicatorsupport@rgcjonas.gmail.com"
             dash-to-dock
             kimpanel
 
-            gnome45Extensions."clipboard-history@alexsaveau.dev"
-            #gnome45Extensions."emoji-copy@felipeftn"
+            clipboard-history
+            emoji-copy
             just-perfection
             pip-on-top
             unmess
             always-indicator
-            #gnome45Extensions."do-not-disturb-while-screen-sharing-or-recording@marcinjahn.com"
-            #gnome45Extensions."native-window-placement@gnome-shell-extensions.gcampax.github.com"
-            #gnome45Extensions."weatheroclock@CleoMenezesJr.github.io"
-            gnome45Extensions."nightthemeswitcher@romainvigier.fr"
+            do-not-disturb-while-screen-sharing-or-recording
+            native-window-placement
+            weather-oclock
+            night-theme-switcher
 
             #cronomix
 
             #net-speed-simplified
             #tophat
 
-            #upower-battery
-
-            gnome45Extensions."blur-my-shell@aunetx"
+            executor
+            upower-battery
+            shutdowntimer
+            wiggle
+            blur-my-shell
             caffeine
             bing-wallpaper-changer
             hibernate-status-button
-            #user-avatar-in-quick-settings
 
+            arcmenu
+            workspace-indicator
+            gtk4-desktop-icons-ng-ding
             panel-world-clock-lite
           ];
 
@@ -300,6 +305,67 @@ with lib;
                 hide = true;
               };
 
+              "org/gnome/shell/extensions/blur-my-shell/panel" = {
+                blur = true;
+                brightness = 0.75;
+                force-light-text = false;
+                override-background = true;
+                style-panel = 0;
+                override-background-dynamically = true;
+                unblur-in-overview = true;
+              };
+
+              "org/gnome/shell/extensions/blur-my-shell/hidetopbar" = {
+                compatibility = true;
+              };
+
+              "org/gnome/shell/extensions/blur-my-shell/dash-to-panel" = {
+                blur-original-panel = true;
+              };
+
+              "org/gnome/shell/extensions/blur-my-shell/overview" = {
+                blur = true;
+              };
+
+              "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+                blur = false;
+              };
+
+              "org/gnome/shell/extensions/blur-my-shell/applications" = {
+                blur = true;
+                brightness = 1.0;
+                dynamic-opacity = true;
+                opacity = 180;
+              };
+
+              "org/gnome/shell/extensions/shutdowntimer-deminder" = {
+                shutdown-mode-value = "Hibernate";
+                show-end-session-dialog-value = true;
+                shutdown-ref-timer-value = "22:30";
+                shutdown-slider-value = 0.0;
+                auto-wake-value = true;
+                wake-ref-timer-value = "06:00";
+                wake-slider-value = 0.0;
+                show-wake-items-value = true;
+              };
+
+              "org/gnome/shell/extensions/executor" = {
+                left-active = true;
+                left-index = 1;
+                left-commands-json = builtins.toJSON {
+                  commands = [
+                    {
+                      isActive = true;
+                      command = ''echo "今年已过 $(($(date +%j)*100/365))%"'';
+                      interval = 3600;
+                      uuid = "86c85325-5d9b-4578-aca6-96c2bc698ef7";
+                    }
+                  ];
+                };
+                center-active = false;
+                right-active = false;
+              };
+
               "com/adrienplazas/Metronome" = {
                 beats-per-minute = lib.gvariant.mkUint32 20;
                 beats-per-bar = lib.gvariant.mkUint32 4;
@@ -347,6 +413,10 @@ with lib;
                 night = "Simp1e-Adw-Dark";
               };
 
+              "org/gnome/shell/extensions/weatherornot" = {
+                position = "clock-left";
+              };
+
               "org/gnome/mutter" = {
                 dynamic-workspaces = false;
                 workspaces-only-on-primary = false;
@@ -371,7 +441,7 @@ with lib;
                 show-mounts = false;
                 show-trash = false;
                 show-icons-emblems = false;
-                show-show-apps-button = true;
+                show-show-apps-button = false;
               };
 
               "org/gnome/system/location" = {
@@ -381,6 +451,7 @@ with lib;
               "org/gnome/shell/extensions/world-clock" = {
                 button-position = "LR";
                 button-position2 = "LR";
+                opaque = true;
               };
 
               "org/gnome/clocks" = {
@@ -398,6 +469,8 @@ with lib;
                 calendar = false;
                 events-button = false;
                 theme = true;
+                startup-status = 0;
+                world-clock = true;
               };
 
               "org/gnome/desktop/wm/keybindings" = {
@@ -488,9 +561,18 @@ with lib;
                 inhibit-apps = [ "chengla-electron.desktop" "obsidian.desktop" "rustdesk-bin.desktop" "todoist.desktop" "org.remmina.Remmina.desktop" "codium.desktop" ];
               };
 
+              "org/gnome/shell/extensions/arcmenu" = {
+                show-activities-button = false;
+                menu-layout = "Windows";
+              };
+
               "org/gnome/shell/extensions/quick-settings-avatar" = {
                 avatar-position = 1;
                 avatar-nobackground = false;
+              };
+
+              "org/gnome/shell/extensions/gtk4-ding" = {
+                icon-size = "small";
               };
 
               /*"org/gnome/shell/extensions/netspeedsimplified" = {
