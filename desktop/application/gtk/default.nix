@@ -18,16 +18,24 @@
       name = "Tela-circle-light";
       package = pkgs.tela-circle-icon-theme;
     };
-    theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
+  };
+
+  # Not writing this in gtk.theme due to runtime changes for schemes (light / night theme)!
+  systemd.user.services.gtk-legacy-theme-setup = {
+    Unit = {
+      Description = "Automatically setup gtk3 legacy themes";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+    Service = {
+      Type = "simple";
+      TimeoutStartSec = 0;
+      ExecStart = "${pkgs.writeShellScript "watch-store" ''
+        #!/run/current-system/sw/bin/bash
+        theme=$([[ `${pkgs.glib}/bin/gsettings get org.gnome.desktop.interface color-scheme` =~ 'dark' ]] && echo "adw-gtk3-dark" || echo "adw-gtk3")
+        ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface gtk-theme $theme
+      ''}";
     };
   };
-
-  xdg.configFile = {
-    "gtk-3.0/settings.ini".force = true;
-    "gtk-4.0/settings.ini".force = true;
-  };
-
-  home.sessionVariables.GTK_THEME = "adw-gtk3";
 }
