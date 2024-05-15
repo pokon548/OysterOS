@@ -82,7 +82,6 @@ in
               enable = config.prefstore.desktop.xdg.enable;
               defaultApplications = config.prefstore.desktop.xdg.defaultApplications;
             };
-            configFile."mimeapps.list".force = true;
           };
           dconf.settings = config.prefstore.home.${username}.gnome.dconf;
         }
