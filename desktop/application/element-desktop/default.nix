@@ -5,7 +5,9 @@
 {
   home = {
     packages = with pkgs; [
-      element-desktop
+      (mkWaylandApp element-desktop "element-desktop" [
+        "--enable-wayland-ime"
+      ])
     ];
 
     global-persistence.directories = [

@@ -5,7 +5,11 @@
 {
   home = {
     packages = with pkgs; [
-       	nur.repos.pokon548.todoist-electron
+      (mkWaylandApp nur.repos.pokon548.todoist-electron "todoist-electron" [
+        "--enable-wayland-ime"
+        "--ozone-platform=wayland"
+        "--enable-features=UseOzonePlatform"
+      ])
     ];
 
     global-persistence.directories = [

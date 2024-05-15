@@ -32,7 +32,11 @@ in
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
     mutableExtensionsDir = false;
-    package = pkgs.vscodium;
+    package = pkgs.vscodium.override {
+      commandLineArgs = [
+        "--enable-wayland-ime"
+      ];
+    };
 
     extensions = commonExtensions ++ shellScriptExtensions ++ frontendDevExtensions;
     userSettings = {
@@ -100,7 +104,7 @@ in
     ];
 
     global-persistence = {
-      directories = [ 
+      directories = [
         ".config/VSCodium"
       ];
       files = [

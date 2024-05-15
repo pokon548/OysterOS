@@ -21,11 +21,14 @@
                 ./patch/mutter/mr1441.patch
                 ./patch/mutter/mr3373.patch
                 ./patch/mutter/mr3729.patch
+                ./patch/mutter/mr3751.patch
               ];
             });
 
             gnome-shell = gsuper.gnome-shell.overrideAttrs (old: {
               patches = old.patches ++ [
+                ./patch/gnome-shell/mr3318.patch
+
                 ./patch/gnome-shell/no-screenshot-flash.patch
                 ./patch/gnome-shell/no-workspace-animation.patch
                 ./patch/gnome-shell/no-overview-animation.patch
@@ -67,6 +70,9 @@
           papers
           gnome-menus
         ];
+
+        sessionVariables.NIXOS_OZONE_WL = "1";
+
         # Fix qt program not showing tray under gnome. See https://github.com/NixOS/nixpkgs/issues/255736
         extraInit = ''
           unset QT_QPA_PLATFORMTHEME

@@ -5,7 +5,11 @@
 {
   home = {
     packages = with pkgs; [
-      nur.repos.pokon548.geogebra
+      (mkWaylandApp nur.repos.pokon548.geogebra "geogebra" [
+        "--enable-wayland-ime"
+        "--ozone-platform=wayland"
+        "--enable-features=UseOzonePlatform"
+      ])
     ];
 
     global-persistence.directories = [

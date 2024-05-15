@@ -5,7 +5,9 @@
 {
   home = {
     packages = with pkgs; [
-      obsidian
+      (mkWaylandApp obsidian "obsidian" [
+        "--enable-wayland-ime"
+      ])
     ];
 
     global-persistence.directories = [

@@ -79,7 +79,9 @@ in
 
             imports = [ gui-base ];
             app = {
-              package = pkgs.qq;
+              package = with pkgs; (mkWaylandApp qq "qq" [
+                "--enable-wayland-ime"
+              ]);
               binPath = "bin/qq";
             };
           };

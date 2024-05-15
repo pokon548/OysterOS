@@ -5,7 +5,11 @@
 {
   home = {
     packages = with pkgs; [
-      nur.repos.pokon548.chengla-electron
+      (mkWaylandApp nur.repos.pokon548.chengla-electron "chengla-electron" [
+        "--enable-wayland-ime"
+        "--ozone-platform=wayland"
+        "--enable-features=UseOzonePlatform"
+      ])
     ];
 
     global-persistence.directories = [
