@@ -71,7 +71,10 @@
           gnome-menus
         ];
 
-        sessionVariables.NIXOS_OZONE_WL = "1";
+        sessionVariables = {
+          NIXOS_OZONE_WL = "1";
+          GSK_RENDERER = "gl";
+        };
 
         # Fix qt program not showing tray under gnome. See https://github.com/NixOS/nixpkgs/issues/255736
         extraInit = ''
