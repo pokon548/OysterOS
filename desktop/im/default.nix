@@ -25,7 +25,14 @@
           settings = {
             globalOptions = {
               Hotkey = {
-                EnumerateSkipFirst = "True";
+                EnumerateSkipFirst = "False";
+              };
+              "Hotkey/TriggerKeys" = {
+                "0" = "Control+space";
+                "1" = "Shift_L";
+              };
+              Behavior = {
+                ShareInputState = "Program";
               };
             };
             inputMethod = {

@@ -58,7 +58,7 @@ in
 
       environment.global-persistence.user.users = [ username ];
 
-      services.xserver.displayManager.autoLogin = {
+      services.displayManager.autoLogin = {
         enable = true;
         user = "${username}";
       };

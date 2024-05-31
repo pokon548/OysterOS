@@ -72,6 +72,11 @@ let
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/fastforwardteam/latest.xpi";
       };
+      "{eac47800-2a70-4e1f-98ef-0b8a6989f00d}" = {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/shortkeys/latest.xpi";
+      };
       "{ddc62400-f22d-4dd3-8b4a-05837de53c2e}" = {
         default_area = "navbar";
         installation_mode = "force_installed";
@@ -148,6 +153,16 @@ let
         installation_mode = "force_installed";
         install_url =
           "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
+      };
+      "leokudev@gmail.com" = {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/v2ex-polish/latest.xpi";
+      };
+      "firefox@tampermonkey.net" = {
+        installation_mode = "force_installed";
+        install_url =
+          "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
       };
       "extension@tabliss.io" = {
         installation_mode = "force_installed";

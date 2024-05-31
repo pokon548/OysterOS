@@ -12,17 +12,14 @@
       systemd.services.tailscale-setup = {
         script = ''
           status=$(${config.systemd.package}/bin/systemctl show -P StatusText tailscaled.service)
-          if [[ $status != Connected* ]]; then
-            tailscale up --login-server https://${config.prefstore.system.network.domain.headscale} --auth-key "file:${config.prefstore.service.tailscale.authKeyFile}"
+          if [[ $status == Connected* ]]; then
+            tailscale down
           fi
+          tailscale up --login-server https://${config.prefstore.system.network.domain.headscale} --auth-key "file:${config.prefstore.service.tailscale.authKeyFile}"
         '';
-        serviceConfig = {
-          Type = "oneshot";
-          Restart = "on-abnormal";
-        };
         path = [ config.services.tailscale.package ];
-        after = [ "tailscaled.service" "post-resume.service" ];
-        requiredBy = [ "tailscaled.service" "post-resume.service" ];
+        after = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
+        wantedBy = [ "suspend.target" "hibernate.target" "hybrid-sleep.target" ];
       };
     };
 }

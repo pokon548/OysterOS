@@ -38,6 +38,7 @@
       allowUnfree = true;
       permittedInsecurePackages = [
         "openssl-1.1.1w"
+        "electron-27.3.11"
       ];
     };
   };
@@ -66,15 +67,22 @@
         "https://microvm.cachix.org"
         "https://pokon548.cachix.org"
         "https://cache.garnix.io"
+        "https://cosmic.cachix.org"
         "https://cache.nixos.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "microvm.cachix.org-1:oXnBc6hRE3eX5rSYdRyMYXnfzcCxC7yKPTbZXALsqys="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "pokon548.cachix.org-1:fhQhJ1PubjdhjdqTUnUtvszMcYG4pSgyeVUWOOxKklM="
       ];
     };
+  };
+
+  system.switch = {
+    enable = false;
+    enableNg = true;
   };
 
   programs.command-not-found.enable = lib.mkForce false;

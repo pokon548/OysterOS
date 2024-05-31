@@ -34,6 +34,85 @@
             );
           }).env;
 
+        wechat-help =
+          (pkgsInsecure.buildFHSUserEnv
+            {
+              name = "wechat-env";
+              targetPkgs = pkgsInsecure: (with pkgsInsecure; with xorg;
+                [
+                  stdenv.cc.cc
+                  stdenv.cc.libc
+                  pango
+                  zlib
+                  xcbutilwm
+                  xcbutilimage
+                  xcbutilkeysyms
+                  xcbutilrenderutil
+                  libX11
+                  libXt
+                  libXext
+                  libSM
+                  libICE
+                  libxcb
+                  libxkbcommon
+                  libxshmfence
+                  libXi
+                  libXft
+                  libXcursor
+                  libXfixes
+                  libXScrnSaver
+                  libXcomposite
+                  libXdamage
+                  libXdmcp
+                  libXtst
+                  libXau
+                  libXrandr
+                  libnotify
+                  atk
+                  atkmm
+                  cairo
+                  at-spi2-atk
+                  at-spi2-core
+                  alsa-lib
+                  dbus
+                  cups
+                  gtk3
+                  gdk-pixbuf
+                  libexif
+                  ffmpeg
+                  libva
+                  freetype
+                  fontconfig
+                  libXrender
+                  libuuid
+                  expat
+                  glib
+                  nss
+                  nspr
+                  libGL
+                  harfbuzz
+                  libxml2
+                  pango
+                  libdrm
+                  mesa
+                  vulkan-loader
+                  systemd
+                  wayland
+                  pulseaudio
+                  qt6.qt5compat
+                  openssl_1_1
+                  bzip2
+                  libcap
+                  brotli
+                  graphite2
+                  libpng
+                  pcre2
+                  libz
+                  gcc
+                ]
+              );
+            });
+
         # For developing electron apps
         # Wine is included only for cross-compiling Windows binary. Feel free to remove them if you don't need :)
         electron = (pkgsInsecure.buildFHSUserEnv
@@ -49,7 +128,6 @@
                 libdrm
                 mesa
                 stdenv.cc.cc
-                alsa-lib
                 atk
                 at-spi2-atk
                 at-spi2-core
@@ -60,7 +138,7 @@
                 fontconfig
                 freetype
                 gdk-pixbuf
-                glib
+                (lib.getLib glibc)
                 gtk3
                 libnotify
                 libuuid
@@ -89,6 +167,7 @@
                 llvmPackages.bintools
                 rustup
                 rust-analyzer
+                yarn
 
                 # For building window variant
                 wine
@@ -112,6 +191,10 @@
 
                 # For cross-compiling arm64 binary
                 zig
+                zstd
+                pkg-config
+                (lib.getLib glibc)
+
               ]
             ) ++ (with pkgs.xorg;
               [

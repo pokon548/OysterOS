@@ -74,15 +74,15 @@ in
       "window.commandCenter" = false;
       "git.enableCommitSigning" = true;
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
-      "nix.formatterPath" = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+      "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       "nix.serverSettings" = {
         "nil" = {
           "diagnostics" = {
             "ignored" = [ "unused_binding" "unused_with" ];
           };
           "formatting" = {
-            "command" = [ "nixpkgs-fmt" ];
+            "command" = [ "nixfmt" ];
           };
           "nix" = {
             "flake" = {

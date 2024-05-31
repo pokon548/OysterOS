@@ -66,6 +66,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     microvm.url = "github:astro/microvm.nix";
 
     nil.url = "github:oxalica/nil";
@@ -171,6 +176,7 @@
                 (if name == "ritsu" then microvm.nixosModules.microvm else { })
                 nix-index-database.nixosModules.nix-index
                 nixos-generators.nixosModules.all-formats
+                nixos-cosmic.nixosModules.default
                 disko.nixosModules.disko
                 sops-nix.nixosModules.sops
                 nur.nixosModules.nur

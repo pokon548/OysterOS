@@ -90,13 +90,14 @@
 
   # NOTE: https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Acquire_swap_file_offset
   boot.resumeDevice = "/dev/disk/by-uuid/c3a162bc-60ed-474e-b0ba-7456eba0483d";
-  boot.kernelParams = [ "resume_offset=83404032" ];
+  boot.kernelParams = [ "resume_offset=83404032" "zswap.enabled=1" "zswap.compressor=zstd" "intel_iommu=on" "iommu=pt" "i915.enable_guc=3" "i915.max_vfs=7" ];
   #boot.kernelModules = [ "i915.force_probe=7d55" ];
 
   services.hardware.bolt.enable = true;
   services.thermald.enable = true;
   services.fwupd.enable = true;
 
+  hardware.i2c.enable = true;
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

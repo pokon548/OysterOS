@@ -298,7 +298,9 @@ in
               type = types.listOf (types.str);
               default = [
                 "/var/lib/bluetooth"
+                "/var/lib/colord"
                 "/var/lib/nixos"
+                "/var/lib/NetworkManager"
                 "/var/lib/systemd/coredump"
                 "/etc/NetworkManager/system-connections"
               ];
@@ -328,6 +330,13 @@ in
           };
 
           librechat = {
+            enable = mkOption {
+              type = types.bool;
+              default = false;
+            };
+          };
+
+          safeeyes = {
             enable = mkOption {
               type = types.bool;
               default = false;

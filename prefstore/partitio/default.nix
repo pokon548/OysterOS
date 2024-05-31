@@ -92,6 +92,7 @@ with lib;
         sysrq = true;
         tpm = true;
         virtualisation = {
+          virtualbox = true;
           libvirtd = true;
         };
       };
@@ -101,6 +102,8 @@ with lib;
           enable = true;
           authKeyFile = config.sops.secrets."tailscale/auth-key".path;
         };
+
+        safeeyes.enable = true;
       };
 
       home.pokon548 = {
@@ -118,6 +121,7 @@ with lib;
             "Programmings"
 
             ".config/gsconnect"
+            ".config/cronomix"
           ];
           files = [
             ".config/monitors.xml"
@@ -164,6 +168,8 @@ with lib;
           office = with application; [
             libreoffice-fresh
             wpsoffice
+
+            safeeyes
           ];
 
           security = with application; [
@@ -223,14 +229,13 @@ with lib;
             emoji-copy
             just-perfection
             pip-on-top
-            unmess
             always-indicator
             do-not-disturb-while-screen-sharing-or-recording
             native-window-placement
             weather-oclock
             night-theme-switcher
 
-            #cronomix
+            cronomix
 
             #net-speed-simplified
             #tophat
@@ -243,6 +248,7 @@ with lib;
             caffeine
             bing-wallpaper-changer
             hibernate-status-button
+            auto-move-windows
 
             arcmenu
             workspace-indicator
@@ -349,6 +355,12 @@ with lib;
                 show-wake-items-value = true;
               };
 
+              "org/gnome/settings-daemon/plugins/power" = {
+                sleep-inactive-ac-type = "nothing";
+                sleep-inactive-battery-type = "hibernate";  # Sometimes suspend cause kernel panic. So disabled it for good
+                power-button-action = "hibernate";
+              };
+
               "org/gnome/shell/extensions/executor" = {
                 left-active = true;
                 left-index = 1;
@@ -392,19 +404,15 @@ with lib;
               };
 
               "org/gnome/mutter" = {
-                experimental-features = [ "scale-monitor-framebuffer" ];
+                experimental-features = [
+                  "scale-monitor-framebuffer"
+                  "xwayland-native-scaling"
+                ];
               };
 
-              "org/gnome/shell/extensions/nightthemeswitcher/gtk-variants" = {
-                enabled = true;
-                day = "adw-gtk3";
-                night = "adw-gtk3-dark";
-              };
-
-              "org/gnome/shell/extensions/nightthemeswitcher/icon-variants" = {
-                enabled = true;
-                day = "Tela-circle-light";
-                night = "Tela-circle-dark";
+              "org/gnome/shell/extensions/nightthemeswitcher/commands" = {
+                sunset = ''gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark" && gsettings set org.gnome.desktop.interface icon-theme "Tela-circle-dark" && gsettings set org.gnome.desktop.interface cursor-theme "Simp1e-Adw-Dark"'';
+                sunrise = ''gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" && gsettings set org.gnome.desktop.interface icon-theme "Tela-circle-light" && gsettings set org.gnome.desktop.interface cursor-theme "Simp1e-Adw"'';
               };
 
               "org/gnome/shell/extensions/nightthemeswitcher/cursor-variants" = {
@@ -460,7 +468,7 @@ with lib;
               };
 
               "org/gnome/desktop/input-sources" = {
-                xkb-options = [ "terminate:ctrl_alt_bksp" ];
+                xkb-options = [ "keypad:pointerkeys" ];
               };
 
               "org/gnome/shell/extensions/just-perfection" = {
@@ -511,6 +519,12 @@ with lib;
                 name = "DND Quick Switch";
                 binding = "<Super>z";
                 command = "bash -c \"[[ $(gsettings get org.gnome.desktop.notifications show-banners) == 'false' ]] && gsettings set org.gnome.desktop.notifications show-banners true || gsettings set org.gnome.desktop.notifications show-banners false\"";
+              };
+
+              "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+                name = "Disable Ctrl + B";
+                binding = "<Control>b";
+                command = "echo nop";
               };
 
               "org/gnome/shell/keybindings" = {
@@ -588,104 +602,36 @@ with lib;
               refreshtime = 1.0;
               };*/
 
-              "org/gnome/shell/extensions/unmess" = {
-                classgroup = builtins.toJSON {
-                  SchildiChat = 1;
-                  Element = 1;
-                  Todoist = 1;
-                  thunderbird = 1;
-                  "org.gnome.Settings" = 1;
-                  "io.missioncenter.MissionCenter" = 1;
-                  gnome-tweaks = 1;
-                  "org.gnome.Extensions" = 1;
-                  "com.github.wwmm.easyeffects" = 1;
-
-                  Anki = 2;
-                  chengla-linux-unofficial = 2;
-                  "draw.io" = 2;
-                  Geogrebra = 2;
-                  GoldenDict-ng = 2;
-                  Obsidian = 2;
-
-                  "Android Studio" = 3;
-                  Vscodium = 3;
-                  Godot = 3;
-                  "ida64.exe" = 3;
-
-                  "org.prismlauncher.PrismLauncher" = 4;
-                  "hu.kramo.Cartridges" = 4;
-                  Steam = 4;
-                  steamwebhelper = 4;
-
-                  Rustdesk = 5;
-                  "org.remmina.Remmina" = 5;
-
-                  virt-manager = 6;
-                  Qemu-system-x86_64 = 6;
-                  "VirtualBox Manager" = 6;
-
-                  "io.gitlab.news_flash.NewsFlash" = 7;
-
-                  "io.bassi.Amberol" = 8;
-                  "com.rafaelmardojai.Blanket" = 8;
-                  FreeTube = 8;
-
-                  Bitwarden = 9;
-                  KeePassXC = 9;
-                  "fr.romainvigier.MetadataCleaner" = 9;
-                  "io.github.mpobaschnig.Vaults" = 9;
-
-                  ".scrcpy-wrapped" = 10;
-                };
-
-                classinstance = builtins.toJSON {
-                  schildichat = 1;
-                  element = 1;
-                  todoist = 1;
-                  thunderbird = 1;
-                  "org.gnome.Settings" = 1;
-                  "io.missioncenter.MissionCenter" = 1;
-                  gnome-tweaks = 1;
-                  "org.gnome.Extensions" = 1;
-                  "com.github.wwmm.easyeffects" = 1;
-
-                  anki = 2;
-                  chengla-linux-unofficial = 2;
-                  "draw.io" = 2;
-                  geogrebra = 2;
-                  goldenDict = 2;
-                  obsidian = 2;
-
-                  android-studio-canary = 3;
-                  vscodium = 3;
-                  Godot_ProjectList = 3;
-                  "ida64.exe" = 3;
-
-                  "org.prismlauncher.PrismLauncher" = 4;
-                  "hu.kramo.Cartridges" = 4;
-                  steam = 4;
-                  steamwebhelper = 4;
-
-                  rustdesk = 5;
-                  "org.remmina.Remmina" = 5;
-
-                  virt-manager = 6;
-                  qemu = 6;
-                  "VirtualBox Manager" = 6;
-
-                  "io.gitlab.news_flash.NewsFlash" = 7;
-
-                  "io.bassi.Amberol" = 8;
-                  "com.rafaelmardojai.Blanket" = 8;
-                  freetube = 8;
-
-                  bitwarden = 9;
-                  keepassxc = 9;
-                  "fr.romainvigier.MetadataCleaner" = 9;
-                  "io.github.mpobaschnig.Vaults" = 9;
-
-                  ".scrcpy-wrapped" = 10;
-                };
+              "org/gnome/shell/extensions/auto-move-windows" = {
+                application-list = [
+                  "element-desktop.desktop:1"
+                  "todoist.desktop:1"
+                  "thunderbird.desktop:1"
+                  "org.gnome.Settings.desktop:1"
+                  "io.missioncenter.MissionCenter.desktop:1"
+                  "org.gnome.tweaks.desktop:1"
+                  "org.gnome.Shell.Extensions.desktop:1"
+                  "com.github.wwmm.easyeffects.desktop:1"
+                  "anki.desktop:2"
+                  "chengla-linux-unofficial.desktop:2"
+                  "geogebra.desktop:2"
+                  "io.github.xiaoyifang.goldendict_ng.desktop:2"
+                  "obsidian.desktop:2"
+                  "android-studio-canary.desktop:3"
+                  "codium.desktop:3"
+                  "org.prismlauncher.PrismLauncher.desktop:4"
+                  "steam.desktop:4"
+                  "rustdesk.desktop:5"
+                  "org.remmina.Remmina.desktop:5"
+                  "virt-manager.desktop:6"
+                  "io.gitlab.news_flash.NewsFlash.desktop:7"
+                  "io.bassi.Amberol.desktop:8"
+                  "com.rafaelmardojai.Blanket.desktop:8"
+                  "bitwarden.desktop:9"
+                  "org.keepassxc.KeePassXC.desktop:9"
+                  "fr.romainvigier.MetadataCleaner.desktop:9"
+                  "io.github.mpobaschnig.Vaults.desktop:9"
+                ];
               };
             };
         };

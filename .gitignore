@@ -5,6 +5,9 @@
 **/*.sock
 **/*.socket
 
+flake.lock
+flake.nix
+
 **/config.tf.json
 .terraform.lock.hcl
 .terraform
