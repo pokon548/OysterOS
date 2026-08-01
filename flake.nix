@@ -34,8 +34,17 @@
       url = "github:NixOS/nixos-hardware?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs-lts";
     };
-    
+
     preservation.url = "github:nix-community/preservation?shallow=1";
+
+    noctalia-unstable = {
+      url = "github:noctalia-dev/noctalia?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    noctalia-lts = {
+      url = "github:noctalia-dev/noctalia?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs-lts";
+    };
   };
 
   outputs =

@@ -308,6 +308,46 @@
         "type": "github"
       }
     },
+    "noctalia-lts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-lts"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785558451,
+        "narHash": "sha256-pqw45UKH86VCj04QJVKm+ofeZM7C1ajxVsyuAU08F9k=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "9883f4c3d2d480410dbf89b2207c5e466044f2e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
+    "noctalia-unstable": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785558451,
+        "narHash": "sha256-pqw45UKH86VCj04QJVKm+ofeZM7C1ajxVsyuAU08F9k=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "9883f4c3d2d480410dbf89b2207c5e466044f2e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "preservation": {
       "locked": {
         "lastModified": 1757436102,
@@ -332,6 +372,8 @@
         "nixpkgs-lts": "nixpkgs-lts",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixverse": "nixverse",
+        "noctalia-lts": "noctalia-lts",
+        "noctalia-unstable": "noctalia-unstable",
         "preservation": "preservation",
         "sops-nix-lts": "sops-nix-lts",
         "sops-nix-unstable": "sops-nix-unstable"

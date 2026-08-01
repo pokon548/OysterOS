@@ -65,6 +65,8 @@
   };
   time.timeZone = config.prefstore.region.timeZone;
 
+  networking.nftables.enable = true;
+
   services.timesyncd.servers = (
     if config.prefstore.enableChinaFeatures then
       [

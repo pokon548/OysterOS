@@ -5,12 +5,17 @@
 {
   pkgs,
   inputs',
+  modules',
   config,
   lib,
   ...
 }:
 {
-  imports = [ inputs'.hardware.modules.lenovo-ideapad-14imh9 ];
+  imports = [ 
+    inputs'.hardware.modules.lenovo-ideapad-14imh9
+
+    modules'.inventor
+  ];
 
   prefstore = {
     boot = {

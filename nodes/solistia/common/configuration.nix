@@ -2,10 +2,13 @@
 {
   lib,
   modules',
+  pkgs,
   ...
 }:
 {
-  imports = [ modules'.prefstore ];
+  imports = [
+    modules'.prefstore
+  ];
 
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "cake";
@@ -24,11 +27,35 @@
     "fs.file-max" = 100000000000000000;
   };
 
-  virtualisation.vmVariant = {
-    prefstore.runningInVM = true;
-    virtualisation = {
-      memorySize = 8192;
-      cores = 8;
+  virtualisation = {
+    vmVariant = {
+      prefstore.runningInVM = true;
+      virtualisation = {
+        memorySize = 8192;
+        cores = 8;
+      };
     };
+  };
+
+  services.scx = {
+    enable = true;
+    scheduler = "scx_rusty";
+    extraArgs = [
+      "-b"
+    ];
+  };
+
+  users = {
+    users = {
+      pokon548 = {
+        description = "Bu Kun";
+        isNormalUser = true;
+        home = "/home/pokon548";
+        group = "pokon548";
+        extraGroups = [ "wheel" ];
+      };
+    };
+
+    groups.pokon548 = { };
   };
 }
