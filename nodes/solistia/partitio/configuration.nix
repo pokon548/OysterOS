@@ -17,6 +17,8 @@
       kernel = "zen";
       loader = "systemd";
     };
+
+    impermanence.enable = true;
   };
 
   networking.hostName = "partitio";

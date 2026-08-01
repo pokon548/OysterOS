@@ -87,5 +87,41 @@
         '';
       };
     };
+
+    impermanence = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+
+      location = mkOption {
+        type = types.str;
+        default = "/persist";
+      };
+
+      directories = mkOption {
+        type = with types; listOf anything;
+        default = [
+          "/var/lib/bluetooth"
+          "/var/lib/colord"
+          "/var/lib/nixos"
+          "/var/lib/NetworkManager"
+          "/var/lib/systemd/coredump"
+          "/etc/NetworkManager/system-connections"
+        ];
+      };
+
+      files = mkOption {
+        type = with types; listOf anything;
+        default = [
+          {
+            file = "/etc/machine-id";
+            inInitrd = true;
+            how = "symlink";
+            configureParent = true;
+          }
+        ];
+      };
+    };
   };
 }

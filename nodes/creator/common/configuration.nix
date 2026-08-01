@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs',
+  modules',
   pkgs,
   ...
 }:
@@ -12,6 +14,11 @@
       else
         ""
     )
+  ];
+
+  imports = [
+    inputs'.preservation.modules.preservation
+    modules'.global-persistence
   ];
 
   boot = {
@@ -37,8 +44,17 @@
     );
   };
 
-  environment.etc.issue = {
-    text = config.prefstore.slogan;
+  environment = {
+    etc.issue = {
+      text = config.prefstore.slogan;
+    };
+
+    global-persistence = {
+      enable = config.prefstore.impermanence.enable;
+      root = "${config.prefstore.impermanence.location}";
+      directories = config.prefstore.impermanence.directories;
+      files = config.prefstore.impermanence.files;
+    };
   };
 
   i18n = {
@@ -60,7 +76,7 @@
         "ntp3.aliyun.com"
       ]
     else
-      [ 
+      [
         "0.pool.ntp.org"
         "1.pool.ntp.org"
         "2.pool.ntp.org"
