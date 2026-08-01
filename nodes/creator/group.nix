@@ -1,8 +1,4 @@
 {
-  orsterra = {
-    channel = "lts";
-  };
-  solistia = {
-    channel = "unstable";
-  };
+  orsterra = { };
+  solistia = { };
 }

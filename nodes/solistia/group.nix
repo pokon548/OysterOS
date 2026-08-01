@@ -3,8 +3,9 @@
     { lib, ... }:
     {
       system = lib.mkDefault "x86_64-linux";
-      channel = lib.mkDefault "lts";
+      channel = lib.mkDefault "unstable";
     };
 
-  ludo = { };
+  partitio = { };
+  papp = { };
 }

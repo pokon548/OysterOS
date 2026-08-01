@@ -13,6 +13,7 @@
         ""
     )
   ];
+
   boot = {
     loader = (
       if config.prefstore.boot.loader == "systemd" || config.prefstore.runningInVM then
