@@ -40,6 +40,32 @@
     text = config.prefstore.slogan;
   };
 
+  i18n = {
+    defaultLocale = config.prefstore.region.locale;
+    extraLocales = [
+      "en_US.UTF-8/UTF-8" # en_US should always available no matter what
+    ];
+  };
+  time.timeZone = config.prefstore.region.timeZone;
+
+  services.timesyncd.servers = (
+    if config.prefstore.enableChinaFeatures then
+      [
+        "ntp1.ntsc.ac.cn"
+        "ntp2.ntsc.ac.cn"
+        "ntp3.ntsc.ac.cn"
+        "ntp1.aliyun.com"
+        "ntp2.aliyun.com"
+        "ntp3.aliyun.com"
+      ]
+    else
+      [ 
+        "0.pool.ntp.org"
+        "1.pool.ntp.org"
+        "2.pool.ntp.org"
+      ]
+  );
+
   nix = {
     settings = {
       experimental-features = "nix-command flakes";
@@ -49,7 +75,7 @@
       ];
       substituters = builtins.concatLists [
         (
-          if config.prefstore.nix.useChinaMirror then
+          if config.prefstore.enableChinaFeatures then
             [ "https://mirrors.ustc.edu.cn/nix-channels/store?priority=1" ]
           else
             [ ]

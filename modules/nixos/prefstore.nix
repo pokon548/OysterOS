@@ -24,6 +24,14 @@
       '';
     };
 
+    enableChinaFeatures = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Whether enable China specific features.
+      '';
+    };
+
     boot = {
       kernel = mkOption {
         type = types.enum [
@@ -54,12 +62,28 @@
       };
     };
 
-    nix = {
-      useChinaMirror = mkOption {
-        type = types.bool;
-        default = false;
+    region = {
+      timeZone = lib.mkOption {
+        default = "Etc/UTC";
+        type = lib.types.str;
+        example = "America/New_York";
         description = ''
-          Whether add China mirror into nix binary cache.
+          The time zone used when displaying times and dates. See <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>
+          for a comprehensive list of possible values for this setting.
+
+          If null, the timezone will default to UTC and can be set imperatively
+          using timedatectl.
+        '';
+      };
+
+      locale = lib.mkOption {
+        type = lib.types.str;
+        default = "en_US.UTF-8";
+        example = "nl_NL.UTF-8";
+        description = ''
+          The default locale. It determines the language for program messages,
+          the format for dates and times, sort order, and so on. Setting the
+          default character set is done via {option}`i18n.defaultCharset`.
         '';
       };
     };
