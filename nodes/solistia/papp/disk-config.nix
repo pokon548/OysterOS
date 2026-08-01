@@ -59,7 +59,7 @@
                   "@swap" = {
                     mountpoint = "/swap";
                     inherit mountOptions;
-                    #swap.swapfile.size = "4G"; # I don't know how to automatically create swap file. So leave it as-is
+                    swap.swapfile.size = "4G";
                   };
                 };
             };

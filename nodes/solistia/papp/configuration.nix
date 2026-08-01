@@ -15,5 +15,9 @@
     ../partitio/configuration.nix
   ];
 
+  prefstore = {
+    impermanence.enable = lib.mkForce false;  # Looks like VM does not compatible with this
+  };
+
   networking.hostName = lib.mkForce "papp";
 }
