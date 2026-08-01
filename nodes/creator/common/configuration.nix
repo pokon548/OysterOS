@@ -93,13 +93,5 @@
     };
   };
 
-  virtualisation.vmVariant = {
-    prefstore.runningInVM = true;
-    virtualisation = {
-      memorySize = 1024;
-      cores = 4;
-    };
-  };
-
   system.stateVersion = "26.05";
 }

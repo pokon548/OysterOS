@@ -9,4 +9,12 @@
 
   boot.loader.grub.device = "/dev/vda";
   services.openssh.enable = true;
+
+  virtualisation.vmVariant = {
+    prefstore.runningInVM = true;
+    virtualisation = {
+      memorySize = 1024;
+      cores = 2;
+    };
+  };
 }

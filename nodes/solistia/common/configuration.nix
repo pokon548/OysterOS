@@ -23,4 +23,12 @@
     # Workaround: bigger file limits
     "fs.file-max" = 100000000000000000;
   };
+
+  virtualisation.vmVariant = {
+    prefstore.runningInVM = true;
+    virtualisation = {
+      memorySize = 8192;
+      cores = 8;
+    };
+  };
 }
