@@ -3,6 +3,16 @@
     nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixpkgs-lts.url = "https://channels.ctrl-os.com/channel/ctrlos-26.05.tar.xz";
 
+    # Home manager
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    home-manager-lts = {
+      url = "github:nix-community/home-manager?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs-lts";
+    };
+
     sops-nix-unstable = {
       url = "github:Mic92/sops-nix?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
