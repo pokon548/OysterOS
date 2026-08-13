@@ -187,6 +187,43 @@
         "type": "github"
       }
     },
+    "niri-nix": {
+      "inputs": {
+        "niri-unstable": "niri-unstable",
+        "nixpkgs": "nixpkgs",
+        "xwayland-satellite-unstable": "xwayland-satellite-unstable"
+      },
+      "locked": {
+        "lastModified": 1786579321,
+        "narHash": "sha256-T7W6KgP/e2IZq/9yYYjcJDfOn8aNTtezvEu5ESu3LF4=",
+        "ref": "refs/heads/main",
+        "rev": "1b8c7cc028c0191ed870d924544737cd643dd797",
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/BANanaD3V/niri-nix"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://codeberg.org/BANanaD3V/niri-nix"
+      }
+    },
+    "niri-unstable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786539210,
+        "narHash": "sha256-HEI68CZxY77jimz7+ZpKMGUbeLbncWLuttrMFPQGytQ=",
+        "owner": "YaLTeR",
+        "repo": "niri",
+        "rev": "92a25a0a8619f55596e5c138ea6d6a391e24e9db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "YaLTeR",
+        "repo": "niri",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -296,6 +333,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1786384358,
+        "narHash": "sha256-RzPPiWeUtuvymnpuEWsdtzli5w4kjZs49FqEs3/1u+I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2fcb964de67fcf60b43471c55d5d99e61a9ccb5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -411,6 +464,7 @@
         "hardware-unstable": "hardware-unstable",
         "home-manager-lts": "home-manager-lts",
         "home-manager-unstable": "home-manager-unstable",
+        "niri-nix": "niri-nix",
         "nixpkgs-lts": "nixpkgs-lts",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixverse": "nixverse",
@@ -480,6 +534,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "xwayland-satellite-unstable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786221058,
+        "narHash": "sha256-hF2atQzapHBLX5NFqJMcKZAWHfGkKQeNu1eQr46+AGg=",
+        "owner": "Supreeeme",
+        "repo": "xwayland-satellite",
+        "rev": "3bc915f09dd62bb2651a715114f9d140344bc6c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Supreeeme",
+        "repo": "xwayland-satellite",
         "type": "github"
       }
     }

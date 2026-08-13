@@ -14,6 +14,7 @@
 }:
 {
   imports = [
+    inputs'.niri-nix.modules.default
     inputs'.noctalia.modules.default
   ];
 

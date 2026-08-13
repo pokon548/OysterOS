@@ -55,6 +55,10 @@
       url = "github:noctalia-dev/noctalia?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs-lts";
     };
+
+    niri-nix = {
+      url = "git+https://codeberg.org/BANanaD3V/niri-nix?shallow=1";
+    };
   };
 
   outputs =
