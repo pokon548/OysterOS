@@ -1,15 +1,24 @@
 {
+  config,
   pkgs,
   inputs',
+  modules',
   ...
 }:
 {
   imports = [
+    modules'.homestore
+
     inputs'.niri-nix.modules.default
     inputs'.noctalia.modules.default
   ];
 
   services.kdeconnect.enable = true;
+
+  wayland.windowManager.niri = {
+    enable = true;
+    settings = { } // config.homestore.niri.outputConfig;
+  };
 
   programs.noctalia = {
     enable = true;
