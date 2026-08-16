@@ -158,6 +158,80 @@
     allowedUDPPortRanges = config.prefstore.network.port.kde-connect;
   };
 
+  # Workaround for fcitx5 issue under wayland. See: https://github.com/NixOS/nixpkgs/issues/129442
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+
+    fcitx5 = {
+      addons = with pkgs; [
+        qt6Packages.fcitx5-chinese-addons
+        fcitx5-gtk
+        qt6Packages.fcitx5-configtool
+        (fcitx5-rime.override {
+          rimeDataPkgs = [
+            librime
+            librime-lua
+            rime-ice
+          ];
+        })
+        libsForQt5.fcitx5-qt
+      ];
+      ignoreUserConfig = true;
+      waylandFrontend = true;
+      settings = {
+        globalOptions = {
+          Hotkey = {
+            EnumerateSkipFirst = "False";
+          };
+          "Hotkey/TriggerKeys" = {
+            "0" = "Control+space";
+            "1" = "Shift_L";
+          };
+          Behavior = {
+            ShareInputState = "Program";
+          };
+        };
+        inputMethod = {
+          "Groups/0" = {
+            Name = "默认";
+            "Default Layout" = "us";
+            DefaultIM = "rime";
+          };
+
+          "Groups/0/Items/0" = {
+            Name = "keyboard-us";
+          };
+
+          "Groups/0/Items/1" = {
+            Name = "rime";
+          };
+
+          GroupOrder = {
+            "0" = "默认";
+          };
+        };
+        addons = {
+          classicui.globalSection = {
+            "Vertical Candidate List" = "True";
+            UseDarkTheme = "True";
+            EnableFractionalScale = "True";
+            Font = "Sarasa UI SC 12";
+          };
+          pinyin.globalSection = {
+            EmojiEnabled = "True";
+            CloudPinyinEnabled = "False";
+            CloudPinyinIndex = 2;
+            QuickPhraseKey = "";
+            VAsQuickphrase = "False";
+            ShuangpinProfile = "Xiaohe";
+            FirstRun = "False";
+          };
+        };
+      };
+    };
+  };
+
   environment = {
     systemPackages = with pkgs; [
       gtk3
