@@ -130,9 +130,9 @@
     };
   };
 
-  nixpkgs.overlays = [ inputs'.nur.overlays.default ];
   nixpkgs = {
     config.allowUnfree = true;
+    overlays = [ inputs'.nur.overlays.default ];
   };
 
   security = {
