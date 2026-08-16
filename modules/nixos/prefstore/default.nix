@@ -130,6 +130,11 @@
     };
 
     network = {
+      useNetworkManager = mkOption {
+        type = types.bool;
+        default = true;
+      };
+
       port = {
         kde-connect = mkOption {
           type = types.listOf (types.attrsOf types.port);

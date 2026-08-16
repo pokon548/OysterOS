@@ -74,7 +74,14 @@
   };
   time.timeZone = config.prefstore.region.timeZone;
 
-  networking.nftables.enable = true;
+  networking = {
+    networkmanager = {
+      enable = config.prefstore.network.useNetworkManager;
+      wifi.powersave = false;
+    };
+    nftables.enable = true;
+    useNetworkd = !config.prefstore.network.useNetworkManager;
+  };
 
   services.timesyncd.servers = (
     if config.prefstore.enableChinaFeatures then
