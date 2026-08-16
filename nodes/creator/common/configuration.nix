@@ -17,6 +17,7 @@
 
   imports = [
     inputs'.preservation.modules.preservation
+    inputs'.nur.modules
     modules'.global-persistence
   ];
 
@@ -86,7 +87,10 @@
 
   nix = {
     settings = {
-      experimental-features = "nix-command flakes";
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       trusted-users = [
         "pokon548"
@@ -108,6 +112,11 @@
         "ctrl-os:baPzGxj33zp/P+GAIJXsr8ss9Law+qEEFViX1+flbv8="
       ];
     };
+  };
+
+  nixpkgs.overlays = [ inputs'.nur.overlays.default ];
+  nixpkgs = {
+    config.allowUnfree = true;
   };
 
   system.stateVersion = "26.05";

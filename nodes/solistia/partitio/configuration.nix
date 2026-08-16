@@ -3,17 +3,15 @@
 # This node is served as one of my laptop. Creativity and possibility starts here! :)
 
 {
-  pkgs,
   inputs',
   modules',
-  config,
-  lib,
   ...
 }:
 {
   imports = [ 
     inputs'.hardware.modules.lenovo-ideapad-14imh9
 
+    modules'.font
     modules'.inventor
   ];
 
@@ -23,6 +21,7 @@
       loader = "systemd";
     };
 
+    enableChinaFeatures = true;
     impermanence.enable = true;
   };
 

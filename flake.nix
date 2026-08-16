@@ -68,6 +68,15 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs-lts";
     };
+
+    nur-unstable = {
+      url = "github:nix-community/NUR?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    nur-lts = {
+      url = "github:nix-community/NUR?shallow=1";
+      inputs.nixpkgs.follows = "nixpkgs-lts";
+    };
   };
 
   outputs =
