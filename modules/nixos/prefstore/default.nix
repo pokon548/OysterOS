@@ -60,6 +60,11 @@
         type = types.bool;
         default = false;
       };
+
+      allowSysrq = mkOption {
+        type = types.bool;
+        default = false;
+      };
     };
 
     region = {

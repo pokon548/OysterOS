@@ -42,6 +42,15 @@
       else
         pkgs.linuxPackages
     );
+
+    kernel.sysctl = (
+      if config.prefstore.boot.allowSysrq then
+        {
+          "kernel.sysrq" = 1;
+        }
+      else
+        { }
+    );
   };
 
   environment = {
@@ -118,6 +127,20 @@
   nixpkgs = {
     config.allowUnfree = true;
   };
+
+  security.tpm2 = (
+    if config.prefstore.boot.secureboot then
+      {
+        enable = true;
+        abrmd.enable = true;
+      }
+    else
+      { }
+  );
+
+  environment.systemPackages =
+    with pkgs;
+    (if config.prefstore.boot.secureboot then [ tpm2-tools ] else [ ]);
 
   system.stateVersion = "26.05";
 }
