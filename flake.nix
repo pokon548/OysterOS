@@ -59,6 +59,15 @@
     niri-nix = {
       url = "git+https://codeberg.org/BANanaD3V/niri-nix?shallow=1";
     };
+
+    haumea-unstable = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    haumea-lts = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs-lts";
+    };
   };
 
   outputs =

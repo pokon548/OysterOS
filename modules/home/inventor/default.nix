@@ -17,7 +17,48 @@
 
   wayland.windowManager.niri = {
     enable = true;
-    settings = { } // config.homestore.niri.outputConfig;
+    settings = {
+      prefer-no-csd = true;
+
+      spawn-sh-at-startup = [
+        {
+          _args = [ "sleep 3 && noctalia msg volume-set 8" ];
+        }
+        {
+          _args = [
+            "sleep 10 && aw-qt --autostart-modules 'aw-server,aw-watcher-window-wayland,aw-watcher-afk'"
+          ];
+        }
+        {
+          _args = [
+            "systemctl --user import-environment XDG_SESSION_ID DBUS_SESSION_BUS_ADDRESS WAYLAND_DISPLAY DISPLAY"
+          ];
+        }
+        {
+          _args = [ "kdeconnect-indicator" ];
+        }
+        {
+          _args = [ "echo \"Xft.dpi: 200\" | xrdb -merge" ];
+        }
+        {
+          _args = [ "echo \"Xcursor.size: 24\" | xrdb -merge" ];
+        }
+      ];
+
+      cursor = {
+        xcursor-theme = "Simp1e-Tokyo-Night-Light";
+        xcursor-size = 24;
+      };
+
+      hotkey-overlay = {
+        skip-at-startup = true;
+      };
+
+      animations = {
+        workspace-switch.off = true;
+      };
+    }
+    // config.homestore.niri.outputConfig;
   };
 
   programs.noctalia = {
