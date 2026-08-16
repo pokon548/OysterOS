@@ -18,7 +18,7 @@
   wayland.windowManager.niri = {
     enable = true;
     settings = {
-      prefer-no-csd = true;
+      prefer-no-csd = { };
 
       spawn-sh-at-startup = [
         {
@@ -51,11 +51,167 @@
       };
 
       hotkey-overlay = {
-        skip-at-startup = true;
+        skip-at-startup = { };
       };
 
       animations = {
-        workspace-switch.off = true;
+        workspace-switch.off = { };
+        horizontal-view-movement.off = { };
+        overview-open-close.off = { };
+      };
+
+      window-rule = [
+        {
+          match = {
+            _props.app-id._raw = ''r#"^io\.github\.diegoivanme\.flowtime$"#'';
+          };
+
+          open-floating = true;
+        }
+        {
+          match = {
+            _props.app-id._raw = ''r#"^org\.gnome\.Solanum$"#'';
+          };
+
+          open-floating = true;
+        }
+      ];
+
+      # TODO: Make open-on-output respect config
+      workspace = [
+        {
+          _args = [ "" ];
+          open-on-output = "eDP-1";
+        }
+        {
+          _args = [ "󰑴" ];
+          open-on-output = "eDP-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "eDP-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "eDP-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "eDP-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "eDP-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "HDMI-A-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "HDMI-A-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "HDMI-A-1";
+        }
+        {
+          _args = [ "" ];
+          open-on-output = "HDMI-A-1";
+        }
+      ];
+
+      binds = {
+        "Mod+T" = {
+          spawn = "kitty";
+        };
+        "Mod+B" = {
+          spawn = "zen-browser";
+        };
+        "Mod+Space" = {
+          spawn-sh = "noctalia msg panel-toggle launcher";
+        };
+        "Mod+Shift+S" = {
+          spawn-sh = "pkill -SIGINT -f gpu-screen-recorder && notify-send 回放已保存！";
+        };
+        "Mod+N" = {
+          spawn-sh = "swaync-client -t -sw";
+        };
+
+        "Alt+Z" = {
+          focus-workspace = "";
+        };
+        "Alt+X" = {
+          focus-workspace = "󰑴";
+        };
+        "Alt+C" = {
+          focus-workspace = "";
+        };
+        "Alt+A" = {
+          focus-workspace = "";
+        };
+        "Alt+S" = {
+          focus-workspace = "";
+        };
+        "Alt+D" = {
+          focus-workspace = "";
+        };
+        "Alt+Q" = {
+          focus-workspace = "";
+        };
+        "Alt+W" = {
+          focus-workspace = "";
+        };
+        "Alt+E" = {
+          focus-workspace = "";
+        };
+        "Alt+R" = {
+          focus-workspace = "";
+        };
+        "Alt+Mod+Z" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+X" = {
+          move-column-to-workspace = "󰑴";
+        };
+        "Alt+Mod+C" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+A" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+S" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+D" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+Q" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+W" = {
+          move-column-to-workspace = "";
+        };
+        "Alt+Mod+R" = {
+          move-column-to-workspace = "";
+        };
+
+        "Mod+Shift+R" = {
+          switch-preset-window-height = { };
+        };
+
+        "Mod+Z" = {
+          spawn-sh = "noctalia msg notification-dnd-toggle";
+        };
+        "Mod+V" = {
+          spawn-sh = "noctalia msg panel-toggle clipboard";
+        };
+        "Alt+Mod+L" = {
+          spawn-sh = "noctalia ipc call lockScreen toggle";
+        };
+        "Alt+Mod+V" = {
+          toggle-window-floating = { };
+        };
       };
     }
     // config.homestore.niri.outputConfig;
@@ -219,7 +375,6 @@
     ];
 
     global-persistence.directories = [
-      ".config/niri"
       ".config/kitty"
     ];
   };
