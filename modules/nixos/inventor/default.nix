@@ -6,7 +6,6 @@
 #
 # ... with hand-crafted tweaks to be production-ready and vivid.
 {
-  lib,
   config,
   pkgs,
   inputs',
