@@ -135,15 +135,18 @@
     config.allowUnfree = true;
   };
 
-  security.tpm2 = (
-    if config.prefstore.boot.secureboot then
-      {
-        enable = true;
-        abrmd.enable = true;
-      }
-    else
-      { }
-  );
+  security = {
+    sudo.wheelNeedsPassword = config.prefstore.sudoWithoutPassword;
+    tpm2 = (
+      if config.prefstore.boot.secureboot then
+        {
+          enable = true;
+          abrmd.enable = true;
+        }
+      else
+        { }
+    );
+  };
 
   environment.systemPackages =
     with pkgs;

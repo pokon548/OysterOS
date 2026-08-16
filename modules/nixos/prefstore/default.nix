@@ -147,5 +147,10 @@
         };
       };
     };
+
+    sudoWithoutPassword = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 }
